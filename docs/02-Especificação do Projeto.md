@@ -12,13 +12,13 @@ Persona 1 - Gerente Administrativa
 
 Maria Silva tem 32 anos, é gerente administrativa em uma empresa de distrubuição de bebidas. Trabalha há mais de 7 anos no setor e é responsável por cuidar do fluxo de estoque, movimentação de produtos e relatórios de vendas. Gosta de ter tudo sob controle e precisa de uma visão geral para tomar decisões rápidas. É casada, tem uma filha de 4 anos e gosta de ferramentas que economizam tempo e evitam retrabalho. Ela busca uma solução que mostre um resumo das operações, ajude a identificar problemas no estoque e possibilite acompanhar o desempenho da equipe.
 
-Persona 2 - Assistente de Vendas 
+Persona 2 - Vendedor
 
-Carlos Henrique tem 27 anos, é assistente de vendas em uma loja de eletrônicos há 2 anos. É o responsável por cadastrar novos clientes, registrar pedidos e acompanhar o andamento das vendas. É comunicativo, gosta de tecnologia e sempre procura formas de agilizar suas tarefas diárias. Solteiro, nas horas vagas joga online com amigos e acompanha canais de tecnologia. Ele precisa de uma solução rápida e prática, que evite erros na hora de cadastrar clientes e pedidos, e que facilite a comunicação entre vendas e estoque para evitar atrasos ou problemas de disponibilidade.
+Carlos Henrique tem 27 anos, é vendedor em uma loja de eletrônicos há 2 anos. É o responsável por cadastrar novos clientes, registrar pedidos e acompanhar o andamento das vendas. É comunicativo, gosta de tecnologia e sempre procura formas de agilizar suas tarefas diárias. Solteiro, nas horas vagas joga online com amigos e acompanha canais de tecnologia. Ele precisa de uma solução rápida e prática, que evite erros na hora de cadastrar clientes e pedidos, e que facilite a comunicação entre vendas e estoque para evitar atrasos ou problemas de disponibilidade.
 
-Persona 3 -  Supervisora de Estoque
+Persona 3 -  Gestora de Estoque
 
-Juliana Rocha tem 40 anos, é supervisora de estoque em uma empresa de cosméticos. Trabalha com logística há mais de 15 anos e conhece bem os desafios de organizar e controlar grandes volumes de mercadorias. É detalhista, organizada e tem como prioridade manter o estoque sempre atualizado e confiável. Mãe de dois adolescentes, Juliana gosta de processos claros e ferramentas que ajudem a prevenir falhas. Ela procura um sistema que permita acompanhar entradas e saídas em tempo real, gerar relatórios de inventário e reduzir erros, para manter o fluxo de produtos estável e ajudar a equipe de vendas.
+Juliana Rocha tem 40 anos, é gestora de estoque em uma empresa de cosméticos. Trabalha com logística há mais de 15 anos e conhece bem os desafios de organizar e controlar grandes volumes de mercadorias. É detalhista, organizada e tem como prioridade manter o estoque sempre atualizado e confiável. Mãe de dois adolescentes, Juliana gosta de processos claros e ferramentas que ajudem a prevenir falhas. Ela procura um sistema que permita acompanhar entradas e saídas em tempo real, gerar relatórios de inventário e reduzir erros, para manter o fluxo de produtos estável e ajudar a equipe de vendas.
 
 ## Histórias de Usuários
 
@@ -26,17 +26,12 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 
 |EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
 |--------------------|------------------------------------|----------------------------------------|
-|Usuário do sistema  | Registrar minhas tarefas           | Não esquecer de fazê-las               |
-|Administrador       | Alterar permissões                 | Permitir que possam administrar contas |
-
-Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
-
-> **Links Úteis**:
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (User Stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
-> - [User Stories: requisitos que humanos entendem](https://www.luiztools.com.br/post/user-stories-descricao-de-requisitos-que-humanos-entendem/)
-> - [Histórias de Usuários: mais exemplos](https://www.reqview.com/doc/user-stories-example.html)
-> - [9 Common User Story Mistakes](https://airfocus.com/blog/user-story-mistakes/)
+|Gerente Administrativa   | Visualizar resumo de vendas e estoque   | Acompanhar desempenho geral da empresa            |
+|Gerente Administrativa  | Gerar relatórios           | Identificar problemas e controlar a eficiência              |
+|Gerente Administrativa       | Gerenciar contas                 | Garantir que o funcionário só veja as informações do próprio trabalho |
+|Vendedor     | Consultar a disponibilidade dos produtos             | Evitar oferecer itens que não estejam em estoque |
+|Gestora de estoque       | Registrar a entrada e saída de produtos | Manter o controle e organização dos produtos |
+|Gestora de estoque       | Receber alertas de produtos com baixo estoque | Fazer a reposição dos produtos faltantes |
 
 ## Modelagem do Processo de Negócio 
 
