@@ -5,10 +5,22 @@
 
 Descreva aqui a metodologia de trabalho do grupo para atacar o problema. Definições sobre os ambiente de trabalho utilizados pela  equipe para desenvolver o projeto. Abrange a relação de ambientes utilizados, a estrutura para gestão do código fonte, além da definição do processo e ferramenta através dos quais a equipe se organiza (Gestão de Times).
 
-## Relação de Ambientes de Trabalho
+### Relação de Ambientes de Trabalho
 
-Os artefatos do projeto são desenvolvidos a partir de diversas plataformas e a relação dos ambientes com seu respectivo propósito deverá ser apresentada em uma tabela que especifica que detalha Ambiente, Plataforma e Link de Acesso. 
-Nota: Vide documento modelo do estudo de caso "Portal de Notícias" e defina também os ambientes e frameworks que serão utilizados no desenvolvimento de aplicações móveis.
+O desenvolvimento do projeto ocorre em diferentes ambientes, cada um com um propósito específico.  
+A tabela abaixo apresenta os ambientes utilizados, suas respectivas plataformas e os links de acesso.  
+
+| **Ambiente**       | **Plataforma**                     | **Link de Acesso**                               | **Propósito**                                                                 |
+|---------------------|------------------------------------|-------------------------------------------------|-------------------------------------------------------------------------------|
+| **Repositório Git** | GitHub                             | [github.com/repo](https://github.com/ICEI-PUCMinas-PSG-SI-TI/psg-ads-n-tiam-2025-2-3sletreiros) | Controle de versão e colaboração entre a equipe.                              |
+| **Gerenciamento**   | Github KanBan                    | [trello.com/b/projeto](https://github.com/orgs/ICEI-PUCMinas-PSG-SI-TI/projects/146) | Gestão de tarefas, backlog e acompanhamento do fluxo de desenvolvimento.      |
+| **Banco de Dados**  | PostgreSQL (dev/prod)              | -                                               | Persistência de dados.                                                        |
+| **Ambiente Dev**    | Localhost                 | [http://localhost:3000](http://localhost:3000)  | Desenvolvimento local da aplicação.                                     |
+| **Produção**        | Servidor em nuvem (Render)     | A definir      | Ambiente final utilizado pelos usuários.                                      |
+| **Mobile (Dev)**    | React Native + Expo CLI            | Emulador Android/iOS / Expo Go                  | Desenvolvimento e testes de aplicações móveis.                                |
+| **Mobile (Prod)**   | Google Play / App Store            | A definir                               | Distribuição oficial das aplicações móveis.                                   |
+| **Documentação**    | Github                | [github.com/repo](https://github.com/ICEI-PUCMinas-PSG-SI-TI/psg-ads-n-tiam-2025-2-3sletreiros)  | Centralização de documentos e artefatos do projeto.                           |
+
 
 ## Controle de Versão
 
