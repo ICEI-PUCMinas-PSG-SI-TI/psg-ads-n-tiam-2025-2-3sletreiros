@@ -8,19 +8,17 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 
 ## Personas
 
-Pedro Paulo tem 26 anos, é arquiteto recém-formado e autônomo. Pensa em se desenvolver profissionalmente através de um mestrado fora do país, pois adora viajar, é solteiro e sempre quis fazer um intercâmbio. Está buscando uma agência que o ajude a encontrar universidades na Europa que aceitem alunos estrangeiros.
+Persona 1 - Gerente Administrativa
 
-Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina e/ou nos seguintes links:
+Maria Silva tem 32 anos, é gerente administrativa em uma empresa de distrubuição de bebidas. Trabalha há mais de 7 anos no setor e é responsável por cuidar do fluxo de estoque, movimentação de produtos e relatórios de vendas. Gosta de ter tudo sob controle e precisa de uma visão geral para tomar decisões rápidas. É casada, tem uma filha de 4 anos e gosta de ferramentas que economizam tempo e evitam retrabalho. Ela busca uma solução que mostre um resumo das operações, ajude a identificar problemas no estoque e possibilite acompanhar o desempenho da equipe.
 
-> **Links Úteis**:
-> - [Rock Content](https://rockcontent.com/blog/personas/)
-> - [Hotmart](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Persona x Público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [Mapa de Empatia](https://resultadosdigitais.com.br/blog/mapa-da-empatia/)
-> - [Mapa de Stalkeholders](https://www.racecomunicacao.com.br/blog/como-fazer-o-mapeamento-de-stakeholders/)
->
-Lembre-se que você deve ser enumerar e descrever precisamente e personalizada todos os clientes ideais que sua solução almeja.
+Persona 2 - Assistente de Vendas 
+
+Carlos Henrique tem 27 anos, é assistente de vendas em uma loja de eletrônicos há 2 anos. É o responsável por cadastrar novos clientes, registrar pedidos e acompanhar o andamento das vendas. É comunicativo, gosta de tecnologia e sempre procura formas de agilizar suas tarefas diárias. Solteiro, nas horas vagas joga online com amigos e acompanha canais de tecnologia. Ele precisa de uma solução rápida e prática, que evite erros na hora de cadastrar clientes e pedidos, e que facilite a comunicação entre vendas e estoque para evitar atrasos ou problemas de disponibilidade.
+
+Persona 3 -  Supervisora de Estoque
+
+Juliana Rocha tem 40 anos, é supervisora de estoque em uma empresa de cosméticos. Trabalha com logística há mais de 15 anos e conhece bem os desafios de organizar e controlar grandes volumes de mercadorias. É detalhista, organizada e tem como prioridade manter o estoque sempre atualizado e confiável. Mãe de dois adolescentes, Juliana gosta de processos claros e ferramentas que ajudem a prevenir falhas. Ela procura um sistema que permita acompanhar entradas e saídas em tempo real, gerar relatórios de inventário e reduzir erros, para manter o fluxo de produtos estável e ajudar a equipe de vendas.
 
 ## Histórias de Usuários
 
