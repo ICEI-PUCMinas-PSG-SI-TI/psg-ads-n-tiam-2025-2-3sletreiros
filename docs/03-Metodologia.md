@@ -30,18 +30,34 @@ foi utilizado para hospedagem do repositório.
 
 O projeto segue a seguinte convenção para o nome de branches:
 
-- `main`: versão estável já testada do software
-- `unstable`: versão já testada do software, porém instável
-- `testing`: versão em testes do software
-- `dev`: versão de desenvolvimento do software
+1. Todas as partes do nome de uma branch deve ser escrito em kebab-case (Letras minúsculas, palavras separadas por hifén).
 
-Quanto à gerência de issues, o projeto adota a seguinte convenção para
-etiquetas:
+2. Os nomes das branchs devem descrever um caminho lógico, até chegar no escopo das alterações: <objetivo_branch>/<tipo_issue>/<escopo_alteracao>/<descrição>
 
-- `documentation`: melhorias ou acréscimos à documentação
-- `bug`: uma funcionalidade encontra-se com problemas
-- `enhancement`: uma funcionalidade precisa ser melhorada
-- `feature`: uma nova funcionalidade precisa ser introduzida
+- Objetivo branch pode assumir as formas:
+  - `test`: branchs que lidam com testes de software
+  - `dev`: branchs para desenvolvimento de software
+  - `chore`: branchs para configurações internas
+
+- Tipo de issue pode assumir as formas:
+  - `feat`: desenvolvimento de novas funcionalidades
+  - `doc`: alterações, melhorias ou acréscimos à documentação
+  - `fix`: correção de bugs relacionados ao código
+  - `config`: alterações de configuração do projeto
+  - `refactor`: refatoração de código existente
+
+- Escopo refere-se ao delimitador de onde a alteração será feita. Exemplos:
+  - `controller`
+  - `interface`
+  - `service`
+
+- Descrição refere-se à uma breve explicação do que será feito. Exemplos:
+  - `user-controller`
+  - `home-page-screen`
+
+- Exemplo de comando git para criação de uma branch, seguindo esta convenção:
+  - `git checkout -b dev/feat/service/user-service`
+
 
 Discuta como a configuração do projeto foi feita na ferramenta de versionamento escolhida. Exponha como a gerência de tags, merges, commits e branchs é realizada. Discuta como a gerência de issues foi realizada.
 
