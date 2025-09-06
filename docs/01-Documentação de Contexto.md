@@ -5,17 +5,13 @@ Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o pr
 ## Problema
 Empresas de diferentes setores, como distribuição de bebidas, lojas de eletrônicos e cosméticos, enfrentam dificuldades para integrar e organizar suas operações internas. Entre os principais problemas estão:
 
-Falta de visão geral das operações: gestores administrativos não conseguem acompanhar de forma centralizada o fluxo de estoque, desempenho das vendas e produtividade da equipe, dificultando a tomada de decisões rápidas.
+**Falta de visão geral das operações:** gestores administrativos não conseguem acompanhar de forma centralizada o fluxo de estoque, desempenho das vendas e produtividade da equipe, dificultando a tomada de decisões rápidas.
 
-Erros no processo de vendas: vendedores enfrentam retrabalho e inconsistências no cadastro de clientes e pedidos, além de dificuldades na comunicação com o estoque, o que pode gerar atrasos e insatisfação dos clientes.
+**Erros no processo de vendas:** vendedores enfrentam retrabalho e inconsistências no cadastro de clientes e pedidos, além de dificuldades na comunicação com o estoque, o que pode gerar atrasos e insatisfação dos clientes.
 
-Gestão de estoque pouco eficiente: responsáveis pelo estoque lidam com informações desatualizadas sobre entradas e saídas de produtos, o que aumenta os riscos de falhas no inventário, rupturas ou excesso de mercadorias.
+**Gestão de estoque pouco eficiente:** responsáveis pelo estoque lidam com informações desatualizadas sobre entradas e saídas de produtos, o que aumenta os riscos de falhas no inventário, rupturas ou excesso de mercadorias.
 
 Essas falhas somadas impactam diretamente no desempenho das empresas, causando desperdícios de tempo, aumento de custos operacionais e perda de oportunidades de venda.
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
 
 ## Objetivos
 
