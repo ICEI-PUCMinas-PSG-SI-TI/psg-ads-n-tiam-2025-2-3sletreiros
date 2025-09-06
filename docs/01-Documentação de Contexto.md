@@ -1,6 +1,8 @@
 # Introdução
 
-Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto.
+Empresas de diferentes setores, como distribuição de bebidas, eletrônicos e cosméticos, enfrentam dificuldades para integrar suas operações internas. A falta de visão geral, os erros no processo de vendas e a gestão ineficiente do estoque resultam em retrabalho, custos elevados e perda de oportunidades. Este projeto propõe um dashboard administrativo que centraliza informações de vendas, clientes, estoque, serviços e funcionários. A ferramenta tem como objetivo melhorar a comunicação entre setores, reduzir falhas e oferecer dados atualizados para apoiar decisões rápidas e seguras.
+
+O sistema é justificado pela necessidade de substituir processos manuais e descentralizados, proporcionando maior eficiência e produtividade. Seu público-alvo são pequenas e médias empresas, gestores, vendedores e responsáveis pelo estoque que precisam de informações confiáveis em tempo real.
 
 ## Problema
 Empresas de diferentes setores, como distribuição de bebidas, lojas de eletrônicos e cosméticos, enfrentam dificuldades para integrar e organizar suas operações internas. Entre os principais problemas estão:
@@ -15,31 +17,36 @@ Essas falhas somadas impactam diretamente no desempenho das empresas, causando d
 
 ## Objetivos
 
-Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
+O sistema tem como propósito trazer mais clareza e controle para as empresas em suas rotinas diárias. A ideia é oferecer uma ferramenta que concentre as principais informações em um só lugar, ajudando gestores, vendedores e responsáveis pelo estoque a trabalharem de forma mais organizada e com menos erros. Os principais objetivos do sistema são:
 
-Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
- 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+**Reunir dados de vendas, clientes, estoque, serviços e funcionários em um único painel.**
+
+**Facilitar a tomada de decisão dos gestores, oferecendo indicadores sempre atualizados.**
+
+**Reduzir falhas no processo de vendas por meio da automação no cadastro de clientes e pedidos.**
+
+**Garantir um controle mais eficiente do estoque, atualizando entradas e saídas em tempo real.**
+
+**Melhorar a comunicação entre os diferentes setores, evitando retrabalho e atrasos.**
+
+**Disponibilizar relatórios e dashboards que auxiliem no acompanhamento de metas e resultados.**
+
+**Aumentar a eficiência das operações, diminuindo custos e desperdícios.**
 
 ## Justificativa
 
-Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
-
-O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
-
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+O tema surgiu porque muitas empresas enfrentam dificuldades sérias na organização de suas rotinas internas: falta de visão consolidada, falhas no atendimento e estoque impreciso geram dor no dia a dia. Para lidar com isso, propomos um dashboard administrativo integrado que una vendas, clientes, estoque, serviços e colaboradores numa solução prática. Esse sistema atende gestores, vendedores e responsáveis por estoque, especialmente em empresas que ainda usam planilhas e processos manuais, ao oferecer dados confiáveis, automação e integração entre setores. A base dessa proposta está na clara necessidade de reduzir desvios, reduzir custos e melhorar a eficiência, seguindo conceitos sólidos de gestão integrada para fornecer informações estratégicas em tempo real.
 
 ## Público-Alvo
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações
-hierárquicas, etc.
+O sistema é voltado para empresas que enfrentam dificuldades no dia a dia para integrar suas informações e processos. Ele foi pensado especialmente para atender gestores, vendedores e equipes de estoque que precisam de mais praticidade e confiabilidade nas suas atividades. No geral, o público-alvo é composto por:
 
-Adicione informações sobre o público-alvo por meio de uma descrição textual, diagramas de personas e mapa de stakeholders.
+**Gestores administrativos e financeiros que necessitam acompanhar o desempenho da empresa de maneira clara e centralizada.**
 
-> **Links Úteis**:
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Como definir o público alvo](https://exame.com/pme/5-dicas-essenciais-para-definir-o-publico-alvo-do-seu-negocio/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
+**Equipes de vendas que buscam mais agilidade e precisão no cadastro de clientes e pedidos.**
+
+**Profissionais responsáveis pelo estoque, que precisam de dados atualizados para evitar falhas no inventário.**
+
+**Pequenas e médias empresas dos setores de distribuição, comércio e serviços, que frequentemente sofrem com processos manuais e informações descentralizadas.**
+
+**Empreendedores que desejam organizar melhor suas operações sem depender de múltiplas planilhas ou sistemas isolados.**
