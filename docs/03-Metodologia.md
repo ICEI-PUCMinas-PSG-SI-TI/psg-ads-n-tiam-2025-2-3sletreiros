@@ -1,4 +1,4 @@
-
+e
 # Metodologia
 
 <span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a></span>
@@ -107,7 +107,7 @@ As ferramentas empregadas no projeto são:
 - **Ferramentas de desenho de tela (wireframing)**: Figma  
 - **Controle de versão**: Git + GitHub  
 - **Gerenciamento de dependências**: npm  
-- **Banco de dados**: PostgreSQL  
+- **Banco de dados**: Firebase  
 
 O editor de código VS Code foi escolhido por permitir integração com o sistema de versão e facilitar o desenvolvimento da aplicação.  
 
