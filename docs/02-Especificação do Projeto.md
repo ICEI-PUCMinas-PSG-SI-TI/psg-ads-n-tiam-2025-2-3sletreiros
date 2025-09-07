@@ -37,23 +37,42 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 
 ### Análise da Situação Atual
 
-Apresente aqui os problemas existentes que viabilizam sua proposta. Apresente o modelo do sistema como ele funciona hoje. Caso sua proposta seja inovadora e não existam processos claramente definidos, apresente como as tarefas que o seu sistema pretende implementar são executadas atualmente, mesmo que não se utilize tecnologia computacional. 
+Atualmente, muitas empresas enfrentam dificuldades na gestão integrada de suas operações administrativas. Os processos existentes apresentam algumas limitações, tais como:
+
+- Controle de estoque manual ou disperso: Os registros de entrada e saída de produtos são realizados em planilhas ou cadernos, tornando o acompanhamento do estoque impreciso e sujeito a erros.
+
+- Gestão de vendas e aluguéis desorganizada: A emissão de vendas e aluguéis é feita de forma manual, o que pode gerar duplicidade de informações e atrasos nos relatórios financeiros.
+
+- Dificuldade no gerenciamento de serviços e tarefas: Os serviços prestados e tarefas internas não possuem um registro centralizado, dificultando a supervisão e acompanhamento da produtividade da equipe.
+
+- Controle financeiro fragmentado: Gastos e receitas não são consolidados em uma única plataforma, aumentando a chance de erros e dificultando a análise completa da saúde financeira da empresa.
+
+No modelo atual, cada tarefa é executada de forma isolada, utilizando ferramentas diversas (papel, planilhas, softwares específicos não integrados), o que gera retrabalho, baixa eficiência e risco de inconsistência de dados.
 
 ### Descrição Geral da Proposta
 
-Apresente aqui uma descrição da sua proposta abordando seus limites e suas ligações com as estratégias e objetivos do negócio. Apresente aqui as oportunidades de melhorias.
+O sistema proposto neste projeto visa integrar todas essas operações em um único dashboard administrativo, oferecendo uma visão completa da empresa, melhorando a produtividade, precisão e tomada de decisão. Com isso, é possível automatizar processos como controle de estoque, emissão de vendas e aluguéis, registro de serviços e gestão financeira.
 
-### Processo 1 – NOME DO PROCESSO
+### Processo 1 – Cadastro de vendas e aluguéis
 
-Apresente aqui o nome e as oportunidades de melhorias para o processo 1. Em seguida, apresente o modelo do processo 1, descrito no padrão BPMN. 
+O processo de vendas e aluguéis atualmente é realizado de forma manual ou com sistemas não integrados, o que gera duplicidade de informações, atrasos na emissão de notas ou contratos e dificuldade de acompanhamento financeiro.
 
-![Processo 1](img/02-bpmn-proc1.png)
+Para o processo de cadastro de vendas e aluguéis, apontamos as seguintes possíveis melhorias:
+- Centralizar registros de vendas e aluguéis em um único sistema.
+- Automatizar a geração de contratos e comprovantes de pagamento.
+- Integrar vendas/aluguéis com estoque e financeiro.
+
+![Processo 1](img/bpmn-vendas-aluguéis.png)
 
 ### Processo 2 – NOME DO PROCESSO
 
-Apresente aqui o nome e as oportunidades de melhorias para o processo 2. Em seguida, apresente o modelo do processo 2, descrito no padrão BPMN.
+O processo de gestão de estoque atualmente apresenta problemas como registros manuais, dificuldade de controle em tempo real e falta de integração com outros setores, como vendas e compras. Essas limitações podem gerar erros de inventário, produtos em falta ou excesso e retrabalho na conferência de dados.
 
-![Processo 2](img/02-bpmn-proc2.png)
+Para o processo de gestão de estoque, apontamos as seguintes possíveis melhorias:
+- Integrar o estoque com o módulo de vendas e compras.
+- Gerar alertas automáticos para produtos com baixa quantidade.
+
+![Processo 2](img/bpmn-estoque.png)
 
 ## Indicadores de Desempenho
 
