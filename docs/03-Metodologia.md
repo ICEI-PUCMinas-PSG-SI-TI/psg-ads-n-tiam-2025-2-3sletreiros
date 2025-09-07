@@ -119,8 +119,6 @@ Git + GitHub garantem controle de versão e colaboração eficiente entre os mem
 
 O npm gerencia as dependências do projeto, garantindo que todas as bibliotecas necessárias para o desenvolvimento com React estejam organizadas.  
 
-PostgreSQL foi escolhido como banco de dados por oferecer segurança, confiabilidade e suporte a estruturas complexas de dados necessárias para o sistema.
-
  
 > **Possíveis Ferramentas que auxiliarão no gerenciamento**: 
 > - [Slack](https://slack.com/)
