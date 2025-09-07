@@ -26,12 +26,16 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 
 |EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
 |--------------------|------------------------------------|----------------------------------------|
-|Gerente Administrativa   | Visualizar resumo de vendas e estoque   | Acompanhar desempenho geral da empresa            |
+|Gerente Administrativa   | Visualizar resumo de vendas e estoque   | Acompanhar as atividades da empresa e tomar decisões rapidamente         |
 |Gerente Administrativa  | Gerar relatórios           | Identificar problemas e controlar a eficiência              |
-|Gerente Administrativa       | Gerenciar contas                 | Garantir que o funcionário só veja as informações do próprio trabalho |
+|Gerente Administrativa  | Consultar vendas        | Avaliar desempenho e verificar metas              |
+|Vendedor     | Gerenciar clientes          | Manter informações organizadas e acelerar o atendimento |
 |Vendedor     | Consultar a disponibilidade dos produtos             | Evitar oferecer itens que não estejam em estoque |
-|Gestora de estoque       | Registrar a entrada e saída de produtos | Manter o controle e organização dos produtos |
+|Vendedor     | Gerenciar pedidos           | Agilizar o atendimento |
+|Gestora de estoque       | Cadastrar novos produtos | Manter o controle do estoque |
+|Gestora de estoque       | Registrar a entrada e saída de produtos | Manter a organização do estoque |
 |Gestora de estoque       | Receber alertas de produtos com baixo estoque | Fazer a reposição dos produtos faltantes |
+
 
 ## Modelagem do Processo de Negócio 
 
