@@ -12,14 +12,14 @@ A tabela abaixo apresenta os ambientes utilizados, suas respectivas plataformas 
 
 | **Ambiente**       | **Plataforma**                     | **Link de Acesso**                               | **Propósito**                                                                 |
 |---------------------|------------------------------------|-------------------------------------------------|-------------------------------------------------------------------------------|
-| **Repositório Git** | GitHub                             | [github.com/repo](https://github.com/ICEI-PUCMinas-PSG-SI-TI/psg-ads-n-tiam-2025-2-3sletreiros) | Controle de versão e colaboração entre a equipe.                              |
-| **Gerenciamento**   | Github KanBan                    | [trello.com/b/projeto](https://github.com/orgs/ICEI-PUCMinas-PSG-SI-TI/projects/146) | Gestão de tarefas, backlog e acompanhamento do fluxo de desenvolvimento.      |
-| **Banco de Dados**  | PostgreSQL (dev/prod)              | -                                               | Persistência de dados.                                                        |
+| **Repositório Git** | GitHub                             | [https://github.com/ICEI-PUCMinas-PSG-SI-TI/psg-ads-n-tiam-2025-2-3sletreiros](https://github.com/ICEI-PUCMinas-PSG-SI-TI/psg-ads-n-tiam-2025-2-3sletreiros) | Controle de versão e colaboração entre a equipe.                              |
+| **Gerenciamento**   | Github KanBan                    | [https://github.com/orgs/ICEI-PUCMinas-PSG-SI-TI/projects/146](https://github.com/orgs/ICEI-PUCMinas-PSG-SI-TI/projects/146) | Gestão de tarefas, backlog e acompanhamento do fluxo de desenvolvimento.      |
+| **Banco de Dados**  | Firebase (dev/prod)              | -                                               | Persistência de dados.                                                        |
 | **Ambiente Dev**    | Localhost                 | [http://localhost:3000](http://localhost:3000)  | Desenvolvimento local da aplicação.                                     |
 | **Produção**        | Servidor em nuvem (Render)     | A definir      | Ambiente final utilizado pelos usuários.                                      |
 | **Mobile (Dev)**    | React Native + Expo CLI            | Emulador Android/iOS / Expo Go                  | Desenvolvimento e testes de aplicações móveis.                                |
 | **Mobile (Prod)**   | Google Play / App Store            | A definir                               | Distribuição oficial das aplicações móveis.                                   |
-| **Documentação**    | Github                | [github.com/repo](https://github.com/ICEI-PUCMinas-PSG-SI-TI/psg-ads-n-tiam-2025-2-3sletreiros)  | Centralização de documentos e artefatos do projeto.                           |
+| **Documentação**    | Github                | [https://github.com/ICEI-PUCMinas-PSG-SI-TI/psg-ads-n-tiam-2025-2-3sletreiros](https://github.com/ICEI-PUCMinas-PSG-SI-TI/psg-ads-n-tiam-2025-2-3sletreiros)  | Centralização de documentos e artefatos do projeto.                           |
 
 
 ## Controle de Versão
