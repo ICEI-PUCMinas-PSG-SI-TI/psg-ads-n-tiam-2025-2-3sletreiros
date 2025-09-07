@@ -64,7 +64,7 @@ Para o processo de cadastro de vendas e aluguéis, apontamos as seguintes possí
 
 ![Processo 1](img/bpmn-vendas-aluguéis.png)
 
-### Processo 2 – NOME DO PROCESSO
+### Processo 2 – Gestão de estoque
 
 O processo de gestão de estoque atualmente apresenta problemas como registros manuais, dificuldade de controle em tempo real e falta de integração com outros setores, como vendas e compras. Essas limitações podem gerar erros de inventário, produtos em falta ou excesso e retrabalho na conferência de dados.
 
