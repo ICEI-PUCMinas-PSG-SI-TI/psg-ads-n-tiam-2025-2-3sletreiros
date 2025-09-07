@@ -70,47 +70,66 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 ### Requisitos Funcionais
 
-|ID    | Descrição do Requisito  | Prioridade |
-|------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+| ID     | Descrição do Requisito                                                                       | Prioridade |
+| ------ | -------------------------------------------------------------------------------------------- | ---------- |
+| RF-001 | Cadastrar novos clientes com nome, CPF/CNPJ, endereço, telefone e e-mail                     | Alta       |
+| RF-002 | Editar informações de clientes existentes                                                    | Média      |
+| RF-003 | Excluir clientes                                                                             | Média      |
+| RF-004 | Consultar lista de clientes com filtros (nome, CPF/CNPJ, status)                             | Média      |
+| RF-005 | Cadastrar produtos com nome, descrição, categoria, preço, quantidade em estoque e fornecedor | Alta       |
+| RF-006 | Editar produtos existentes                                                                   | Alta       |
+| RF-007 | Excluir produtos                                                                             | Média      |
+| RF-008 | Consultar produtos com filtros por nome, categoria, preço ou estoque                         | Alta       |
+| RF-009 | Atualizar automaticamente a quantidade em estoque após vendas ou aluguéis                    | Alta       |
+| RF-010 | Registrar entradas e saídas de estoque                                                       | Alta       |
+| RF-011 | Alertar quando um produto estiver com estoque baixo                                          | Média      |
+| RF-012 | Registrar uma venda com cliente, produtos, quantidade, preço unitário e total                | Alta       |
+| RF-013 | Atualizar o estoque automaticamente após a venda                                             | Alta       |
+| RF-014 | Consultar vendas por cliente, data ou produto                                                | Média      |
+| RF-015 | Gerar relatórios de vendas (diário, semanal, mensal)                                         | Baixa      |
+| RF-016 | Registrar um aluguel com cliente, produto, data de início, data de término e valor           | Alta       |
+| RF-017 | Gerar alertas de devolução próxima do prazo                                                  | Média      |
+| RF-018 | Consultar aluguéis ativos, finalizados ou atrasados                                          | Média      |
+| RF-019 | Gerar relatórios de aluguéis (ativos, finalizados, faturamento)                              | Baixa      |
+| RF-020 | Cadastrar serviços com nome, descrição, preço e duração                                      | Média      |
+| RF-021 | Registrar execução de um serviço para um cliente                                             | Alta       |
+| RF-022 | Gerar relatórios de serviços prestados                                                       | Baixa      |
+| RF-023 | Login e autenticação de usuários                                                             | Alta       |
+| RF-024 | Dashboard principal com gráficos e indicadores de vendas, aluguéis, estoque e serviços       | Alta       |
+
 
 ### Requisitos não Funcionais
 
-|ID     | Descrição do Requisito  |Prioridade |
-|-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+| ID      | Descrição do Requisito                                                                    | Prioridade |
+| ------- | ----------------------------------------------------------------------------------------- | ---------- |
+| RNF-001 | Compatibilidade com Android e iOS, suportando versões recentes e duas anteriores          | Alta       |
+| RNF-002 | Responsivo, adaptando-se a diferentes tamanhos de tela e resoluções                       | Alta       |
+| RNF-003 | Tempo de resposta das telas inferior a 2 segundos                                         | Alta       |
+| RNF-004 | Funcionamento offline parcial com sincronização automática                                | Média      |
+| RNF-005 | Consumo de dados otimizado                                                                | Média      |
+| RNF-006 | Armazenamento seguro de dados sensíveis, criptografia de senhas e informações pessoais    | Alta       |
+| RNF-007 | Autenticação segura, incluindo biometria (impressão digital ou facial)                    | Média      |
+| RNF-008 | Interface intuitiva e fácil de usar, elementos touch-friendly                             | Alta       |
+| RNF-009 | Registro de logs de atividades essenciais, respeitando a privacidade                      | Média      |
+| RNF-010 | Suporte a múltiplos usuários com diferentes perfis e permissões                           | Alta       |
+| RNF-011 | Uso eficiente de bateria e memória, evitando travamentos                                  | Média      |
+| RNF-012 | Disponibilidade contínua mesmo com interrupções de rede, garantindo integridade dos dados | Alta       |
 
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
 
 ## Restrições
 
 O projeto está restrito pelos itens apresentados na tabela a seguir.
 
-|ID| Restrição                                             |
-|--|-------------------------------------------------------|
-|01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
+| ID | Restrição                                                                                                        |
+| -- | ---------------------------------------------------------------------------------------------------------------- |
+| 01 | O projeto deverá ser desenvolvido como aplicativo mobile para Android e iOS                                      |
+| 02 | Não é permitido uso de frameworks pagos para componentes essenciais do app                                       |
+| 03 | O desenvolvimento deverá priorizar segurança e proteção de dados sensíveis (senhas, CPF/CNPJ, dados financeiros) |
+| 04 | O sistema deve ser compatível com versões mínimas dos sistemas operacionais definidas (Android e iOS)            |
+| 05 | O projeto deve ser entregue dentro do prazo definido no cronograma de desenvolvimento                            |
+| 06 | O app deve ser otimizado para não consumir excessivamente bateria ou memória dos dispositivos                    |
+| 07 | A interface deve ser desenvolvida apenas para dispositivos móveis, sem versão web completa                       |
 
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
-> **Links Úteis**:
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
 
 ## Diagrama de Casos de Uso
 
