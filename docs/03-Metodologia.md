@@ -102,13 +102,25 @@ Coloque  informações sobre detalhes da implementação do Scrum seguido pelo g
 
 As ferramentas empregadas no projeto são:
 
-- Editor de código.
-- Ferramentas de comunicação
-- Ferramentas de desenho de tela (_wireframing_)
+- **Editor de código**: VS Code  
+- **Ferramentas de comunicação**: Microsoft Teams e WhatsApp  
+- **Ferramentas de desenho de tela (wireframing)**: Figma  
+- **Controle de versão**: Git + GitHub  
+- **Gerenciamento de dependências**: npm  
+- **Banco de dados**: PostgreSQL  
 
-O editor de código foi escolhido porque ele possui uma integração com o sistema de versão. As ferramentas de comunicação utilizadas possuem integração semelhante e por isso foram selecionadas. Por fim, para criar diagramas utilizamos essa ferramenta por melhor captar as necessidades da nossa solução.
+O editor de código VS Code foi escolhido por permitir integração com o sistema de versão e facilitar o desenvolvimento da aplicação.  
 
-Liste quais ferramentas foram empregadas no desenvolvimento do projeto, justificando a escolha delas, sempre que possível.
+As ferramentas de comunicação, como Microsoft Teams e WhatsApp, foram selecionadas para manter a equipe alinhada, permitindo troca de mensagens, chamadas e compartilhamento de arquivos.  
+
+O Figma foi utilizado para criar diagramas e protótipos de interface, ajudando a captar as necessidades da solução de forma visual.  
+
+Git + GitHub garantem controle de versão e colaboração eficiente entre os membros da equipe.  
+
+O npm gerencia as dependências do projeto, garantindo que todas as bibliotecas necessárias para o desenvolvimento com React estejam organizadas.  
+
+PostgreSQL foi escolhido como banco de dados por oferecer segurança, confiabilidade e suporte a estruturas complexas de dados necessárias para o sistema.
+
  
 > **Possíveis Ferramentas que auxiliarão no gerenciamento**: 
 > - [Slack](https://slack.com/)
