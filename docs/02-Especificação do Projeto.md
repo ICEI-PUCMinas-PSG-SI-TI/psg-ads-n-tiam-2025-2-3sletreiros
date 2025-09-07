@@ -169,14 +169,45 @@ As referências abaixo irão auxiliá-lo na geração do artefato “Diagrama de
 
 A matriz de rastreabilidade é uma ferramenta usada para facilitar a visualização dos relacionamento entre requisitos e outros artefatos ou objetos, permitindo a rastreabilidade entre os requisitos e os objetivos de negócio. 
 
-A matriz deve contemplar todos os elementos relevantes que fazem parte do sistema, conforme a figura meramente ilustrativa apresentada a seguir.
+| ID      | Descrição                                                                                    | Tipo          | Prioridade | Rastreabilidade                                   |
+| ------- | -------------------------------------------------------------------------------------------- | ------------- | ---------- | ------------------------------------------------- |
+| RNF-001 | Compatibilidade com Android e iOS, suportando versões recentes e duas anteriores             | Não Funcional | Alta       | R04, R03                                          |
+| RNF-002 | Responsivo, adaptando-se a diferentes tamanhos de tela e resoluções                          | Não Funcional | Alta       | RF-001, RF-005, RF-008, RF-012, RF-016            |
+| RNF-003 | Tempo de resposta das telas inferior a 2 segundos                                            | Não Funcional | Alta       | RF-001 a RF-024                                   |
+| RNF-004 | Funcionamento offline parcial com sincronização automática                                   | Não Funcional | Média      | RF-001 a RF-024                                   |
+| RNF-005 | Consumo de dados otimizado                                                                   | Não Funcional | Média      | RF-001 a RF-024                                   |
+| RNF-006 | Armazenamento seguro de dados sensíveis, criptografia de senhas e informações pessoais       | Não Funcional | Alta       | RF-001, RF-012, RF-016, RF-021, R03, R04          |
+| RNF-007 | Autenticação segura, incluindo biometria (impressão digital ou facial)                       | Não Funcional | Média      | RF-023                                            |
+| RNF-008 | Interface intuitiva e fácil de usar, elementos touch-friendly                                | Não Funcional | Alta       | RF-001 a RF-024                                   |
+| RNF-009 | Registro de logs de atividades essenciais, respeitando a privacidade                         | Não Funcional | Média      | RF-001 a RF-024                                   |
+| RNF-010 | Suporte a múltiplos usuários com diferentes perfis e permissões                              | Não Funcional | Alta       | RF-023                                            |
+| RNF-011 | Uso eficiente de bateria e memória, evitando travamentos                                     | Não Funcional | Média      | RF-001 a RF-024                                   |
+| RNF-012 | Disponibilidade contínua mesmo com interrupções de rede, garantindo integridade dos dados    | Não Funcional | Alta       | RF-001 a RF-024                                   |
+| RF-001  | Cadastrar novos clientes com nome, CPF/CNPJ, endereço, telefone e e-mail                     | Funcional     | Alta       | Caso de uso: cadastrar clientes                   |
+| RF-002  | Editar informações de clientes existentes                                                    | Funcional     | Média      | Caso de uso: editar clientes                      |
+| RF-003  | Excluir clientes                                                                             | Funcional     | Média      | Caso de uso: editar clientes                      |
+| RF-004  | Consultar lista de clientes com filtros (nome, CPF/CNPJ, status)                             | Funcional     | Média      | Caso de uso: consultar clientes                   |
+| RF-005  | Cadastrar produtos com nome, descrição, categoria, preço, quantidade em estoque e fornecedor | Funcional     | Alta       | Caso de uso: registrar vendas/aluguéis            |
+| RF-006  | Editar produtos existentes                                                                   | Funcional     | Alta       | Caso de uso: registrar vendas/aluguéis            |
+| RF-007  | Excluir produtos                                                                             | Funcional     | Média      | Caso de uso: registrar vendas/aluguéis            |
+| RF-008  | Consultar produtos com filtros por nome, categoria, preço ou estoque                         | Funcional     | Alta       | Caso de uso: consultar vendas/aluguéis            |
+| RF-009  | Atualizar automaticamente a quantidade em estoque após vendas ou aluguéis                    | Funcional     | Alta       | RF-012, RF-016                                    |
+| RF-010  | Registrar entradas e saídas de estoque                                                       | Funcional     | Alta       | RF-012, RF-016                                    |
+| RF-011  | Alertar quando um produto estiver com estoque baixo                                          | Funcional     | Média      | RF-012, RF-016                                    |
+| RF-012  | Registrar uma venda com cliente, produtos, quantidade, preço unitário e total                | Funcional     | Alta       | Caso de uso: registrar vendas                     |
+| RF-013  | Atualizar o estoque automaticamente após a venda                                             | Funcional     | Alta       | RF-012, RF-009                                    |
+| RF-014  | Consultar vendas por cliente, data ou produto                                                | Funcional     | Média      | Caso de uso: consultar vendas                     |
+| RF-015  | Gerar relatórios de vendas (diário, semanal, mensal)                                         | Funcional     | Baixa      | Caso de uso: gerar relatório de vendas            |
+| RF-016  | Registrar um aluguel com cliente, produto, data de início, data de término e valor           | Funcional     | Alta       | Caso de uso: registrar aluguéis                   |
+| RF-017  | Gerar alertas de devolução próxima do prazo                                                  | Funcional     | Média      | Caso de uso: consultar aluguéis                   |
+| RF-018  | Consultar aluguéis ativos, finalizados ou atrasados                                          | Funcional     | Média      | Caso de uso: consultar aluguéis                   |
+| RF-019  | Gerar relatórios de aluguéis (ativos, finalizados, faturamento)                              | Funcional     | Baixa      | Caso de uso: gerar relatório de serviços          |
+| RF-020  | Cadastrar serviços com nome, descrição, preço e duração                                      | Funcional     | Média      | Caso de uso: registrar serviços                   |
+| RF-021  | Registrar execução de um serviço para um cliente                                             | Funcional     | Alta       | Caso de uso: registrar serviços                   |
+| RF-022  | Gerar relatórios de serviços prestados                                                       | Funcional     | Baixa      | Caso de uso: gerar relatório de serviços          |
+| RF-023  | Login e autenticação de usuários                                                             | Funcional     | Alta       | Caso de uso: login e autenticação                 |
+| RF-024  | Dashboard principal com gráficos e indicadores de vendas, aluguéis, estoque e serviços       | Funcional     | Alta       | Caso de uso: gerar relatório de vendas e serviços |
 
-![Exemplo de matriz de rastreabilidade](img/02-matriz-rastreabilidade.png)
-
-> **Links Úteis**:
-> - [Artigo Engenharia de Software 13 - Rastreabilidade](https://www.devmedia.com.br/artigo-engenharia-de-software-13-rastreabilidade/12822/)
-> - [Verificação da rastreabilidade de requisitos usando a integração do IBM Rational RequisitePro e do IBM ClearQuest Test Manager](https://developer.ibm.com/br/tutorials/requirementstraceabilityverificationusingrrpandcctm/)
-> - [IBM Engineering Lifecycle Optimization – Publishing](https://www.ibm.com/br-pt/products/engineering-lifecycle-optimization/publishing/)
 
 
 # Gerenciamento de Projeto
