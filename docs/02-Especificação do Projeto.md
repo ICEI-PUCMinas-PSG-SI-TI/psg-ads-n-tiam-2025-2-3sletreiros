@@ -225,9 +225,22 @@ O gráfico de Gantt ou diagrama de Gantt também é uma ferramenta visual utiliz
 
 ## Gerenciamento de Equipe
 
-O gerenciamento adequado de tarefas contribuirá para que o projeto alcance altos níveis de produtividade. Por isso, é fundamental que ocorra a gestão de tarefas e de pessoas, de modo que os times envolvidos no projeto possam ser facilmente gerenciados. 
+A equipe está se organizando pelo [Kanban](https://github.com/orgs/ICEI-PUCMinas-PSG-SI-TI/projects/146) do próprio GitHub, de forma a facilitar a visualização do progresso das tarefas.
 
-![Simple Project Timeline](img/02-project-timeline.png)
+**Como o quadro está planejado**
+
+O nosso Kanban está definido em 5 abas, sendo elas:
+- Todo (onde colocamos as tarefas que devem ser realizadas)
+- In progress (arrastamos a tarefa para essa aba quando a pessoa responsável pela tarefa começa o desenvolver da dada tarefa)
+- Done (após a pessoa finalizar, a tarefa vem para essa aba que sinaliza que ela foi finalizada)
+- Late (quando a tarefa está atrasada em relação ao tempo dado a tal ser concluída)
+- Empty (quando a tarefa não foi designada à ninguem ainda)
+
+**Rotina**
+
+Nossa rotina se baseia nos planejamentos semanais, onde é realizado a distribuição das tarefas. Durante a semana, temos as reuniões diárias(daily), onde recapitulamos o que foi feito no dia anterior e o que iremos fazer no dia atual. A cada commit, temos uma revisão para identificar se há algum erro ou se está seguindo os padrões de commit.
+
+Nós adotamos algumas políticas de boas práticas como os solicitações de pull sendo revisadas antes de serem efetuadas e os padrões que seguiremos para as branchs, que foi descrito no controle de versão do projeto
 
 ## Gestão de Orçamento
 
