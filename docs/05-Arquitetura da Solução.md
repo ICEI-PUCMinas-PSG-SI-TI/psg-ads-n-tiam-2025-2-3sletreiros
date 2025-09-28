@@ -17,7 +17,7 @@ As referências abaixo irão auxiliá-lo na geração do artefato “Diagrama de
 
 ## Modelo ER
 
-![Modelo ER]((https://github.com/ICEI-PUCMinas-PSG-SI-TI/psg-ads-n-tiam-2025-2-3sletreiros/blob/main/docs/img/Modelo_ER1.png))
+![Modelo ER](img/Modelo_ER1.png)
 
 ## Esquema Relacional
 
