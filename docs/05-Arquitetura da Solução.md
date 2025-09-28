@@ -136,47 +136,27 @@ Explique como a hospedagem e o lançamento da plataforma foi feita.
 
 ## Qualidade de Software
 
-1. Manutenibilidade
+# Qualidade de Software no Projeto (ISO/IEC 25010)
 
-Sub-característica: Modificabilidade
+Este projeto foi desenvolvido considerando algumas características da norma **ISO/IEC 25010**, garantindo que o sistema seja confiável, seguro e fácil de evoluir.
 
-Por que:
-Arquitetura em camadas (Front-end separado do Back-end) para facilitar evolução do sistema.
-Novas funcionalidades podem ser adicionadas ou regras alteradas sem grandes impactos.
+## Características Selecionadas
 
-Métricas:
+| Característica  | Sub-característica | Por que | Métricas de Avaliação |
+|-----------------|--------------------|---------|------------------------|
+| **Manutenibilidade** | Modificabilidade | Arquitetura em camadas (Front-end separado do Back-end) para facilitar evolução. Novas funcionalidades podem ser adicionadas ou regras alteradas sem grandes impactos. | - Tempo médio para adicionar uma funcionalidade simples<br>- Número de bugs reportados após atualizações |
+| **Confiabilidade** | Tolerância a Falhas | O sistema lida com dados financeiros e deve continuar funcionando mesmo diante de erros (ex.: saque inválido, falha de conexão). | - Percentual de requisições à API que retornam erro **5xx**<br>- Tempo Médio de Recuperação (**MTTR**) após falhas críticas |
+| **Segurança** | Integridade | A integridade dos dados (saldo, informações pessoais) deve ser preservada. Uso de modelagem relacional e validações no back-end. | - Vulnerabilidades encontradas em testes de **SQL Injection**<br>- Logs de acessos negados (tentativas de alteração sem permissão) |
 
-Tempo médio para adicionar uma funcionalidade simples (ex.: nova tela ou endpoint).
+---
 
-Número de bugs reportados após atualizações.
+## Resumo
+O projeto segue três pilares principais:  
 
-2. Confiabilidade
+- ✅ **Fácil de evoluir (Manutenibilidade)**  
+- ✅ **Funciona mesmo em situações de erro (Confiabilidade)**  
+- ✅ **Protege os dados (Segurança)**  
 
-Sub-característica: Tolerância a Falhas
-
-Por que:
-O sistema lida com dados financeiros e informações de usuários.
-Ele precisa continuar funcionando mesmo diante de erros inesperados (ex.: saque inválido, falha de conexão).
-
-Métricas:
-
-Percentual de requisições à API que retornam erro 5xx.
-
-Tempo Médio de Recuperação (MTTR) após falhas críticas.
-
-3. Segurança
-
-Sub-característica: Integridade
-
-Por que:
-A integridade dos dados é essencial (ex.: saldo, dados pessoais).
-O sistema garante isso através de modelagem relacional e validações no back-end.
-
-Métricas:
-
-Número de vulnerabilidades encontradas em testes de SQL Injection.
-
-Logs de acessos negados (tentativas de alteração sem permissão).
 
 > **Links Úteis**:
 >
