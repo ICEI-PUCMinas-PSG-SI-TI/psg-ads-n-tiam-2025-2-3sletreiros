@@ -33,7 +33,95 @@ As referências abaixo irão auxiliá-lo na geração do artefato “Esquema Rel
 
 ## Modelo Físico
 
-Entregar um arquivo banco.sql contendo os scripts de criação das tabelas do banco de dados. Este arquivo deverá ser incluído dentro da pasta src\bd.
+// ================== COLEÇÃO EMPRESA ==================
+db.createCollection("empresas")
+db.empresas.insertOne({
+  _id: ObjectId(),
+  nome: "Tech Solutions",
+  social: "Tech Solutions LTDA",
+  cnpj: "12.345.678/0001-90",
+  ramo: "Tecnologia",
+  tipo: "Privada",
+  assinatura_ativa: true,
+  email: "contato@tech.com",
+  senha: "123456",
+  endereco: {
+    rua: "Av. Paulista",
+    numero: 1000,
+    bairro: "Centro",
+    cidade: "São Paulo",
+    estado: "SP",
+    uf: "SP",
+    cep: "01310-100"
+  }
+})
+
+// ================== COLEÇÃO FUNCIONARIO ==================
+db.createCollection("funcionarios")
+db.funcionarios.insertOne({
+  _id: ObjectId(),
+  empresa_id: ObjectId("..."), // referência empresa
+  nome: "João",
+  sobrenome: "Silva",
+  data_nascimento: ISODate("1990-05-10"),
+  rg: "12.345.678-9",
+  cpf: "123.456.789-00",
+  email: "joao@tech.com",
+  senha: "senha123",
+  ctps: "1234567",
+  status: true,
+  cargo: "Gerente",
+  endereco: {
+    rua: "Rua A",
+    numero: 45,
+    bairro: "Bela Vista",
+    cidade: "São Paulo",
+    estado: "SP",
+    uf: "SP",
+    cep: "01311-000"
+  }
+})
+
+// ================== COLEÇÃO PRODUTO ==================
+db.createCollection("produtos")
+db.produtos.insertOne({
+  _id: ObjectId(),
+  empresa_id: ObjectId("..."), // referência empresa
+  nome: "Notebook Dell",
+  preco: 4500.00,
+  descricao: "Notebook i7 16GB RAM",
+  estoque: 20
+})
+
+// ================== COLEÇÃO SERVIÇO ==================
+db.createCollection("servicos")
+db.servicos.insertOne({
+  _id: ObjectId(),
+  empresa_id: ObjectId("..."), // referência empresa
+  descricao: "Manutenção de servidor",
+  data: ISODate("2025-09-28"),
+  nome_cliente: "Empresa X",
+  titulo: "Contrato de suporte"
+})
+
+// ================== COLEÇÃO VENDAS ==================
+db.createCollection("vendas")
+db.vendas.insertOne({
+  _id: ObjectId(),
+  empresa_id: ObjectId("..."),     // referência empresa
+  vendedor_id: ObjectId("..."),    // referência funcionário
+  data: ISODate("2025-09-28"),
+  valor_total: 9000.00,
+  itens: [
+    {
+      produto_id: ObjectId("..."), // referência produto
+      quantidade: 2,
+      valor: 4500.00,
+      observacao: "Entrega em 7 dias"
+    }
+  ]
+})
+
 
 ## Tecnologias Utilizadas
 
