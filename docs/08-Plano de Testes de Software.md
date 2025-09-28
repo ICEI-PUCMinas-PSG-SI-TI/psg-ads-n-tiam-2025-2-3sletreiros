@@ -2,167 +2,97 @@
 
 <span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Especificação do Projeto</a></span>, <a href="3-Projeto de Interface.md"> Projeto de Interface</a>
 
-1. Cadastro de Clientes (RF-001)
+# Roteiro de Testes – Sistema de Gestão
+
+## 1. Cadastro de Clientes (RF-001)
+- **Objetivo:** Verificar se é possível cadastrar novos clientes corretamente.
+- **Passos:**
+  1. Acessar a tela de cadastro de clientes.
+  2. Preencher todos os campos obrigatórios.
+  3. Clicar em “Salvar”.
+- **Tipo de Teste:** Funcional
+- **Resultado Esperado:** Cliente cadastrado e listado na base de dados.
+- **Caso Negativo:** Deixar CPF ou e-mail em branco → sistema exibe mensagem de erro e não permite salvar.
+- **Ferramentas:** Selenium, Postman (API)
+
+## 2. Consulta de Produtos (RF-008)
+- **Objetivo:** Validar filtros de pesquisa de produtos.
+- **Passos:**
+  1. Acessar a tela de consulta de produtos.
+  2. Informar filtro por nome ou categoria.
+  3. Clicar em “Pesquisar”.
+- **Tipo de Teste:** Funcional
+- **Resultado Esperado:** Lista de produtos exibida conforme os filtros.
+- **Caso Negativo:** Inserir nome inexistente → lista vazia ou mensagem “Nenhum produto encontrado”.
+- **Ferramentas:** Selenium, JMeter (performance de filtro)
+
+## 3. Registro de Venda (RF-012)
+- **Objetivo:** Testar o registro de vendas e atualização de estoque.
+- **Passos:**
+  1. Abrir a tela de vendas.
+  2. Selecionar cliente e produtos.
+  3. Informar quantidade e preço unitário.
+  4. Confirmar venda.
+- **Tipo de Teste:** Funcional / Integração
+- **Resultado Esperado:** Venda registrada, total calculado corretamente, estoque atualizado.
+- **Caso Negativo:** Informar quantidade maior que o estoque disponível → erro “Quantidade insuficiente”.
+- **Ferramentas:** Selenium, Postman, SQL Server Management Studio
+
+## 4. Alertas de Estoque Baixo (RF-011)
+- **Objetivo:** Garantir que o sistema alerta quando o estoque está abaixo do mínimo.
+- **Passos:**
+  1. Reduzir manualmente ou registrar vendas até o produto ficar abaixo do estoque mínimo.
+  2. Acessar a tela de alertas.
+- **Tipo de Teste:** Funcional / Automático
+- **Resultado Esperado:** Sistema exibe alerta indicando produtos com estoque baixo.
+- **Caso Negativo:** Produto com estoque suficiente não deve gerar alerta.
+- **Ferramentas:** Selenium, Jenkins (automatização)
+
+## 5. Relatórios de Vendas (RF-015)
+- **Objetivo:** Validar geração de relatórios (diário, semanal, mensal).
+- **Passos:**
+  1. Acessar a tela de relatórios de vendas.
+  2. Selecionar período desejado.
+  3. Gerar relatório.
+- **Tipo de Teste:** Funcional / Relatório
+- **Resultado Esperado:** Relatório gerado com informações corretas.
+- **Caso Negativo:** Selecionar período sem vendas → relatório vazio ou mensagem informativa.
+- **Ferramentas:** Power BI, Crystal Reports, Selenium
+
+## 6. Cadastro de Produtos (RF-005)
+- **Objetivo:** Verificar cadastro de produtos.
+- **Passos:**
+  1. Abrir a tela de cadastro de produtos.
+  2. Preencher todos os campos obrigatórios: nome, descrição, categoria, preço, quantidade e fornecedor.
+  3. Salvar.
+- **Tipo de Teste:** Funcional
+- **Resultado Esperado:** Produto cadastrado e listado.
+- **Caso Negativo:** Preço ou quantidade em branco → mensagem de erro.
+- **Ferramentas:** Selenium, Postman
+
+## 7. Registro de Aluguel (RF-016)
+- **Objetivo:** Testar registro de aluguel e cálculo de valores.
+- **Passos:**
+  1. Abrir tela de registro de aluguel.
+  2. Selecionar cliente e produto.
+  3. Informar data de início, data de término e valor.
+  4. Confirmar registro.
+- **Tipo de Teste:** Funcional / Integração
+- **Resultado Esperado:** Aluguel registrado, produto marcado como alugado, valor calculado corretamente.
+- **Caso Negativo:** Data de término anterior à data de início → erro.
+- **Ferramentas:** Selenium, Postman, SQL Server Management Studio
+
+## 8. Login e Autenticação de Usuários (RF-023)
+- **Objetivo:** Garantir que somente usuários cadastrados consigam acessar o sistema.
+- **Passos:**
+  1. Abrir tela de login.
+  2. Informar usuário e senha válidos.
+  3. Clicar em “Entrar”.
+- **Tipo de Teste:** Funcional / Segurança
+- **Resultado Esperado:** Usuário autenticado e direcionado ao dashboard.
+- **Caso Negativo:** Usuário ou senha incorretos → mensagem “Usuário ou senha inválidos”.
+- **Ferramentas:** Selenium, OWASP ZAP (teste de segurança)
 
-Objetivo: Verificar se é possível cadastrar novos clientes corretamente.
-
-Passos:
-
-Acessar a tela de cadastro de clientes.
-
-Preencher todos os campos obrigatórios.
-
-Clicar em “Salvar”.
-
-Tipo de Teste: Funcional
-
-Resultado Esperado: Cliente cadastrado e listado na base de dados.
-
-Caso Negativo: Deixar CPF ou e-mail em branco → sistema exibe mensagem de erro e não permite salvar.
-
-Ferramentas: Selenium, Postman (API)
-
-2. Consulta de Produtos (RF-008)
-
-Objetivo: Validar filtros de pesquisa de produtos.
-
-Passos:
-
-Acessar a tela de consulta de produtos.
-
-Informar filtro por nome ou categoria.
-
-Clicar em “Pesquisar”.
-
-Tipo de Teste: Funcional
-
-Resultado Esperado: Lista de produtos exibida conforme os filtros.
-
-Caso Negativo: Inserir nome inexistente → lista vazia ou mensagem “Nenhum produto encontrado”.
-
-Ferramentas: Selenium, JMeter (performance de filtro)
-
-3. Registro de Venda (RF-012)
-
-Objetivo: Testar o registro de vendas e atualização de estoque.
-
-Passos:
-
-Abrir a tela de vendas.
-
-Selecionar cliente e produtos.
-
-Informar quantidade e preço unitário.
-
-Confirmar venda.
-
-Tipo de Teste: Funcional / Integração
-
-Resultado Esperado: Venda registrada, total calculado corretamente, estoque atualizado.
-
-Caso Negativo: Informar quantidade maior que o estoque disponível → erro “Quantidade insuficiente”.
-
-Ferramentas: Selenium, Postman, SQL Server Management Studio
-
-4. Alertas de Estoque Baixo (RF-011)
-
-Objetivo: Garantir que o sistema alerta quando o estoque está abaixo do mínimo.
-
-Passos:
-
-Reduzir manualmente ou registrar vendas até o produto ficar abaixo do estoque mínimo.
-
-Acessar a tela de alertas.
-
-Tipo de Teste: Funcional / Automático
-
-Resultado Esperado: Sistema exibe alerta indicando produtos com estoque baixo.
-
-Caso Negativo: Produto com estoque suficiente não deve gerar alerta.
-
-Ferramentas: Selenium, Jenkins (automatização)
-
-5. Relatórios de Vendas (RF-015)
-
-Objetivo: Validar geração de relatórios (diário, semanal, mensal).
-
-Passos:
-
-Acessar a tela de relatórios de vendas.
-
-Selecionar período desejado.
-
-Gerar relatório.
-
-Tipo de Teste: Funcional / Relatório
-
-Resultado Esperado: Relatório gerado com informações corretas.
-
-Caso Negativo: Selecionar período sem vendas → relatório vazio ou mensagem informativa.
-
-Ferramentas: Power BI, Crystal Reports, Selenium
-
-6. Cadastro de Produtos (RF-005)
-
-Objetivo: Verificar cadastro de produtos.
-
-Passos:
-
-Abrir a tela de cadastro de produtos.
-
-Preencher todos os campos obrigatórios: nome, descrição, categoria, preço, quantidade e fornecedor.
-
-Salvar.
-
-Tipo de Teste: Funcional
-
-Resultado Esperado: Produto cadastrado e listado.
-
-Caso Negativo: Preço ou quantidade em branco → mensagem de erro.
-
-Ferramentas: Selenium, Postman
-
-7. Registro de Aluguel (RF-016)
-
-Objetivo: Testar registro de aluguel e cálculo de valores.
-
-Passos:
-
-Abrir tela de registro de aluguel.
-
-Selecionar cliente e produto.
-
-Informar data de início, data de término e valor.
-
-Confirmar registro.
-
-Tipo de Teste: Funcional / Integração
-
-Resultado Esperado: Aluguel registrado, produto marcado como alugado, valor calculado.
-
-Caso Negativo: Data de término anterior à data de início → erro.
-
-Ferramentas: Selenium, Postman, SQL Server Management Studio
-
-8. Login e Autenticação de Usuários (RF-023)
-
-Objetivo: Garantir que somente usuários cadastrados consigam acessar o sistema.
-
-Passos:
-
-Abrir tela de login.
-
-Informar usuário e senha válidos.
-
-Clicar em “Entrar”.
-
-Tipo de Teste: Funcional / Segurança
-
-Resultado Esperado: Usuário autenticado e direcionado ao dashboard.
-
-Caso Negativo: Usuário ou senha incorretos → mensagem “Usuário ou senha inválidos”.
-
-Ferramentas: Selenium, OWASP ZAP (teste de segurança)
  
 ## Ferramentas de Testes (Opcional)
 
