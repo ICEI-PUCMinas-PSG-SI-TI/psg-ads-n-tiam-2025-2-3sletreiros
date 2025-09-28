@@ -33,6 +33,15 @@ As referências abaixo irão auxiliá-lo na geração do artefato “Esquema Rel
 
 ## Modelo Físico
 
+```
+// =======================================================
+// MODELO FÍSICO - MongoDB
+// =======================================================
+// Autor: [Seu Nome]
+// Data: 28/09/2025
+// Descrição: Estrutura de coleções para o sistema de Empresa
+// =======================================================
+
 // ================== COLEÇÃO EMPRESA ==================
 db.createCollection("empresas")
 db.empresas.insertOne({
@@ -121,8 +130,7 @@ db.vendas.insertOne({
     }
   ]
 })
-
-
+```
 ## Tecnologias Utilizadas
 
 Descreva aqui qual(is) tecnologias você vai usar para resolver o seu problema, ou seja, implementar a sua solução. Liste todas as tecnologias envolvidas, linguagens a serem utilizadas, serviços web, frameworks, bibliotecas, IDEs de desenvolvimento, e ferramentas.
