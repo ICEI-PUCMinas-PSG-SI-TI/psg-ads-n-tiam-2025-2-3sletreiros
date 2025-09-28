@@ -125,7 +125,13 @@ Apresente também uma figura explicando como as tecnologias estão relacionadas 
 
 ## Hospedagem
 
-Explique como a hospedagem e o lançamento da plataforma foi feita.
+Front-end: Um aplicativo móvel nativo, desenvolvido em React Native. Este aplicativo é compilado e distribuído diretamente para os dispositivos dos usuários.
+
+Back-end: Um servidor que expõe uma Rest API para o aplicativo cliente.
+
+Banco de Dados: Um banco de dados nao-relacional MongoDB que armazena os dados da aplicação e se comunica com o Back-end.
+
+Serviços Auxiliares: A plataforma Firebase é utilizada para funcionalidades de apoio, como autenticação de usuários e recebimento de dados.
 
 > **Links Úteis**:
 >
@@ -136,11 +142,8 @@ Explique como a hospedagem e o lançamento da plataforma foi feita.
 
 ## Qualidade de Software
 
-# Qualidade de Software no Projeto (ISO/IEC 25010)
-
 Este projeto foi desenvolvido considerando algumas características da norma **ISO/IEC 25010**, garantindo que o sistema seja confiável, seguro e fácil de evoluir.
 
-## Características Selecionadas
 
 | Característica  | Sub-característica | Por que | Métricas de Avaliação |
 |-----------------|--------------------|---------|------------------------|
