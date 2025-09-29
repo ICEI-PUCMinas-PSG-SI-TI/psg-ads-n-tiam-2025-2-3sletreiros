@@ -108,20 +108,26 @@ db.vendas.insertOne({
 ```
 ## Tecnologias Utilizadas
 
-Descreva aqui qual(is) tecnologias você vai usar para resolver o seu problema, ou seja, implementar a sua solução. Liste todas as tecnologias envolvidas, linguagens a serem utilizadas, serviços web, frameworks, bibliotecas, IDEs de desenvolvimento, e ferramentas.
+## Back-end
+- **Node.js** → Plataforma para construir a API do sistema.  
+- **Express.js** → Framework para criação de rotas, middlewares e gerenciamento das requisições.  
+- **MongoDB** → Banco de dados NoSQL, ideal para lidar com dados flexíveis e de alto volume.  
+- **Mongoose** → ODM (Object Data Modeling) para modelar e validar dados no MongoDB.  
 
-Apresente também uma figura explicando como as tecnologias estão relacionadas ou como uma interação do usuário com o sistema vai ser conduzida, por onde ela passa até retornar uma resposta ao usuário.
+## Front-end (Mobile)
+- **React Native** → Framework para desenvolvimento de aplicativos móveis multiplataforma (Android e iOS).  
+- **Expo** → Ferramenta para agilizar o desenvolvimento, testes e deploy do app.  
+- **Axios / Fetch API** → Consumo da API do back-end.  
 
-| **Dimensão**   | **Tecnologia**  |
-| ---            | ---             |
-| SGBD           | MongoDB         |
-| Front end      | JS+React        |
-| Back end       | Node+Express    |
-| Deploy Front   | Vercel          |
-| ORM            | Mongoose        |
-| Deploy Back    | Render          |
-| API Externa    | Google Maps     |
-| API Externa    | ViaCEP          |
+## Autenticação e Segurança
+- **Firebase Authentication** → Serviço para autenticação segura de usuários (e-mail/senha, redes sociais, etc).  
+- **JWT (JSON Web Token)** → Gerenciamento de sessões e autorização no back-end.  
+- **BCrypt.js** → Criptografia de senhas (caso necessário no fluxo interno).  
+
+## Ferramentas de Desenvolvimento
+- **Visual Studio Code** → IDE principal para desenvolvimento.  
+- **Postman / Insomnia** → Testes de requisições HTTP na API.  
+- **Git & GitHub** → Controle de versão e hospedagem do código.  
 
 ## Hospedagem
 
