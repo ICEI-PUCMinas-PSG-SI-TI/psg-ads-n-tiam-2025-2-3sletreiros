@@ -5,7 +5,11 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+<<<<<<< Updated upstream
     "userInterfaceStyle": "automatic",
+=======
+    "userInterfaceStyle": "light",
+>>>>>>> Stashed changes
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",

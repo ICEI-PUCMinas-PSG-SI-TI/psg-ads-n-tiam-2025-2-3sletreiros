@@ -49,6 +49,6 @@ public class Company {
     // 1:1 relationship with Address
     @OneToOne
     @JoinColumn(name = "address_id")
-    @NotNull(message = "Address is mandatory")
+    //@NotNull(message = "Address is mandatory")
     private Address address;
 }
