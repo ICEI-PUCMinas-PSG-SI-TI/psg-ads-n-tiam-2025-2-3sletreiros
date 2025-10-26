@@ -38,6 +38,7 @@ public class OrderItem {
     @JoinColumn(name = "product_id")
     @NotNull(message = "Product is mandatory")
     private Product product;
+
     @ManyToOne
     @JoinColumn(name = "sale_id")
     @NotNull(message = "Sale is mandatory")
