@@ -18,16 +18,6 @@ public class CompanyService {
 
     public void createCompany(Company company) {
         
-    if (company.getAddress() == null) {
-            Address defaultAddress = new Address();
-            defaultAddress.setStreet("A definir");
-            defaultAddress.setCity("A definir");
-            defaultAddress.setState("A definir");
-            defaultAddress.setZipCode("00000-000");
-            defaultAddress.setNeighborhood("A definir");
-            defaultAddress.setNumber("S/N");
-            defaultAddress.setUf("XX");
-    }
         companyRepository.save(company);
         System.out.println("Criou por aqui ");
     }

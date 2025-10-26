@@ -47,8 +47,8 @@ public class Company {
     private String password;
 
     // 1:1 relationship with Address
-    @OneToOne
-    @JoinColumn(name = "address_id")
+    //@OneToOne
+    //@JoinColumn(name = "address_id")
     //@NotNull(message = "Address is mandatory")
-    private Address address;
+    //private Address address;
 }
