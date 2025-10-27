@@ -30,7 +30,7 @@ export function Home() {
 
             <Subtitle>Gerencie seu negócio, tome as melhores decisões.</Subtitle>
 
-            <Button>
+            <Button onPress={() => navigation.navigate('Login')}>
                 <TextButton>Entrar</TextButton>
             </Button>
 
