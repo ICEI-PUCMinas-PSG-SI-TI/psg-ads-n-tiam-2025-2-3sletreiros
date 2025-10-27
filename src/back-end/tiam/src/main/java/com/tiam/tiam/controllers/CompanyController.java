@@ -1,38 +1,15 @@
 package com.tiam.tiam.controllers;
 
-<<<<<<< HEAD
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.tiam.tiam.models.Address;
-=======
 import java.util.List;
 import java.util.UUID;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
->>>>>>> CompanyTaks
 import com.tiam.tiam.models.Company;
 import com.tiam.tiam.services.CompanyService;
 
 @RestController
-<<<<<<< HEAD
-@RequestMapping("api/company")
-public class CompanyController {
-    
-    @Autowired
-    CompanyService companyService;
-
-    @PostMapping("/create")
-    public void createCompany(@RequestBody Company company) {
-        
-        companyService.createCompany(company);
-    }
-=======
 @RequestMapping("/api/company")
 public class CompanyController {
 
@@ -60,5 +37,4 @@ public class CompanyController {
 		companyService.deleteCompany(id);
 		return ResponseEntity.noContent().build();
 	}
->>>>>>> CompanyTaks
 }
