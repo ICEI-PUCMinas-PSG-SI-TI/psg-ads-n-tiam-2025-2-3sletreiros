@@ -6,6 +6,17 @@ Implementação do sistema descritas por meio dos requisitos funcionais e/ou nã
 
 Para cada requisito funcional, pode ser entregue um artefato desse tipo
 
+# Requisitos realizados na etapa 3
+| Nome     | Requisito Implementado                              |
+|-----------|-----------------------------------------------------|
+| Ricardo   | Alternador de tema de acordo com o utilizado no celular |
+| Vitor     | CRUD da empresa                                     |
+| Bruna     | Cadastro                                            |
+| Reinato   | Login                                               |
+| Samuel    | Autenticação                                        |
+| Gabriel   | Dashboard                                           |
+
+
 
 #  Padrão e Projeto de Codificação
 
