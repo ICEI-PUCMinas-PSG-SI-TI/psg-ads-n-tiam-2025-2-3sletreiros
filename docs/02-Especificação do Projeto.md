@@ -114,6 +114,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 | RF-022 | Gerar relatórios de serviços prestados                                                       | Baixa      |
 | RF-023 | Login e autenticação de usuários                                                             | Alta       |
 | RF-024 | Dashboard principal com gráficos e indicadores de vendas, aluguéis, estoque e serviços       | Alta       |
+| RF-025 | Deixar o tema do aplicativo de acordo com o tema utilizado pelo usuário no dispositivo       | Baixa       |
 
 
 ### Requisitos não Funcionais
