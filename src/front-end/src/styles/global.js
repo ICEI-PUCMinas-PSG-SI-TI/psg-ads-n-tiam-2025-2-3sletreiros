@@ -9,3 +9,8 @@ export const Container = styled.SafeAreaView`
 export const NotLoggedLogo = styled.Image`
     align-self: center;
 `
+
+export const ScrollContainer = styled.ScrollView`
+    flex: 1;
+    background-color: ${({theme}) => theme.colors.background.default};
+`
