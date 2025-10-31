@@ -27,13 +27,14 @@ public class OrderItemService {
 
 	public OrderItem create(OrderItem orderItem) {
 		orderItem.setId(null);
+        orderItem.setValue(orderItem.getProduct().getPrice() * orderItem.getQuantity());
 		return orderItemRepository.save(orderItem);
 	}
 
 	public OrderItem update(UUID id, OrderItem orderItem) {
 		OrderItem existing = findById(id);
 		existing.setQuantity(orderItem.getQuantity());
-		existing.setValue(orderItem.getValue());
+		existing.setValue(existing.getProduct().getPrice() * existing.getQuantity());
 		existing.setObservation(orderItem.getObservation());
 		existing.setProduct(orderItem.getProduct());
 		existing.setSale(orderItem.getSale());
