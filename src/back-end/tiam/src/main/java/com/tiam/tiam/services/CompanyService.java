@@ -2,7 +2,6 @@ package com.tiam.tiam.services;
 
 import java.util.UUID;
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
 import com.tiam.tiam.models.Company;
@@ -10,9 +9,12 @@ import com.tiam.tiam.repositories.CompanyRepository;
 
 @Service
 public class CompanyService {
-    
-    @Autowired
+
     private CompanyRepository companyRepository;
+
+    public CompanyService(CompanyRepository companyRepository) {
+        this.companyRepository = companyRepository;
+    }
 
     public Company createCompany(Company company) {
         return companyRepository.save(company);
