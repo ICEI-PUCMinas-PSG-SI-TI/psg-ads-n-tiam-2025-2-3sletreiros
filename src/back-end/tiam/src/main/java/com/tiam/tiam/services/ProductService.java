@@ -3,7 +3,6 @@ package com.tiam.tiam.services;
 import java.util.UUID;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
@@ -14,8 +13,12 @@ import com.tiam.tiam.repositories.ProductRepository;
 @Service
 public class ProductService {
     
-    @Autowired
+    
     private ProductRepository productRepository;
+
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     public Product createProduct(Product product) {
         return productRepository.save(product);

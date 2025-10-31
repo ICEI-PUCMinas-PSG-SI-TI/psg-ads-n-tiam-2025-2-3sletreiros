@@ -1,7 +1,6 @@
 package com.tiam.tiam.services;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import com.tiam.tiam.models.OrderItem;
 import com.tiam.tiam.repositories.OrderItemRepository;
 import java.util.List;
