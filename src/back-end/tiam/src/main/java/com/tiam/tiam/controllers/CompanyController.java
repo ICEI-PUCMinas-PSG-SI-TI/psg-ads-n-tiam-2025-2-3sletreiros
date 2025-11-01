@@ -4,7 +4,6 @@ import java.util.UUID;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.tiam.tiam.models.Company;
 import com.tiam.tiam.services.CompanyService;
 
@@ -12,8 +11,11 @@ import com.tiam.tiam.services.CompanyService;
 @RequestMapping("/api/company")
 public class CompanyController {
 
-	@Autowired
-	private CompanyService companyService;
+	private final CompanyService companyService;
+
+	public CompanyController(CompanyService companyService) {
+		this.companyService = companyService;
+	}
 
 	@PostMapping("create")
 	public ResponseEntity<Company> create(@RequestBody Company company) {
