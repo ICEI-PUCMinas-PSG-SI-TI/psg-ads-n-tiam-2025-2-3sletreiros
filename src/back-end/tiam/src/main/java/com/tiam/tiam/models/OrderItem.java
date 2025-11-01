@@ -27,8 +27,7 @@ public class OrderItem {
     @Min(value = 1, message = "Quantidade deve ser ao menos 1")
     private Integer quantity;
 
-    @NotNull(message = "Valor é obrigatório")
-    @Positive(message = "Valor deve ser positivo")
+    // Removido @NotNull e @Positive - este campo é calculado automaticamente
     private Double value;
 
     @Size(max = 500)
@@ -41,6 +40,6 @@ public class OrderItem {
 
     @ManyToOne
     @JoinColumn(name = "sale_id")
-    @NotNull(message = "Sale is mandatory")
+    // Removido @NotNull - será definido automaticamente no service
     private Sale sale;
 }

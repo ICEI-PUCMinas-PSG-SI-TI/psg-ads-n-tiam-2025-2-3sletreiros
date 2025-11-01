@@ -2,8 +2,6 @@ package com.tiam.tiam.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -22,15 +20,13 @@ public class Sale {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @NotNull(message = "Total sold quantity is mandatory")
-    @Positive(message = "Total deve ser positivo")
+    // Removido @NotNull e @Positive - este campo é calculado automaticamente
     private Double soldQuantity;
 
     @NotNull(message = "Data da venda é obrigatória")
     private LocalDate saleDate;
 
-    @NotNull(message = "Total value is mandatory")
-    @PositiveOrZero(message = "Total value must be zero or positive")
+    // Removido @NotNull e @PositiveOrZero - este campo é calculado automaticamente
     private Double totalValue;
 
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, orphanRemoval = true)
