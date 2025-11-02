@@ -6,7 +6,7 @@ export const Container = styled.SafeAreaView`
     padding: 50px 10px;
 `
 
-export const NotLoggedLogo = styled.Image`
+export const Logo = styled.Image`
     align-self: center;
 `
 

@@ -1,10 +1,11 @@
 import { KeyboardAvoidingView, ScrollView, Platform } from "react-native";
 import { Button } from "../../components/Button/Button";
 import { InputField } from "../../components/Input/InputField";
-import { Container, NotLoggedLogo } from "../../styles/global";
+import { Container } from "../../styles/global";
 import { useReducer, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { useNavigation } from "@react-navigation/native";
+import { NotLoggedLogo } from "../../components/NotLoggedLogo/NotLoggedLogo";
 
 const initialState = {
   email: "",
@@ -94,11 +95,7 @@ export function Login() {
         showsVerticalScrollIndicator={false}
       >
         <Container>
-          <NotLoggedLogo
-            source={require('../../../assets/LogoHome.png')}
-            width={50}
-            height={50}
-          />
+          <NotLoggedLogo />
 
           <InputField
             label="E-mail"

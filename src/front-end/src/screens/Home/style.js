@@ -7,13 +7,6 @@ export const Container = styled.View`
     padding: 0 50px;
 `
 
-<<<<<<< Updated upstream
-=======
-export const Logo = styled.Image`
-    align-self: center;
-`
-
->>>>>>> Stashed changes
 export const Subtitle = styled.Text`
     color: ${({ theme }) => theme.colors.text.primary};
     text-align: center;
