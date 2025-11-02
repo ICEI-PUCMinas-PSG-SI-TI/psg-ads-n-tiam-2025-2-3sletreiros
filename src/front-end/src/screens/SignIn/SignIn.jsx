@@ -51,6 +51,7 @@ function formReducer(state, action) {
 export function SignIn() {
   const [state, dispatch] = useReducer(formReducer, initialState);
   const [isLoading, setIsLoading] = useState(false)
+  const [showPass, setShowPass] = useState(false)
   
   const navigation = useNavigation()
   const { register } = useAuth()
@@ -155,7 +156,7 @@ export function SignIn() {
             value={state.password}
             onChangeText={(text) => dispatch({ type: "SET_FIELD", field: "password", value: text })}
             error={state.error.password}
-            secureTextEntry
+            secureTextEntry={!showPass}
           />
 
           <Button

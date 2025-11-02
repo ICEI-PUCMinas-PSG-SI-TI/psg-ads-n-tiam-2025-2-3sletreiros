@@ -19,9 +19,5 @@ export default function AppRoutes() {
       );
     }
 
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={user ? 'Dashboard' : 'Home'}>
-       {user ? <LoggedRoutes /> : <NotLoggedRoutes />}
-    </Stack.Navigator>
-  );
+  return user ? <LoggedRoutes /> : <NotLoggedRoutes />
 }
