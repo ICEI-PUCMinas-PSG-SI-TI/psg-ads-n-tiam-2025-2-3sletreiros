@@ -4,6 +4,10 @@ export const darkTheme = {
       default: '#1F2130',
       surface: '#1D2B48'
     },
+    input: {
+      background: '#aaa',
+      text: '#1F2232'
+    },
     text: {
       primary: '#FFFFFF',
       secondary: '#C9C9C9'
@@ -29,6 +33,10 @@ export const lightTheme = {
     background: {
       default: '#EDECEC',
       surface: '#1D2B48'
+    },
+    input: {
+      background: '#aaa',
+      text: '#1F2232'
     },
     text: {
       primary: '#1F2232',

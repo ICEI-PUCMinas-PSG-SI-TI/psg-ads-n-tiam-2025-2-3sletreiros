@@ -6,6 +6,7 @@ import { useReducer, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { useNavigation } from "@react-navigation/native";
 import { NotLoggedLogo } from "../../components/NotLoggedLogo/NotLoggedLogo";
+import { InputError } from "../../error/InputError";
 
 const initialState = {
   email: "",
@@ -41,8 +42,7 @@ function formReducer(state, action) {
           [action.field]: action.value
         }
       };
-    case "RESET":
-      return initialState;
+
     default:
       return state;
   }
@@ -64,10 +64,10 @@ export function SignIn() {
     }
 
     try {
-        const response = await register(state.email, state.password, state.name)
-        navigation.navigate('Login')
+        await register(state.email, state.password, state.name)
     } catch (error) {
-        alert('Não foi possível criar conta. Por favor, tente novamente.')
+        if (error instanceof InputError)
+          dispatch({ type: "SET_ERROR", field: error.field, value: error.message })
     } finally {
         setIsLoading(false)
     }
@@ -97,12 +97,7 @@ export function SignIn() {
       hasError = true;
     }
 
-    if (!hasError) {
-      dispatch({ type: "RESET" });
-      return true
-    } else {
-      return false
-    }
+    return !hasError
   }
 
   return (
@@ -142,6 +137,7 @@ export function SignIn() {
             onChangeText={(text) => dispatch({ type: "SET_FIELD", field: "cnpj", value: text })}
             error={state.error.cnpj}
             keyboardType="numeric"
+            mask="99.999.999/9999-99"
           />
 
           <InputField

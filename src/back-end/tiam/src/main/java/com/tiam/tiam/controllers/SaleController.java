@@ -40,8 +40,6 @@ public class SaleController {
 		return ResponseEntity.ok(saleService.update(id, sale));
 	}
 
-
-	//
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable UUID id) {
 		saleService.delete(id);

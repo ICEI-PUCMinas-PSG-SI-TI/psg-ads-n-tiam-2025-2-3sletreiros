@@ -14,14 +14,14 @@ export const Label = styled.Text`
 export const InputContainer = styled.View`
   flex-direction: row;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.background.surface};
+  background-color: ${({ theme }) => theme.colors.input.background};
   border-width: 1px;
   border-color: ${({ theme, hasError, focused }) =>
     hasError
       ? theme.colors.error.text
       : focused
       ? theme.colors.primary
-      : theme.colors.background.surface};
+      : theme.colors.input.background};
   border-radius: 8px;
   padding: 10px 12px;
   opacity: ${({ editable }) => (editable ? 1 : 0.6)};

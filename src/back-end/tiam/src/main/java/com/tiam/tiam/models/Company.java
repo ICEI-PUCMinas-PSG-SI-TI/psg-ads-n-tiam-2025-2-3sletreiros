@@ -39,12 +39,6 @@ public class Company {
     @Size(max = 255)
     private String email;
 
-    @NotBlank(message = "Senha é obrigatório")
-    @Pattern(
-            regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z0-9]).{8,}$",
-            message = "A senha deve ter no mínimo 8 caracteres, incluindo pelo menos uma letra maiúscula, uma minúscula, um número e um caractere especial."
-    )
-    private String password;
-
-    // 1:1 relationship with Address
+    // UID do Firebase enviado pelo front
+    private String firebaseUid;
 }

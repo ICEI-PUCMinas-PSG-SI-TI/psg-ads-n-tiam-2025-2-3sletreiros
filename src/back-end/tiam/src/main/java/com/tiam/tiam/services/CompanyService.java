@@ -29,7 +29,6 @@ public class CompanyService {
         if (!companyRepository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Company not found");
         }
-        // garante que o id do corpo seja o id do recurso a ser atualizado
         company.setId(id);
         return companyRepository.save(company);
     }
