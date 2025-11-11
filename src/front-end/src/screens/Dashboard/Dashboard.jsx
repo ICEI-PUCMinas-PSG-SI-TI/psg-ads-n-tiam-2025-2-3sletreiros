@@ -7,8 +7,12 @@ import { Button } from "../../components/Button/Button";
 import { useNavigation } from '@react-navigation/native';
 
 export function Dashboard() {
-    const {user, logout} = useAuth()
+    const {user, logout, deleteAccount} = useAuth()
     const navigation = useNavigation();
+
+    async function excludeAccount() {
+      await deleteAccount()
+    }
 
     return (
         <ScrollContainer>
@@ -27,13 +31,22 @@ export function Dashboard() {
             </Button>
 
             <Button
-            buttonStyle="primary"
-            size="large"
-            flex={true}
-            onPress={logout}
-          >
-            Sair
-          </Button>
+              buttonStyle="primary"
+              size="large"
+              flex={true}
+              onPress={logout}
+            >
+              Sair
+            </Button>
+
+            <Button
+              buttonStyle="error"
+              size="large"
+              flex={true}
+              onPress={deleteAccount}
+            >
+              Deletar conta
+            </Button>
         </ScrollContainer>
     )
 }

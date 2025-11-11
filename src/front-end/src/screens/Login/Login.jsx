@@ -45,6 +45,7 @@ function formReducer(state, action) {
 export function Login() {
   const [state, dispatch] = useReducer(formReducer, initialState);
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
 
   const navigation = useNavigation();
   const { login } = useAuth();
@@ -68,11 +69,11 @@ export function Login() {
   function validateFields() {
     let hasError = false;
     if (!state.email.includes("@")) {
-      dispatch({ type: "SET_ERROR", field: "email", value: "E-mail inválido" });
+      dispatch({ type: "SET_ERROR", field: "email", value: "E-mail inválido." });
       hasError = true;
     }
     if (!state.password || state.password.length < 6) {
-      dispatch({ type: "SET_ERROR", field: "password", value: "Senha muito curta" });
+      dispatch({ type: "SET_ERROR", field: "password", value: "Senha inválida." });
       hasError = true;
     }
     if (!hasError) {
@@ -112,7 +113,9 @@ export function Login() {
             value={state.password}
             onChangeText={(text) => dispatch({ type: "SET_FIELD", field: "password", value: text })}
             error={state.error.password}
-            secureTextEntry
+            secureTextEntry={!showPassword}
+            rightIconName={showPassword ? 'visibility' : 'visibility-off'}
+            onPressRightIcon={() => {setShowPassword((prev) => !prev)}}
           />
 
           <Button
@@ -121,6 +124,7 @@ export function Login() {
             flex={true}
             onPress={handleSubmit}
             loading={isLoading}
+            icon={'login'}
           >
             Entrar
           </Button>

@@ -14,6 +14,14 @@ export const Container = styled.View`
     border-radius: 8px;
 `
 
+export const ChildrenContainer = styled.View`
+    display: flex;
+    flex-direction: ${props => (props.iconPosition === 'left' ? 'row' : 'row-reverse')};;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+`
+
 
 export function getButtonColors(buttonStyle, theme) {
     switch(buttonStyle) {

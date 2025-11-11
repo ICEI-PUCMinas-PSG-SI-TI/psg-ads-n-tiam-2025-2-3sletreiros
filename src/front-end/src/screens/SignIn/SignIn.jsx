@@ -1,12 +1,13 @@
-import { KeyboardAvoidingView, ScrollView, Platform } from "react-native";
+import { KeyboardAvoidingView, ScrollView, Platform, View, Text } from "react-native";
 import { Button } from "../../components/Button/Button";
 import { InputField } from "../../components/Input/InputField";
 import { Container } from "../../styles/global";
 import { useReducer, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
-import { useNavigation } from "@react-navigation/native";
 import { NotLoggedLogo } from "../../components/NotLoggedLogo/NotLoggedLogo";
 import { InputError } from "../../error/InputError";
+import { Icon } from "../../components/Icon/Icon";
+import { darkTheme } from "../../theme/theme";
 
 const initialState = {
   email: "",
@@ -53,7 +54,6 @@ export function SignIn() {
   const [isLoading, setIsLoading] = useState(false)
   const [showPass, setShowPass] = useState(false)
   
-  const navigation = useNavigation()
   const { register } = useAuth()
 
   async function handleSubmit() {
@@ -64,8 +64,10 @@ export function SignIn() {
         return
     }
 
+    const {email, password, name, social, cnpj} = state
+
     try {
-        await register(state.email, state.password, state.name)
+        await register(email, password, name, {email, name, social, cnpj})
     } catch (error) {
         if (error instanceof InputError)
           dispatch({ type: "SET_ERROR", field: error.field, value: error.message })
@@ -81,10 +83,19 @@ export function SignIn() {
       dispatch({ type: "SET_ERROR", field: "email", value: "E-mail inválido" });
       hasError = true;
     }
-    if (!state.password || state.password.length < 6) {
+
+    if (!state.password || state.password.length < 8) {
       dispatch({ type: "SET_ERROR", field: "password", value: "Senha muito curta" });
       hasError = true;
+    } else if (!/[A-Z]/.test(state.password) || !/[a-z]/.test(state.password) || !/[0-9]/.test(state.password)) {
+      dispatch({
+        type: "SET_ERROR",
+        field: "password",
+        value: "A senha deve ter letra maiúscula, minúscula e número"
+      });
+      hasError = true;
     }
+
     if (!state.name) {
       dispatch({ type: "SET_ERROR", field: "name", value: "Nome obrigatório" });
       hasError = true;
@@ -100,6 +111,16 @@ export function SignIn() {
 
     return !hasError
   }
+
+  function getPasswordValidation(password) {
+    return {
+      hasUpper: /[A-Z]/.test(password),
+      hasLower: /[a-z]/.test(password),
+      hasNumber: /[0-9]/.test(password),
+      hasLength: password.length >= 8
+    };
+  }
+
 
   return (
     <KeyboardAvoidingView
@@ -157,7 +178,50 @@ export function SignIn() {
             onChangeText={(text) => dispatch({ type: "SET_FIELD", field: "password", value: text })}
             error={state.error.password}
             secureTextEntry={!showPass}
+            rightIconName={showPass ? 'visibility' : 'visibility-off'}
+            onPressRightIcon={() => setShowPass(prev => !prev)}
           />
+
+          {state.password.length > 0 && (
+            <View style={{ marginBottom: 16 }}>
+              {[
+                { key: "hasUpper", label: "Letra maiúscula" },
+                { key: "hasLower", label: "Letra minúscula" },
+                { key: "hasNumber", label: "Número" },
+                { key: "hasLength", label: "Ao menos 8 caracteres" },
+              ].map((item) => {
+                const validations = getPasswordValidation(state.password);
+                const valid = validations[item.key];
+
+                return (
+                  <View
+                    key={item.key}
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      marginVertical: 2,
+                    }}
+                  >
+                    <Icon
+                      name={valid ? "check" : "error"}
+                      color={valid ? darkTheme.colors.success.background : darkTheme.colors.error.background}
+                      size={16}
+                    />
+
+                    <Text
+                      style={{
+                        color: valid ? darkTheme.colors.success.background : darkTheme.colors.error.background,
+                        fontSize: 14,
+                        marginLeft: 6,
+                      }}
+                    >
+                      {item.label}
+                    </Text>
+                  </View>
+                );
+              })}
+            </View>
+          )}
 
           <Button
             buttonStyle="primary"
@@ -165,6 +229,7 @@ export function SignIn() {
             flex={true}
             onPress={handleSubmit}
             loading={isLoading}
+            disabled={isLoading}
           >
             Cadastrar
           </Button>
