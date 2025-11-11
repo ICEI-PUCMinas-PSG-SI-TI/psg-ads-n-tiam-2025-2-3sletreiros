@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { auth } from "../config/firebase";
+import { auth, db } from "../config/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -7,15 +7,21 @@ import {
   onAuthStateChanged,
   sendPasswordResetEmail,
   updateProfile,
-  sendEmailVerification
+  sendEmailVerification,
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+  deleteUser
 } from "firebase/auth";
 import { InputError } from "../error/InputError";
+import { doc, setDoc } from "firebase/firestore";
+import { useFlashMessage } from "./FlashMessageContext";
 
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { showFlashMessage } = useFlashMessage()
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (usr) => {
@@ -26,47 +32,92 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
 
-  async function register (email, password, displayName) {
-    try {
-      const cred = await createUserWithEmailAndPassword(auth, email, password);
+  async function register(email, password, displayName, userData) {
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, email, password);
 
-      if (displayName) {
-        await updateProfile(cred.user, { displayName });
-      }
+    if (displayName) {
+      await updateProfile(cred.user, { displayName });
+    }
+
+    await setDoc(doc(db, "company", cred.user.uid), {
+      name: displayName,
+      email,
+      ...userData,
+      createdAt: new Date(),
+    });
+
+    showFlashMessage("Conta criada com sucesso. Você será redirecionado para realizar login.");
+
+    try {
+      await signOut(auth);
+    } catch (err) {
+      console.warn("Falha ao deslogar após cadastro:", err);
+    }
+
+    return cred.user;
+  } catch (error) {
+    showFlashMessage(
+      "Erro ao criar conta. Por favor, verifique os campos digitados e tente novamente.",
+      "error"
+    );
+
+    switch (error.code) {
+      case "auth/email-already-in-use":
+        throw new InputError("email", "Esse e-mail já está cadastrado.");
+      case "auth/invalid-email":
+        throw new InputError("email", "Formato de e-mail inválido.");
+      case "auth/weak-password":
+        throw new InputError("password", "A senha é fraca. Use pelo menos 8 caracteres.");
+      default:
+        console.error("Erro inesperado no register:", error);
+        throw error;
+    }
+  }
+}
+
+
+  async function login (email, password) {
+    try {
+      const cred = await signInWithEmailAndPassword(auth, email, password);
       setUser(cred.user);
+
+      showFlashMessage('Login efetuado com sucesso!', 'success')
 
       return cred.user;
     } catch (error) {
-
-      switch (error.code) {
-        case 'auth/email-already-in-use':
-          throw new InputError('email', 'Esse e-mail já está cadastrado.');
-        case 'auth/invalid-email':
-          throw new InputError('email', 'Formato de e-mail inválido.');
-        case 'auth/weak-password':
-          throw new InputError('password', 'A senha é fraca. Use pelo menos 6 caracteres.');
-        default:
-          throw new InputError('general', error.message);
-      }
-
+      showFlashMessage('Erro ao efetuar login', 'error')
     }
     
   };
 
-  async function login (email, password) {
-    const cred = await signInWithEmailAndPassword(auth, email, password);
-    setUser(cred.user);
-    return cred.user;
-  };
-
   async function logout() {
     await signOut(auth);
+    showFlashMessage('Logout realizado com sucesso.', 'success')
     setUser(null);
   };
 
   async function resetPassword() {
     await sendPasswordResetEmail(auth, email);
   };
+
+  async function deleteAccount(password) {
+    if (!user)
+      return
+
+    const credential = EmailAuthProvider.credential(user.email, password)
+
+    reauthenticateWithCredential(user, credential)
+      .then((response) => {
+        return deleteUser(user)
+      })
+      .then((response) => {
+        showFlashMessage('Conta deletada com sucesso.', 'success')
+      })
+      .catch((error) => {
+        showFlashMessage('Erro ao deletar conta. Por favor, tente novamente mais tarde', 'error')
+      })
+  }
 
   return (
     <AuthContext.Provider
@@ -76,7 +127,8 @@ export const AuthProvider = ({ children }) => {
         register,
         login,
         logout,
-        resetPassword
+        resetPassword,
+        deleteAccount
       }}
     >
       {children}

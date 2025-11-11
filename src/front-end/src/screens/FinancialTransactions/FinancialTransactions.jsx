@@ -4,16 +4,21 @@ import { Text } from "../../components/Text/Text";
 import { Button } from "../../components/Button/Button";
 import { InputField } from "../../components/Input/InputField";
 import { FlatList } from "react-native";
+import { useState } from "react";
 
 
-export function Financial_Transactions(){
-    const transactions = [
+export function FinancialTransactions(){
+    const transactionsList = [
         {name: "Salary Payment",date: "01/02/2025",amount: 3500.00},
         {name: "Grocery Store Purchase",date: "03/02/2025",amount: -250.75},
         {name: "Savings Deposit",date: "05/02/2025",amount: 500.00},
         {name: "Internet Bill Payment",date: "07/02/2025",amount: -99.90},
         {name: "Incoming Transfer",date: "10/02/2025",amount: 200.00}
     ];
+
+    const [transactions, setTransactions] = useState(transactionsList)
+    const [filter, setFilter] = useState()
+    const [filteredList, setFilteredList] = useState([])
 
 
     return(
@@ -25,7 +30,10 @@ export function Financial_Transactions(){
 
                 <ContentBlock>
                     <InputField
+                        label={'Filtrar transações'}
                         placeholder="Pesquisar"
+                        value={filter}
+                        onChangeText={setFilter}
                     />
 
                     <Button

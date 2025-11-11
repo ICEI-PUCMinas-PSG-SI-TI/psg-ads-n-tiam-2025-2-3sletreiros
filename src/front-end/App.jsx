@@ -6,21 +6,24 @@ import { NavigationContainer } from '@react-navigation/native';
 import AppRoutes from './src/navigation/AppRoutes';
 import { Container } from './src/styles/global';
 import { AuthProvider } from './src/contexts/AuthContext';
+import { FlashMessageProvider } from './src/contexts/FlashMessageContext';
 
 export default function App() {
   const deviceTheme = useColorScheme()
   const theme = deviceTheme === 'dark' ? darkTheme : lightTheme
 
   return (
-    <AuthProvider>
-      <ThemeProvider theme={theme}>
-        <Container>
-          <NavigationContainer>
-            <StatusBar style={deviceTheme === 'dark' ? 'light' : 'dark'} backgroundColor={theme.colors.background.default} />
-            <AppRoutes />
-          </NavigationContainer>
-        </Container>
-      </ThemeProvider>
-    </AuthProvider>
+    <FlashMessageProvider>
+      <AuthProvider>
+        <ThemeProvider theme={theme}>
+          <Container>
+            <NavigationContainer>
+              <StatusBar style={deviceTheme === 'dark' ? 'light' : 'dark'} backgroundColor={theme.colors.background.default} />
+              <AppRoutes />
+            </NavigationContainer>
+          </Container>
+        </ThemeProvider>
+      </AuthProvider>
+    </FlashMessageProvider>
   );
 }

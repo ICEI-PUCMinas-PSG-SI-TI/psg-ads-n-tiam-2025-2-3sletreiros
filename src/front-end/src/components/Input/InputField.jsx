@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTheme } from "styled-components";
-import { Container, InputContainer, Label, StyledInput, ErrorText, IconArea } from "./style";
+import { TouchableOpacity } from "react-native"; 
+import { Container, InputContainer, Label, StyledInput, ErrorText } from "./style";
 import { MaskedTextInput } from "react-native-mask-text";
+import { Icon } from "../Icon/Icon";
 
 export function InputField({
     label,
-    icon,
     error,
     style,
     onChangeText,
@@ -15,10 +16,14 @@ export function InputField({
     editable = true,
     keyboardType = "default",
     mask,
+    rightIconName,
+    onPressRightIcon,
     ...rest
 }) {
     const theme = useTheme();
     const [focused, setFocused] = useState(false);
+
+    const isRightIconClickable = !!rightIconName && !!onPressRightIcon;
 
     return (
         <Container style={style}>
@@ -29,8 +34,6 @@ export function InputField({
                 hasError={!!error}
                 editable={editable}
             >
-                {icon && <IconArea>{icon}</IconArea>}
-
                 {mask ? (
                     <MaskedTextInput
                         mask={mask}
@@ -67,6 +70,20 @@ export function InputField({
                         {...rest}
                     />
                 )}
+                
+                {rightIconName && (
+                    <TouchableOpacity 
+                        onPress={onPressRightIcon} 
+                        disabled={!isRightIconClickable} 
+                        style={{
+                            padding: 8,
+                            opacity: editable ? 1 : 0.6,
+                        }}
+                    >
+                        <Icon name={rightIconName} size={16} color={theme.colors.text.secondary} />
+                    </TouchableOpacity>
+                )}
+
             </InputContainer>
 
             {error && <ErrorText>{error}</ErrorText>}
