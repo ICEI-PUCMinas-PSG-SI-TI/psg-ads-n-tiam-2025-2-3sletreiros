@@ -1,87 +1,159 @@
-import { Container, ScrollContainer } from "../../styles/global";
-import { ContentBlock } from "./style";
+import { Container, ContentBlock } from "../../styles/global";
+import { ContentHeader } from "./style";
 import { Text } from "../../components/Text/Text";
 import { Button } from "../../components/Button/Button";
 import { InputField } from "../../components/Input/InputField";
-import { FlatList } from "react-native";
-import { useState } from "react";
+import { FlatList, View } from "react-native";
+import { useEffect, useState } from "react";
+import { TransactionItem } from "../../components/TransactionItem/TransactionItem";
+import { CustomModal } from "../../components/CustomModal/CustomModal";
+import { addDoc, collection, getDocs } from "firebase/firestore";
+import { db } from "../../config/firebase";
+import { useAuth } from "../../hooks/useAuth";
+import { useFlashMessage } from "../../contexts/FlashMessageContext";
 
 
 export function FinancialTransactions(){
-    const transactionsList = [
-        {name: "Salary Payment",date: "01/02/2025",amount: 3500.00},
-        {name: "Grocery Store Purchase",date: "03/02/2025",amount: -250.75},
-        {name: "Savings Deposit",date: "05/02/2025",amount: 500.00},
-        {name: "Internet Bill Payment",date: "07/02/2025",amount: -99.90},
-        {name: "Incoming Transfer",date: "10/02/2025",amount: 200.00}
-    ];
-
-    const [transactions, setTransactions] = useState(transactionsList)
+    const {user} = useAuth()
+    const [transactions, setTransactions] = useState([])
     const [filter, setFilter] = useState()
-    const [filteredList, setFilteredList] = useState([])
 
+    const [title, setTitle] = useState("")
+    const [category, setCategory] = useState("")
+    const [value, setValue] = useState("")
+
+    const [visible, setVisible] = useState(false)
+
+    const {showFlashMessage} = useFlashMessage()
+
+    const handleTitleChange = (text) => setTitle(text);
+    const handleCategoryChange = (text) => setCategory(text);
+    const handleValueChange = (text) => setValue(text);
+    
+    function openModal() {
+        setVisible(true)
+    }
+
+    function closeModal() {
+        setVisible(false)
+    }
+
+    async function addTransaction(transaction) {
+        try {
+            if (!transaction.name || !transaction.category || !transaction.amount) throw new Error('Insira todos os campos.')
+
+            const ref = collection(db, 'company', user.uid, 'transactions')
+
+            await addDoc(ref, transaction)
+
+            setTransactions((prev) => {
+                return [transaction, ...prev]
+            })
+            
+            closeModal()
+            showFlashMessage('Transação adicionada com sucesso!', 'success')
+        } catch (error) {
+            showFlashMessage(error.message, 'error')
+        }
+        
+    }
+
+    function removeTransaction(id) {
+        setTransactions((prev) => {return prev.filter(transaction => transaction.id !== id)})
+    }
+
+    useEffect(() => {
+        async function loadTransactions() {
+            try {
+                const transactionsRef = collection(db, "company", user.uid, "transactions");
+                const snapshot = await getDocs(transactionsRef);
+
+                const transactionsList = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));   
+                
+                setTransactions(transactionsList)
+            } catch (error) {
+                showFlashMessage('Erro ao carregar transações. Por favor, tente mais tarde.', 'error')
+            }
+        }
+
+        if (user.uid) loadTransactions()
+    }, [])
 
     return(
         <Container>
-            <ScrollContainer>
-                <ContentBlock>
-                    <Text variant="title">Movimentações</Text>
-                </ContentBlock>
+            <CustomModal visible={visible} onClose={closeModal}>
+                <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', marginBottom: 16}}>
+                    <Text variant="subtitle">Cadastrar nova transação</Text>
+                </View>
+                <InputField
+                    label="Título da transação"
+                    value={title}
+                    onChangeText={handleTitleChange}
+                />
 
-                <ContentBlock>
-                    <InputField
-                        label={'Filtrar transações'}
-                        placeholder="Pesquisar"
-                        value={filter}
-                        onChangeText={setFilter}
-                    />
+                <InputField
+                    label="Categoria"
+                    value={category}
+                    onChangeText={handleCategoryChange}
+                />
 
-                    <Button
-                        buttonStyle="primary"
-                        size="large"
-                        flex={true}
-                    >
-                    Buscar
-                    </Button>
-                </ContentBlock>
+                <InputField
+                    label="Valor"
+                    value={value}
+                    onChangeText={handleValueChange}
+                    keyboardType="numeric"
+                />
+                <Button 
+                    buttonStyle={'success'} 
+                    size={'large'} 
+                    flex 
+                    onPress={() => addTransaction({amount: value, name: title, category, date: new Date().toLocaleDateString('pt-BR')})}
+                >
+                    Criar Transação
+                </Button>
+            </CustomModal>
 
-                <ContentBlock>
-                    <Text variant="subtitle">Filtrar</Text>
-                </ContentBlock>
-
-                <ContentBlock>
-                    <FlatList
-                        data={transactions}
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={({ item }) => (
-                        <ContentBlock>
-                            <Text variant="title" style={{marginVertical: 5}}>{item.date}</Text>
-                            <ContentBlock  style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
-                                <Text>{item.name}</Text>
-                                <Text style={{marginVertical: 5,  color: item.amount < 0 ? "red" : "green"}}>
-                                {item.amount < 0 ? `- R$${Math.abs(item.amount)}` : `+ R$${item.amount}`}
-                                </Text>
-                            </ContentBlock>
-                            
-                            <ContentBlock style={{
-                                height: 1,
-                                backgroundColor: "#cccccc87",
-                                width: "100%",
-                                marginVertical: 10
-                            }}/>
-                        </ContentBlock>
-                        
-                        )}
-                    />
-                </ContentBlock>
-                <ContentBlock>  
+            <ContentBlock>
+                <ContentHeader>
                     <Button 
-                        buttonStyle="primary"
-                        size="large"
-                        flex={true}>Adicionar movimentação
-                    </Button>
-                </ContentBlock>
-            </ScrollContainer>
+                        buttonStyle={'primary'} onPress={() => openModal()}
+                        icon={'add-circle'}
+                        iconPosition={'left'}
+                    />
+                </ContentHeader>
+            </ContentBlock>
+
+            <ContentBlock>
+                <InputField
+                    label={'Filtrar transações'}
+                    placeholder="Pesquisar"
+                    value={filter}
+                    onChangeText={setFilter}
+                />
+
+                <Button
+                    buttonStyle="primary"
+                    flex={true}
+                    icon={'search'}
+                    iconPosition={'left'}
+                >
+                Buscar
+                </Button>
+            </ContentBlock>
+
+            <ContentBlock>
+                <FlatList
+                    data={transactions}
+                    showsVerticalScrollIndicator={false}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ item }) => (
+                        <TransactionItem item={item} removeTransaction={removeTransaction}/>
+                    )}
+                />
+            </ContentBlock>
         </Container>
     )
 }

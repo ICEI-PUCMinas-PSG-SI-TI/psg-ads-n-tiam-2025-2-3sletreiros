@@ -33,48 +33,51 @@ export const AuthProvider = ({ children }) => {
 
 
   async function register(email, password, displayName, userData) {
-  try {
-    const cred = await createUserWithEmailAndPassword(auth, email, password);
-
-    if (displayName) {
-      await updateProfile(cred.user, { displayName });
-    }
-
-    await setDoc(doc(db, "company", cred.user.uid), {
-      name: displayName,
-      email,
-      ...userData,
-      createdAt: new Date(),
-    });
-
-    showFlashMessage("Conta criada com sucesso. Você será redirecionado para realizar login.");
-
     try {
-      await signOut(auth);
-    } catch (err) {
-      console.warn("Falha ao deslogar após cadastro:", err);
-    }
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
 
-    return cred.user;
-  } catch (error) {
-    showFlashMessage(
-      "Erro ao criar conta. Por favor, verifique os campos digitados e tente novamente.",
-      "error"
-    );
+      if (displayName) {
+        await updateProfile(cred.user, { displayName });
+      }
 
-    switch (error.code) {
-      case "auth/email-already-in-use":
-        throw new InputError("email", "Esse e-mail já está cadastrado.");
-      case "auth/invalid-email":
-        throw new InputError("email", "Formato de e-mail inválido.");
-      case "auth/weak-password":
-        throw new InputError("password", "A senha é fraca. Use pelo menos 8 caracteres.");
-      default:
-        console.error("Erro inesperado no register:", error);
-        throw error;
+      const date = new Date()
+
+      await setDoc(doc(db, "company", cred.user.uid), {
+        name: displayName,
+        email,
+        ...userData,
+        createdAt: date,
+        updatedAt: date
+      });
+
+      showFlashMessage("Conta criada com sucesso. Você será redirecionado para realizar login.", "success");
+
+      try {
+        await signOut(auth);
+      } catch (err) {
+        showFlashMessage("Falha ao deslogar após cadastro", "error")
+      }
+
+      return cred.user;
+    } catch (error) {
+      showFlashMessage(
+        "Erro ao criar conta. Por favor, verifique os campos digitados e tente novamente.",
+        "error"
+      );
+
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          throw new InputError("email", "Esse e-mail já está cadastrado.");
+        case "auth/invalid-email":
+          throw new InputError("email", "Formato de e-mail inválido.");
+        case "auth/weak-password":
+          throw new InputError("password", "A senha é fraca. Use pelo menos 8 caracteres.");
+        default:
+          console.error("Erro inesperado no register:", error);
+          throw error;
+      }
     }
   }
-}
 
 
   async function login (email, password) {
@@ -86,7 +89,7 @@ export const AuthProvider = ({ children }) => {
 
       return cred.user;
     } catch (error) {
-      showFlashMessage('Erro ao efetuar login', 'error')
+      throw new Error('Erro ao efetuar login. Verifique suas credenciais e tente novamente mais tarde.')
     }
     
   };

@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 
 export const TouchableArea = styled.TouchableHighlight`
     align-self: ${({flex}) => flex ? 'auto' : 'flex-start'};
-    border-radius: 8px;
+    border-radius: 16px;
 `
 
 export const Container = styled.View`
@@ -17,7 +17,7 @@ export const Container = styled.View`
 export const ChildrenContainer = styled.View`
     display: flex;
     flex-direction: ${props => (props.iconPosition === 'left' ? 'row' : 'row-reverse')};;
-    gap: 12px;
+    gap: 8px;
     justify-content: center;
     align-items: center;
 `

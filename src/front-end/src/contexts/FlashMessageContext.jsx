@@ -3,7 +3,7 @@ import FlashMessage from '../components/FlashMessage/FlashMessage';
 
 const FlashMessageContext = createContext();
 
-export const useFlashMessage = () => useContext(FlashMessageContext);
+export function useFlashMessage(){ return useContext(FlashMessageContext)}
 
 export const FlashMessageProvider = ({ children }) => {
   const [messageData, setMessageData] = useState({

@@ -6,6 +6,7 @@ import { useReducer, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { useNavigation } from "@react-navigation/native";
 import { NotLoggedLogo } from "../../components/NotLoggedLogo/NotLoggedLogo";
+import { useFlashMessage } from "../../contexts/FlashMessageContext";
 
 const initialState = {
   email: "",
@@ -43,12 +44,15 @@ function formReducer(state, action) {
 }
 
 export function Login() {
+  const { login } = useAuth();
+  const { showFlashMessage } = useFlashMessage()
+
   const [state, dispatch] = useReducer(formReducer, initialState);
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false)
 
   const navigation = useNavigation();
-  const { login } = useAuth();
+  
 
   async function handleSubmit() {
     setIsLoading(true);
@@ -60,7 +64,7 @@ export function Login() {
       await login(state.email, state.password);
       navigation.navigate("Home");
     } catch (error) {
-      alert("Não foi possível fazer login. Por favor, tente novamente.");
+      showFlashMessage(error.message, 'error')
     } finally {
       setIsLoading(false);
     }
@@ -125,6 +129,9 @@ export function Login() {
             onPress={handleSubmit}
             loading={isLoading}
             icon={'login'}
+            style={{
+              marginTop: 20
+            }}
           >
             Entrar
           </Button>

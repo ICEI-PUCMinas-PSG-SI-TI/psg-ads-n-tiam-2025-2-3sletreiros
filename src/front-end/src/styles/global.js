@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 export const Container = styled.SafeAreaView`
     flex: 1;
     background-color: ${({theme}) => theme.colors.background.default};
-    padding: 50px 10px;
+    padding: 30px 10px;
 `
 
 export const Logo = styled.Image`
@@ -13,4 +13,10 @@ export const Logo = styled.Image`
 export const ScrollContainer = styled.ScrollView`
     flex: 1;
     background-color: ${({theme}) => theme.colors.background.default};
+    padding: 30px 10px;
 `
+
+export const ContentBlock = styled.View`
+    width: 100%;
+    margin-bottom: 20px;  
+`;
