@@ -23,7 +23,7 @@ export const InputContainer = styled.View`
       ? theme.colors.primary
       : theme.colors.input.background};
   border-radius: 8px;
-  padding: 10px 12px;
+  padding: 6px;
   opacity: ${({ editable }) => (editable ? 1 : 0.6)};
 `;
 
