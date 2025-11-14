@@ -26,6 +26,14 @@ export function Dashboard() {
                 Movimentações financeiras
               </Button>
               <Button
+                 onPress={() => navigation.navigate('MyAccount')}
+                 buttonStyle="primary"
+                 size="large"
+                 flex={true}
+              >
+                Minha conta
+              </Button>
+              <Button
                 buttonStyle="primary"
                 size="large"
                 flex={true}
