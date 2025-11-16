@@ -14,7 +14,7 @@ import {
 } from "firebase/auth";
 import { InputError } from "../error/InputError";
 import { doc, setDoc } from "firebase/firestore";
-import { useFlashMessage } from "./FlashMessageContext";
+import { useFlashMessage } from "../hooks/useFlashMessage";
 
 export const AuthContext = createContext({});
 

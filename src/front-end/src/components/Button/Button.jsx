@@ -20,11 +20,11 @@ export function Button({children, buttonStyle, onPress, loading, flex, size, ico
                 size={size}
             >
                 {
-                    loading && <ActivityIndicator color={theme.colors.buttonText}/>
+                    loading && <ActivityIndicator color={getTextColor(buttonStyle, theme).color}/>
                 }
                 <ChildrenContainer iconPosition={iconPosition}>
                     {
-                        icon && !loading && <Icon name={icon} color={theme.colors.buttonText} size={iconSize}/>
+                        icon && !loading && <Icon name={icon} color={getTextColor(buttonStyle, theme).color} size={iconSize}/>
                     }
                     {children && !loading &&
                         <Text style={[getTextColor(buttonStyle, theme)]}>

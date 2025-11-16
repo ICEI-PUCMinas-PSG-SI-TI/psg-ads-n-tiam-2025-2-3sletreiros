@@ -8,8 +8,9 @@ import { DeleteItemButton, SecundaryText } from "./style";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { useAuth } from "../../hooks/useAuth";
-import { useFlashMessage } from "../../contexts/FlashMessageContext";
+import { useFlashMessage } from "../../hooks/useFlashMessage";
 import { useNavigation } from "@react-navigation/native";
+import { formatDate } from "../../utils/formatter";
 
 export function TransactionItem({item, removeTransaction}) {
     const theme = useTheme()
@@ -42,7 +43,7 @@ export function TransactionItem({item, removeTransaction}) {
                 <Text variant="subtitle" style={{marginVertical: 5}}>{item.name}</Text>
                 <ContentBlock  style={{flexDirection: "row", justifyContent: "space-between", alignItems: "flex-end"}}>
                     <View>
-                        <SecundaryText color={'#8C8C8C'}>{item.date}</SecundaryText>
+                        <SecundaryText color={'#8C8C8C'}>{formatDate(item.date)}</SecundaryText>
                         <SecundaryText color={'#8C8C8C'}>{item.category}</SecundaryText>
                     </View>                     
                     <AmountIndicator amount={item.amount} isInvoicing={isInvoicing}/>

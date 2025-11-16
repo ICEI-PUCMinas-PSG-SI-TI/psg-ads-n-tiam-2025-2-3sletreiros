@@ -1,9 +1,7 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import { createContext, useState, useCallback } from 'react';
 import FlashMessage from '../components/FlashMessage/FlashMessage';
 
-const FlashMessageContext = createContext();
-
-export function useFlashMessage(){ return useContext(FlashMessageContext)}
+export const FlashMessageContext = createContext();
 
 export const FlashMessageProvider = ({ children }) => {
   const [messageData, setMessageData] = useState({

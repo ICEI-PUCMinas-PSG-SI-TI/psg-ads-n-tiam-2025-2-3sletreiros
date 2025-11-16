@@ -3,20 +3,20 @@ import { ContentHeader } from "./style";
 import { Text } from "../../components/Text/Text";
 import { Button } from "../../components/Button/Button";
 import { InputField } from "../../components/Input/InputField";
-import { FlatList, View } from "react-native";
-import { useEffect, useState } from "react";
+import { ActivityIndicator, FlatList, View } from "react-native";
+import { useState } from "react";
 import { TransactionItem } from "../../components/TransactionItem/TransactionItem";
 import { CustomModal } from "../../components/CustomModal/CustomModal";
-import { addDoc, collection, getDocs } from "firebase/firestore";
-import { db } from "../../config/firebase";
-import { useAuth } from "../../hooks/useAuth";
-import { useFlashMessage } from "../../contexts/FlashMessageContext";
+import { useFlashMessage } from "../../hooks/useFlashMessage";
+import { Timestamp } from "firebase/firestore";
+import { useTransactions } from "../../hooks/useTransactions";
 
 
 export function FinancialTransactions(){
-    const {user} = useAuth()
-    const [transactions, setTransactions] = useState([])
+    const {transactions, loadingTransactions, createTransaction} = useTransactions()
+
     const [filter, setFilter] = useState()
+    const [creatingTransaction, setCreatingTransaction] = useState(false)
 
     const [title, setTitle] = useState("")
     const [category, setCategory] = useState("")
@@ -40,47 +40,21 @@ export function FinancialTransactions(){
 
     async function addTransaction(transaction) {
         try {
-            if (!transaction.name || !transaction.category || !transaction.amount) throw new Error('Insira todos os campos.')
-
-            const ref = collection(db, 'company', user.uid, 'transactions')
-
-            await addDoc(ref, transaction)
-
-            setTransactions((prev) => {
-                return [transaction, ...prev]
-            })
+            setCreatingTransaction(true)
+            await createTransaction(transaction)
             
             closeModal()
             showFlashMessage('Transação adicionada com sucesso!', 'success')
         } catch (error) {
             showFlashMessage(error.message, 'error')
+        } finally {
+            setCreatingTransaction(false)
         }
-        
     }
 
     function removeTransaction(id) {
         setTransactions((prev) => {return prev.filter(transaction => transaction.id !== id)})
     }
-
-    useEffect(() => {
-        async function loadTransactions() {
-            try {
-                const transactionsRef = collection(db, "company", user.uid, "transactions");
-                const snapshot = await getDocs(transactionsRef);
-
-                const transactionsList = snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data(),
-                }));   
-                
-                setTransactions(transactionsList)
-            } catch (error) {
-                showFlashMessage('Erro ao carregar transações. Por favor, tente mais tarde.', 'error')
-            }
-        }
-
-        if (user.uid) loadTransactions()
-    }, [])
 
     return(
         <Container>
@@ -110,7 +84,8 @@ export function FinancialTransactions(){
                     buttonStyle={'success'} 
                     size={'large'} 
                     flex 
-                    onPress={() => addTransaction({amount: value, name: title, category, date: new Date().toLocaleDateString('pt-BR')})}
+                    onPress={() => addTransaction({amount: value, name: title, category, date: Timestamp.now()})}
+                    loading={creatingTransaction}
                 >
                     Criar Transação
                 </Button>
@@ -119,9 +94,9 @@ export function FinancialTransactions(){
             <ContentBlock>
                 <ContentHeader>
                     <Button 
-                        buttonStyle={'primary'} onPress={() => openModal()}
+                        buttonStyle={'primary'} 
+                        onPress={() => openModal()}
                         icon={'add-circle'}
-                        iconPosition={'left'}
                     />
                 </ContentHeader>
             </ContentBlock>
@@ -145,14 +120,18 @@ export function FinancialTransactions(){
             </ContentBlock>
 
             <ContentBlock>
-                <FlatList
-                    data={transactions}
-                    showsVerticalScrollIndicator={false}
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item }) => (
-                        <TransactionItem item={item} removeTransaction={removeTransaction}/>
-                    )}
-                />
+                {
+                    loadingTransactions ? 
+                    <ActivityIndicator /> :
+                    <FlatList
+                        data={transactions}
+                        showsVerticalScrollIndicator={false}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item }) => (
+                            <TransactionItem item={item} removeTransaction={removeTransaction}/>
+                        )}
+                    />
+                }
             </ContentBlock>
         </Container>
     )
