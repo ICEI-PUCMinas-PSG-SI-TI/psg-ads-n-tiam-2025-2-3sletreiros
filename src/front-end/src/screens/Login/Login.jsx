@@ -6,7 +6,7 @@ import { useReducer, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { useNavigation } from "@react-navigation/native";
 import { NotLoggedLogo } from "../../components/NotLoggedLogo/NotLoggedLogo";
-import { useFlashMessage } from "../../contexts/FlashMessageContext";
+import { useFlashMessage } from "../../hooks/useFlashMessage";
 
 const initialState = {
   email: "",

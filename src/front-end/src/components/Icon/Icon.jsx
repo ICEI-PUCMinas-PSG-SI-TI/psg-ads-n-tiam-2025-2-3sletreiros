@@ -1,9 +1,16 @@
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialIcons, Feather } from "@expo/vector-icons";
 import { useTheme } from "styled-components";
 
 
-export function Icon({ name, size = 24, color }) {
+export function Icon({ name, size = 24, color, family = 'MaterialIcons'}) {
     const theme = useTheme()
 
-    return <MaterialIcons  name={name} size={size} color={!color ? theme.colors.buttonText : color}/>
+    switch(family){
+        case('MaterialIcons'):
+            return <MaterialIcons  name={name} size={size} color={!color ? theme.colors.buttonText : color}/>
+
+        case('Feather'):
+            return <Feather  name={name} size={size} color={!color ? theme.colors.buttonText : color}/>
+    }
+    
 }
