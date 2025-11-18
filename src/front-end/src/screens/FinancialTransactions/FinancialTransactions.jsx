@@ -21,6 +21,7 @@ export function FinancialTransactions(){
     const [title, setTitle] = useState("")
     const [category, setCategory] = useState("")
     const [value, setValue] = useState("")
+    const [isInvoicing, setIsInvoicing] = useState(true)
 
     const [visible, setVisible] = useState(false)
 
@@ -52,21 +53,31 @@ export function FinancialTransactions(){
         }
     }
 
-    function removeTransaction(id) {
-        setTransactions((prev) => {return prev.filter(transaction => transaction.id !== id)})
-    }
-
     return(
         <Container>
             <CustomModal visible={visible} onClose={closeModal}>
-                <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', marginBottom: 16}}>
-                    <Text variant="subtitle">Cadastrar nova transação</Text>
+                <View style={{flexDirection: 'row', justifyContent: 'center', gap: '12', marginBottom: 20}}>
+                    <Button 
+                        onPress={() => setIsInvoicing(true)}
+                        buttonStyle={isInvoicing ? 'success' : 'outline'}
+                    >
+                        Entrada
+                    </Button>
+                    <Button 
+                        onPress={() => setIsInvoicing(false)}
+                        buttonStyle={!isInvoicing ? 'error' : 'outline'}
+                    >
+                        Saída
+                    </Button>
                 </View>
+
                 <InputField
                     label="Título da transação"
                     value={title}
                     onChangeText={handleTitleChange}
                 />
+
+                
 
                 <InputField
                     label="Categoria"
@@ -128,7 +139,7 @@ export function FinancialTransactions(){
                         showsVerticalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item }) => (
-                            <TransactionItem item={item} removeTransaction={removeTransaction}/>
+                            <TransactionItem item={item}/>
                         )}
                     />
                 }

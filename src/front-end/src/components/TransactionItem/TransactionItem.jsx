@@ -12,7 +12,7 @@ import { useFlashMessage } from "../../hooks/useFlashMessage";
 import { useNavigation } from "@react-navigation/native";
 import { formatDate } from "../../utils/formatter";
 
-export function TransactionItem({item, removeTransaction}) {
+export function TransactionItem({item}) {
     const theme = useTheme()
     const {showFlashMessage} = useFlashMessage()
     const {user} = useAuth()
@@ -25,7 +25,6 @@ export function TransactionItem({item, removeTransaction}) {
             const ref = doc(db, 'company', user.uid, 'transactions', item.id)
 
             await deleteDoc(ref)
-            removeTransaction(item.id)
 
             showFlashMessage('Transação deletada com sucesso!', 'success')
         } catch (error) {

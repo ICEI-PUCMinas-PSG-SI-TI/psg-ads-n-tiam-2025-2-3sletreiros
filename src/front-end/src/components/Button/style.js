@@ -28,14 +28,26 @@ export function getButtonColors(buttonStyle, theme) {
         case 'primary':
             return {
                 backgroundColor: theme.colors.primary,
+                borderWidth: 2,
+                borderColor: theme.colors.primary
             }
         case 'error':
             return {
                 backgroundColor: theme.colors.error.background,
+                borderWidth: 2, 
+                borderColor: theme.colors.error.background
             }
         case 'success':
             return {
                 backgroundColor: theme.colors.success.background,
+                borderWidth: 2,
+                borderColor: theme.colors.success.background
+            }
+        case 'outline':
+            return {
+                borderColor: theme.colors.primary,
+                borderWidth: 1,
+                borderRadius: 8
             }
     }
 }
@@ -53,6 +65,10 @@ export function getTextColor(buttonStyle, theme) {
         case 'success':
             return {
                 color: theme.colors.success.text,
+            }
+        case 'outline':
+            return {
+                color: theme.colors.primary
             }
     }
 }
