@@ -10,10 +10,13 @@ import { CustomModal } from "../../components/CustomModal/CustomModal";
 import { useFlashMessage } from "../../hooks/useFlashMessage";
 import { Timestamp } from "firebase/firestore";
 import { useTransactions } from "../../hooks/useTransactions";
+import { Icon } from "../../components/Icon/Icon";
+import { useTheme } from "styled-components";
 
 
 export function FinancialTransactions(){
     const {transactions, loadingTransactions, createTransaction} = useTransactions()
+    const theme = useTheme()
 
     const [filter, setFilter] = useState()
     const [creatingTransaction, setCreatingTransaction] = useState(false)
@@ -98,7 +101,7 @@ export function FinancialTransactions(){
                     onPress={() => addTransaction({amount: value, name: title, category, date: Timestamp.now()})}
                     loading={creatingTransaction}
                 >
-                    Criar Transação
+                    <Icon name={'done'} color={theme.colors.success.text}/>
                 </Button>
             </CustomModal>
 
