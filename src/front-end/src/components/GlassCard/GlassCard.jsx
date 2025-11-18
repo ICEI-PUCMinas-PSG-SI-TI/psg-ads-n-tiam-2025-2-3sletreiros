@@ -17,7 +17,7 @@ export function GlassCard ({children}){
           ]
         : [
             '#FFFFFF',
-            '#F8F9FA',
+            '#d3d3d3ff',
             '#FFFFFF'
           ]
       }

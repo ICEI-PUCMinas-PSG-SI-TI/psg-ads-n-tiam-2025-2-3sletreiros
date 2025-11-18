@@ -2,10 +2,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useAuth } from '../hooks/useAuth';
 import { ActivityIndicator, View } from 'react-native';
 import { useTheme } from 'styled-components';
-import { LoggedRoutes } from './LoggedRoutes';
-import { NotLoggedRoutes } from './NotLoggedRoutes';
-
-const Stack = createNativeStackNavigator()
+import { AuthenticatedRoutes } from './AuthenticatedRoutes';
+import { PublicRoutes } from './PublicRoutes';
 
 export default function AppRoutes() {
   const {user, loading} = useAuth()
@@ -19,5 +17,5 @@ export default function AppRoutes() {
       );
     }
 
-  return user ? <LoggedRoutes /> : <NotLoggedRoutes />
+  return user ? <AuthenticatedRoutes /> : <PublicRoutes />
 }
