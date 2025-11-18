@@ -5,7 +5,7 @@ import { Login } from "../screens/Login/Login"
 
 const Stack = createNativeStackNavigator()
 
-export function NotLoggedRoutes(){
+export function PublicRoutes(){
 
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>

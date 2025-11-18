@@ -5,8 +5,7 @@ import { Container, ContentBlock } from "../../styles/global";
 import { Text } from "../../components/Text/Text";
 import { useReducer, useState, useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
-import { useFlashMessage } from "../../contexts/FlashMessageContext";
-import { InputError } from "../../error/InputError";
+import { useFlashMessage } from "../../hooks/useFlashMessage";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 

@@ -12,15 +12,9 @@ import { useTransactions } from "../../hooks/useTransactions";
 import { formatToBRL } from "../../utils/formatter";
 
 export function Dashboard() {
-    const {logout, deleteAccount} = useAuth();
     const {currentMonthTransactions} = useTransactions()
     
     const theme = useTheme();
-    const navigation = useNavigation();
-    
-    async function excludeAccount() {
-      await deleteAccount()
-    }
 
     return (
         <ScrollContainer>
@@ -38,38 +32,6 @@ export function Dashboard() {
                   </ValueContainer>
                 </CardContent>
               </GlassCard>
-              <Button
-              onPress={() => navigation.navigate('FinancialTransactions')}
-              buttonStyle="primary"
-              size="large"
-              flex={true}
-              >
-                Movimentações financeiras
-              </Button>
-              <Button
-                 onPress={() => navigation.navigate('MyAccount')}
-                 buttonStyle="primary"
-                 size="large"
-                 flex={true}
-              >
-                Minha conta
-              </Button>
-              <Button
-                buttonStyle="primary"
-                size="large"
-                flex={true}
-                onPress={logout}
-              >
-                Sair
-              </Button>
-              <Button
-                buttonStyle="error"
-                size="large"
-                flex={true}
-                onPress={() => excludeAccount()}
-              >
-                Deletar conta
-              </Button>
             </View>
         </ScrollContainer>
     )
