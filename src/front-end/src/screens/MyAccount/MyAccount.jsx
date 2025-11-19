@@ -58,7 +58,7 @@ export function MyAccount() {
   const [state, dispatch] = useReducer(formReducer, initialState);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingData, setIsLoadingData] = useState(true);
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const { showFlashMessage } = useFlashMessage();
 
   useEffect(() => {
@@ -226,6 +226,18 @@ export function MyAccount() {
               disabled={isLoading}
             >
               Salvar Alterações
+            </Button>
+
+            <Button
+              buttonStyle="error"
+              size="large"
+              flex={true}
+              onPress={() => logout()}
+              loading={isLoading}
+              disabled={isLoading}
+              style={{marginTop: 16}}
+            >
+              Sair
             </Button>
           </ContentBlock>
         </Container>

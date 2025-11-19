@@ -42,7 +42,7 @@ export function InputField({
                             onChangeText(raw);
                         }}
                         placeholder={placeholder}
-                        placeholderTextColor={theme.colors.input.text}
+                        placeholderTextColor="#6B6B6B"
                         onFocus={() => setFocused(true)}
                         onBlur={() => setFocused(false)}
                         secureTextEntry={secureTextEntry}
@@ -59,7 +59,7 @@ export function InputField({
                 ) : (
                     <StyledInput
                         placeholder={placeholder}
-                        placeholderTextColor={theme.colors.input.text}
+                        placeholderTextColor="#6B6B6B"
                         value={value}
                         onChangeText={onChangeText}
                         onFocus={() => setFocused(true)}
