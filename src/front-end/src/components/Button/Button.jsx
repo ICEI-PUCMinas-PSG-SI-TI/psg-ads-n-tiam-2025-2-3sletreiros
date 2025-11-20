@@ -5,7 +5,7 @@ import { Icon } from "../Icon/Icon";
 import { Text } from "../Text/Text";
 
 
-export function Button({children, buttonStyle, onPress, loading, flex, size, icon, iconPosition, disabled, style, iconSize = 20}) {
+export function Button({children, buttonStyle, onPress, loading, flex, size, icon, iconPosition, iconFamily, disabled, style, iconSize = 18}) {
     const theme = useTheme()
 
     return (
@@ -24,7 +24,7 @@ export function Button({children, buttonStyle, onPress, loading, flex, size, ico
                 }
                 <ChildrenContainer iconPosition={iconPosition}>
                     {
-                        icon && !loading && <Icon name={icon} color={getTextColor(buttonStyle, theme).color} size={iconSize}/>
+                        icon && !loading && <Icon name={icon} color={getTextColor(buttonStyle, theme).color} size={iconSize} family={iconFamily}/>
                     }
                     {children && !loading &&
                         <Text style={[getTextColor(buttonStyle, theme)]}>

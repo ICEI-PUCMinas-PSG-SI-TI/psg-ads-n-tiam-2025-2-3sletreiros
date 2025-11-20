@@ -63,12 +63,16 @@ export function FinancialTransactions(){
                     <Button 
                         onPress={() => setIsInvoicing(true)}
                         buttonStyle={isInvoicing ? 'success' : 'outline'}
+                        iconFamily={'Feather'}
+                        icon={'trending-up'}
                     >
                         Entrada
                     </Button>
                     <Button 
                         onPress={() => setIsInvoicing(false)}
                         buttonStyle={!isInvoicing ? 'error' : 'outline'}
+                        iconFamily={'Feather'}
+                        icon={'trending-down'}
                     >
                         Saída
                     </Button>
@@ -95,9 +99,9 @@ export function FinancialTransactions(){
                     keyboardType="numeric"
                 />
                 <Button 
-                    buttonStyle={'success'} 
+                    buttonStyle={'primary'} 
                     size={'large'} 
-                    flex 
+                    flex
                     onPress={() => addTransaction({amount: value, name: title, category, date: Timestamp.now()})}
                     loading={creatingTransaction}
                 >

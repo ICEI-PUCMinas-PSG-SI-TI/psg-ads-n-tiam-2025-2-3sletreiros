@@ -1,24 +1,59 @@
-import { View } from "react-native";
 import { Text } from "../../components/Text/Text";
 import { useAuth } from "../../hooks/useAuth";
 import { Container } from "../../styles/global";
-import { Header } from "./style";
+import { AccountInfo, Header, ActionButtonsContainer, Plan } from "./style";
 import { Button } from "../../components/Button/Button";
 import { useNavigation } from "@react-navigation/native";
+import { useUser } from "../../hooks/useUser";
+import { Icon } from "../../components/Icon/Icon";
+import { useTheme } from "styled-components";
+import { formatDate, formatCNPJ } from "../../utils/formatter";
 
 
 export function MyAccount() {
-    const {user, logout} = useAuth()
+    const {logout, deleteAccount} = useAuth()
+    const {userData} = useUser()
+    const theme = useTheme()
+
     const navigation = useNavigation()
+
+    if (!userData) return null;
+
+    const {address} = userData
 
     return (
         <Container>
             <Header>
-                <Text variant="subtitle">Olá, {user.displayName.split(' ')[0]}!</Text>
+                <Text variant="title">Olá, {userData.name.split(' ')[0]} </Text>
+                <Button buttonStyle={'error'} onPress={() => logout()} icon={'logout'} />
             </Header>
-
-            <Button buttonStyle={'primary'} flex onPress={() => navigation.navigate('EditProfile')}>Editar dados</Button>
-            <Button buttonStyle={'error'} flex onPress={() => logout()}>Sair</Button>
+            <AccountInfo>
+                <Plan>
+                    <Text color={theme.colors.success.text} style={{fontWeight: 500}}>
+                        Plano: {userData.plan} 
+                    </Text>
+                    <Icon name="diamond" size={16} style={{ alignSelf: 'center' }} color={theme.colors.success.text}/>
+                </Plan>
+                <Text>
+                    <Text style={{fontWeight: 500}}>Razão social:</Text> {`${userData.social} - ${formatCNPJ(userData.cnpj)}`}
+                </Text>
+                <Text>
+                    <Text style={{fontWeight: 500}}>Email:</Text> {userData.email}
+                </Text>
+                <Text>
+                    <Text style={{fontWeight: 500}}>Membro desde:</Text> {formatDate(userData.createdAt)}
+                </Text>
+                {
+                    address && 
+                    <Text>
+                        <Text style={{fontWeight: 500}}>Endereço:</Text> {`${address.street}, ${address.neighborhood} - ${address.city}`}
+                    </Text>
+                }
+            </AccountInfo>
+            <ActionButtonsContainer>
+                <Button buttonStyle={'primary'} flex onPress={() => navigation.navigate('EditProfile')}>Editar Dados</Button>
+                <Button buttonStyle={'error'} flex onPress={() => deleteAccount('Samuca10!')}>Excluir Conta</Button>
+            </ActionButtonsContainer>
         </Container>
     )
 }

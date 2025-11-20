@@ -227,18 +227,6 @@ export function EditProfile() {
             >
               Salvar Alterações
             </Button>
-
-            <Button
-              buttonStyle="error"
-              size="large"
-              flex={true}
-              onPress={() => logout()}
-              loading={isLoading}
-              disabled={isLoading}
-              style={{marginTop: 16}}
-            >
-              Sair
-            </Button>
           </ContentBlock>
         </Container>
       </ScrollView>
