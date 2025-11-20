@@ -2,6 +2,7 @@ import { View } from "react-native";
 import { Text } from "../Text/Text";
 import { Icon } from "../Icon/Icon";
 import { useTheme } from "styled-components";
+import { formatToBRL } from "../../utils/formatter";
 
 export function AmountIndicator({amount, isInvoicing}){
     const theme = useTheme()
@@ -21,7 +22,7 @@ export function AmountIndicator({amount, isInvoicing}){
                     fontWeight: '600'
                 }}
             >
-                {!isInvoicing ? `- R$ ${Math.abs(amount)}` : `+ R$ ${amount}`}
+                {!isInvoicing ? `${formatToBRL(Math.abs(amount))}` : `${formatToBRL(Math.abs(amount))}`}
             </Text>
             <Icon
                 name={isInvoicing ? 'arrow-circle-up' : 'arrow-circle-down'}

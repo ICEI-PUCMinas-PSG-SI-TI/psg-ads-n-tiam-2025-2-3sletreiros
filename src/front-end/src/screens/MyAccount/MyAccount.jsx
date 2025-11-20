@@ -30,9 +30,9 @@ export function MyAccount() {
             <AccountInfo>
                 <Plan>
                     <Text color={theme.colors.success.text} style={{fontWeight: 500}}>
-                        Plano: {userData.plan} 
+                        Plano: {userData.plan.name} 
                     </Text>
-                    <Icon name="diamond" size={16} style={{ alignSelf: 'center' }} color={theme.colors.success.text}/>
+                    <Icon name={userData.plan.icon} size={16} style={{ alignSelf: 'center' }} color={theme.colors.success.text}/>
                 </Plan>
                 <Text>
                     <Text style={{fontWeight: 500}}>Razão social:</Text> {`${userData.social} - ${formatCNPJ(userData.cnpj)}`}

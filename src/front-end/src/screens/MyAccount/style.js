@@ -4,7 +4,7 @@ export const Header = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 48px;
 `
 
 export const AccountInfo = styled.View`

@@ -8,6 +8,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { useFlashMessage } from "../../hooks/useFlashMessage";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
+import { useNavigation } from "@react-navigation/native";
 
 const initialState = {
   email: "",
@@ -58,8 +59,9 @@ export function EditProfile() {
   const [state, dispatch] = useReducer(formReducer, initialState);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingData, setIsLoadingData] = useState(true);
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const { showFlashMessage } = useFlashMessage();
+  const navigation = useNavigation()
 
   useEffect(() => {
     loadUserData();
@@ -221,7 +223,10 @@ export function EditProfile() {
               buttonStyle="primary"
               size="large"
               flex={true}
-              onPress={handleSubmit}
+              onPress={() => {
+                handleSubmit()
+                navigation.navigate('MyAccount')
+              }}
               loading={isLoading}
               disabled={isLoading}
             >
