@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot, getDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
 
 export function useUser() {
@@ -22,12 +22,30 @@ export function useUser() {
 
       const ref = doc(db, "company", user.uid);
 
-      const unsubscribeFirestore = onSnapshot(ref, (snapshot) => {
-        if (snapshot.exists()) {
-          setUserData(snapshot.data());
-        } else {
+      const unsubscribeFirestore = onSnapshot(ref, async (snapshot) => {
+        if (!snapshot.exists()) {
           setUserData(null);
+          setLoading(false);
+          return;
         }
+
+        let data = snapshot.data();
+
+        if (data.plan) {
+          try {
+            const snapPlan = await getDoc(data.plan);
+            if (snapPlan.exists()) {
+              data = {
+                ...data,
+                plan: snapPlan.data(),
+              };
+            }
+          } catch (e) {
+            console.log("Erro ao buscar plano:", e);
+          }
+        }
+
+        setUserData(data);
         setLoading(false);
       });
 
@@ -39,7 +57,7 @@ export function useUser() {
 
   return {
     user: authUser,
-    userData, 
+    userData,
     loading,
   };
 }

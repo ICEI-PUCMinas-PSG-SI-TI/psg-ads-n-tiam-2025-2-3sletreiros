@@ -12,17 +12,6 @@ export const AccountInfo = styled.View`
     gap: 12px;
 `
 
-export const Plan = styled.View`
-    flex-direction: row;
-    alignItems: center;
-    width: auto;
-    background-color: ${({theme}) =>theme.colors.success.background};
-    padding: 8px;
-    border-radius: 16px;
-    justify-content: center;
-    gap: 4px;
-`
-
 export const ActionButtonsContainer = styled.View`
     flex-direction: row;
     gap: 16px;

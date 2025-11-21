@@ -13,7 +13,6 @@ import { formatDate, formatCNPJ } from "../../utils/formatter";
 export function MyAccount() {
     const {logout, deleteAccount} = useAuth()
     const {userData} = useUser()
-    const theme = useTheme()
 
     const navigation = useNavigation()
 
@@ -28,12 +27,14 @@ export function MyAccount() {
                 <Button buttonStyle={'error'} onPress={() => logout()} icon={'logout'} />
             </Header>
             <AccountInfo>
-                <Plan>
-                    <Text color={theme.colors.success.text} style={{fontWeight: 500}}>
-                        Plano: {userData.plan.name} 
-                    </Text>
-                    <Icon name={userData.plan.icon} size={16} style={{ alignSelf: 'center' }} color={theme.colors.success.text}/>
-                </Plan>
+                <Button 
+                    buttonStyle={'primary'} 
+                    icon={userData.plan.icon} 
+                    onPress={() => navigation.navigate('SelectPlan')} 
+                    flex={true}
+                >
+                    Plano {userData.plan.name} 
+                </Button>
                 <Text>
                     <Text style={{fontWeight: 500}}>Razão social:</Text> {`${userData.social} - ${formatCNPJ(userData.cnpj)}`}
                 </Text>

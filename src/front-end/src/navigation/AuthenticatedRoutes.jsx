@@ -20,14 +20,14 @@ export function AuthenticatedRoutes(){
             icon: 'compare-arrows'
         },
         {
-            name: 'MyAccount',
-            component: MyAccountStack,
-            icon: 'person'
-        }, 
-        {
             name: 'Products',
             component: ProductsStack,
             icon: 'inventory'
+        },
+        {
+            name: 'MyAccount',
+            component: MyAccountStack,
+            icon: 'person'
         }
     ]
 

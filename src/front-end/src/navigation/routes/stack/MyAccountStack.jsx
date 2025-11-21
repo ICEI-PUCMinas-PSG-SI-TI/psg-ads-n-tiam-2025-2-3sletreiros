@@ -2,6 +2,7 @@ import { StackNavigator } from "../../../components/StackNavigator/StackNavigato
 
 import { EditProfile } from "../../../screens/EditProfile/EditProfile";
 import { MyAccount } from "../../../screens/MyAccount/MyAccount";
+import { SelectPlan } from "../../../screens/SelectPlan/SelectPlan";
 
 
 export function MyAccountStack() {
@@ -13,6 +14,10 @@ export function MyAccountStack() {
         {
             component: EditProfile,
             name: 'EditProfile'
+        },
+        {
+            component: SelectPlan,
+            name: 'SelectPlan'
         }
     ]
     return (
