@@ -3,6 +3,8 @@ import {TabsNavigator} from "../components/TabsNavigator/TabsNavigator"
 import { DashBoardStack } from "./routes/stack/DashBoardStack"
 import { TransactionsStack } from "./routes/stack/TransactionsStack"
 import { MyAccountStack } from "./routes/stack/MyAccountStack"
+import { ProductsStack } from "./routes/stack/ProductsStack"
+
 
 export function AuthenticatedRoutes(){
 
@@ -21,6 +23,11 @@ export function AuthenticatedRoutes(){
             name: 'MyAccount',
             component: MyAccountStack,
             icon: 'person'
+        }, 
+        {
+            name: 'Products',
+            component: ProductsStack,
+            icon: 'inventory'
         }
     ]
 
