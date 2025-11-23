@@ -10,11 +10,19 @@ import { useFlashMessage } from "../../hooks/useFlashMessage";
 
 
 export function CreateProduct(){
+    const [name, setName] = useState("")
     const [stock, setStock] = useState(0)
+    const [price, setPrice] = useState("")
+
+
     const navigation = useNavigation()
     const {showFlashMessage} = useFlashMessage()
 
+    const handleNameChange = (text) => setName(text);
+    const handlePriceChange = (text) => setPrice(text);
+
     function addProduct(){
+        //só teste
         showFlashMessage('Produto adicionado com sucesso!', 'success')
         navigation.navigate('Products')
     }
@@ -27,7 +35,9 @@ export function CreateProduct(){
 
             <InputField
                 label="Nome do produto"
-                placeholder='Ex.: produto Y'
+                placeholder='Ex: produto Y'
+                value={name}
+                onChangeText={handleNameChange}
             /> 
 
             <StockContainer>
@@ -47,14 +57,17 @@ export function CreateProduct(){
             
             <InputField
                 label="Preço"
-                placeholder='Ex.: 3500'
+                value={price}
+                placeholder='Ex: 1000'
+                onChangeText={handlePriceChange}
+                keyboardType="numeric"
             /> 
 
             <Button 
-            buttonStyle={'primary'} 
-            onPress={() => addProduct()}
-            
-            style={{width:'100%', marginTop: 10}}
+                buttonStyle={'primary'} 
+                onPress={addProduct}
+                
+                style={{width:'100%', marginTop: 10}}
             >
                 Criar produto
             </Button>
