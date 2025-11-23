@@ -135,6 +135,18 @@ export function Login() {
           >
             Entrar
           </Button>
+
+          <Button
+            buttonStyle="tertiary"
+            size="large"
+            flex={true}
+            onPress={() => navigation.navigate("ForgotPassword")}
+            style={{
+              marginTop: 10
+            }}
+          >
+            Esqueceu a senha?
+          </Button>
         </Container>
       </ScrollView>
     </KeyboardAvoidingView>
