@@ -302,23 +302,6 @@ Após a execução das tarefas, os participantes responderão ao questionário S
 6. Pontos fortes identificados
 7. Pontos fracos e sugestões de melhoria
 
-## Cronograma de Execução
-
-| Fase | Atividade | Duração |
-|------|-----------|---------|
-| Preparação | Recrutamento de participantes | 1 semana |
-| Preparação | Configuração do ambiente de teste | 2 dias |
-| Execução | Realização dos testes | 1 semana |
-| Análise | Compilação e análise dos resultados | 1 semana |
-| Documentação | Elaboração do registro de testes | 3 dias |
-
-## Ferramentas Utilizadas
-
-- **Gravação de Tela:** Para capturar a interação dos usuários
-- **Questionários Online:** Google Forms ou similar para coleta de dados
-- **Planilhas:** Para organização e análise dos dados quantitativos
-- **Análise de Dados:** Microsoft Excel ou Google Sheets
-
 ## Critérios de Aceitação
 
 O sistema será considerado com boa usabilidade se:
