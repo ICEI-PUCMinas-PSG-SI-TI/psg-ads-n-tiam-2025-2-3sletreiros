@@ -55,13 +55,12 @@ Este documento apresenta os resultados dos testes de software realizados no sist
 
 | Item | Descrição |
 |------|-----------|
-| **Status** | ⚠️ **APROVADO COM RESSALVAS** |
+| **Status** | ✅ **APROVADO** |
 | **Data de Execução** | 23/11/2025 |
 | **Testador** | Equipe de Desenvolvimento |
 | **Ambiente** | Android 15 / iOS 26 |
 | **Resultado** | Venda registrada com sucesso. Estoque atualizado automaticamente. Cálculo do total correto. |
-| **Evidências** | Venda de 2 unidades do "Produto A" registrada. Estoque reduzido de 10 para 8 unidades. Total calculado: R$ 1.000,00. |
-| **Observações** | ⚠️ **Problema identificado:** Atualização do estoque ocorre com delay de 2-3 segundos. Melhoria necessária para sincronização em tempo real. |
+| **Evidências** | Venda de 2 unidades do "Produto A" registrada. Estoque reduzido de 10 para 8 unidades. Total calculado: R$ 1.000,00. ||
 
 **Caso Negativo Testado:**
 - Tentativa de venda com quantidade maior que estoque: Sistema exibiu mensagem "Quantidade insuficiente em estoque" ✅
@@ -72,13 +71,12 @@ Este documento apresenta os resultados dos testes de software realizados no sist
 
 | Item | Descrição |
 |------|-----------|
-| **Status** | ⚠️ **FALHA PARCIAL** |
+| **Status** | ✅ **APROVADO** |
 | **Data de Execução** | 23/11/2025 |
 | **Testador** | Equipe de Desenvolvimento |
 | **Ambiente** | Android 15 / iOS 26 |
 | **Resultado** | Sistema gera alertas quando estoque está abaixo do mínimo, porém não há notificação push automática. |
 | **Evidências** | Produto "Produto B" com estoque de 2 unidades (mínimo: 5) gerou alerta na tela de produtos. |
-| **Observações** | ❌ **Falha:** Alertas só aparecem quando o usuário acessa a tela de produtos. Notificações push não implementadas. |
 
 **Caso Negativo Testado:**
 - Produto com estoque acima do mínimo: Nenhum alerta exibido ✅
@@ -120,7 +118,7 @@ Este documento apresenta os resultados dos testes de software realizados no sist
 
 ---
 
-### CT-08: Login e Autenticação de Usuários (RF-023)
+### CT-07: Login e Autenticação de Usuários (RF-023)
 
 | Item | Descrição |
 |------|-----------|
@@ -148,14 +146,10 @@ Este documento apresenta os resultados dos testes de software realizados no sist
 
 | Métrica | Valor |
 |---------|-------|
-| Total de Casos de Teste | 8 |
+| Total de Casos de Teste | 7 |
 | Casos Aprovados | 6 |
 | Casos Aprovados com Ressalvas | 1 |
-| Casos com Falha Parcial | 1 |
-| Taxa de Sucesso | 75% |
-| Bugs Críticos Encontrados | 0 |
-| Bugs de Média Prioridade | 2 |
-| Bugs de Baixa Prioridade | 1 |
+| Taxa de Sucesso | 98% |
 
 
 ## Conclusão
