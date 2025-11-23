@@ -21,12 +21,6 @@ Para cada requisito funcional, pode ser entregue um artefato desse tipo
 - Comentar **por que**, não **o que**.
 
 
-##  Back-end (Java / Spring Boot)
-- Controllers finos; lógica concentrada em **services**; persistência em **repositories**.
-- Validação nas **DTOs** (ex.: `@NotNull`) e erro padronizado.
-- **Logue coisas úteis**, nunca senhas.
-- Testes **unitários** e **de integração** (quando possível).
-
 
 ##  Front-end (React Native)
 - Estrutura recomendada: src /routes /screens /theme
