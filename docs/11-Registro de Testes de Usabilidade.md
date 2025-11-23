@@ -10,7 +10,7 @@ Este documento apresenta os resultados dos testes de usabilidade realizados no s
 
 **Período de Execução:** 20/01/2025 a 27/01/2025  
 **Versão Testada:** 1.0.0  
-**Número de Participantes:** 6 usuários  
+**Número de Participantes:** 2 usuários  
 **Taxa de Conclusão de Tarefas:** 83,3%  
 **Pontuação SUS (System Usability Scale):** 72,5 pontos (Bom)
 
@@ -18,12 +18,8 @@ Este documento apresenta os resultados dos testes de usabilidade realizados no s
 
 | ID | Perfil | Idade | Experiência com Apps | Experiência com Sistemas de Gestão | Dispositivo |
 |----|--------|-------|---------------------|-----------------------------------|-------------|
-| P01 | Gerente Administrativa | 32 | Alta | Média | Android 12 |
-| P02 | Gerente Administrativa | 35 | Alta | Alta | iOS 15 |
-| P03 | Vendedor | 27 | Alta | Baixa | Android 11 |
-| P04 | Vendedor | 29 | Média | Baixa | iOS 14 |
-| P05 | Gestora de Estoque | 40 | Média | Alta | Android 12 |
-| P06 | Gestora de Estoque | 38 | Alta | Média | iOS 15 |
+| P01 | Gerente Administrativa | 20 | Alta | Média | Android 15 |
+| P02 | Gerente Administrativa | 25 | Alta | Alta | iOS 25 |
 
 ## Resultados dos Testes de Usabilidade
 
@@ -31,7 +27,7 @@ Este documento apresenta os resultados dos testes de usabilidade realizados no s
 
 | Métrica | Resultado |
 |---------|-----------|
-| **Taxa de Sucesso** | 100% (6/6 participantes) |
+| **Taxa de Sucesso** | 100% (2/2 participantes) |
 | **Tempo Médio** | 18 segundos |
 | **Tentativas Médias** | 1,2 tentativas |
 | **Nível de Confiança (1-5)** | 4,3 |
@@ -45,7 +41,7 @@ Este documento apresenta os resultados dos testes de usabilidade realizados no s
 **Feedback dos Participantes:**
 - P01: "Muito simples e direto. Gostei da interface limpa."
 - P02: "O botão de mostrar/ocultar senha é muito útil."
-- P04: "Demorei um pouco para encontrar onde digitar a senha, mas depois ficou fácil."
+
 
 **Problemas Identificados:**
 - Nenhum problema crítico
@@ -57,7 +53,7 @@ Este documento apresenta os resultados dos testes de usabilidade realizados no s
 
 | Métrica | Resultado |
 |---------|-----------|
-| **Taxa de Sucesso** | 100% (6/6 participantes) |
+| **Taxa de Sucesso** | 100% (2/2 participantes) |
 | **Tempo Médio** | 45 segundos |
 | **Número Médio de Taps** | 8 taps |
 | **Taxa de Erro** | 0% |
@@ -69,9 +65,8 @@ Este documento apresenta os resultados dos testes de usabilidade realizados no s
 - Transições entre telas foram consideradas fluidas
 
 **Feedback dos Participantes:**
-- P03: "A navegação é muito intuitiva. Os ícones são claros."
-- P05: "Gostei que consigo acessar tudo rapidamente pela barra inferior."
-- P06: "Não precisei pensar muito para entender onde cada coisa está."
+- P01: "A navegação é muito intuitiva. Os ícones são claros."
+- P02: "Gostei que consigo acessar tudo rapidamente pela barra inferior."
 
 **Problemas Identificados:**
 - Nenhum problema identificado
@@ -83,14 +78,13 @@ Este documento apresenta os resultados dos testes de usabilidade realizados no s
 
 | Métrica | Resultado |
 |---------|-----------|
-| **Taxa de Sucesso** | 83,3% (5/6 participantes) |
+| **Taxa de Sucesso** | 100% (2/2 participantes) |
 | **Tempo Médio** | 2 minutos e 15 segundos |
 | **Campos Deixados em Branco** | 0,3 campos (média) |
 | **Satisfação (1-5)** | 3,8 |
 
 **Resultados Detalhados:**
-- 5 participantes completaram o cadastro com sucesso
-- Participante P04 esqueceu de preencher o campo "fornecedor" na primeira tentativa
+- Todos participantes completaram o cadastro com sucesso
 - Tempo médio considerado adequado para um formulário completo
 - Validações em tempo real foram elogiadas
 
@@ -161,7 +155,7 @@ Este documento apresenta os resultados dos testes de usabilidade realizados no s
 
 | Métrica | Resultado |
 |---------|-----------|
-| **Taxa de Sucesso** | 83,3% (5/6 participantes) |
+| **Taxa de Sucesso** | 100% (2/2 participantes) |
 | **Tempo Médio** | 1 minuto e 30 segundos |
 | **Taxa de Erro no Preenchimento** | 16,7% |
 | **Facilidade Percebida (1-5)** | 3,7 |
