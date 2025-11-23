@@ -19,14 +19,12 @@ Os testes de usabilidade têm como objetivo principal avaliar a experiência do 
 Os testes serão realizados com usuários que representam o público-alvo do sistema:
 
 - **Gerentes Administrativos**: Profissionais responsáveis por acompanhar o desempenho da empresa e tomar decisões estratégicas
-- **Vendedores**: Profissionais que utilizam o sistema para cadastrar clientes, consultar produtos e registrar vendas
-- **Gestores de Estoque**: Profissionais responsáveis pelo controle de entrada e saída de produtos
 
 **Critérios de Seleção:**
 - Experiência com aplicativos mobile (Android ou iOS)
 - Familiaridade com sistemas de gestão (mesmo que básica)
 - Idade entre 25 e 45 anos
-- Número mínimo de participantes: 6 usuários (2 de cada perfil)
+- Número mínimo de participantes: 2 usuários
 
 ## Metodologia
 
@@ -39,10 +37,10 @@ Teste de usabilidade moderado, onde um facilitador acompanha o usuário durante 
 - Aplicativo instalado e configurado previamente
 
 ### Duração
-Cada sessão de teste terá duração estimada de 30 a 45 minutos, incluindo:
-- Apresentação e contextualização (5 minutos)
-- Execução das tarefas (20-30 minutos)
-- Questionário pós-teste e feedback (10 minutos)
+Cada sessão de teste terá duração estimada de 10 a 15 minutos, incluindo:
+- Apresentação e contextualização (2 minutos)
+- Execução das tarefas (10 minutos)
+- Questionário pós-teste e feedback (3 minutos)
 
 ## Casos de Teste de Usabilidade
 
