@@ -64,7 +64,7 @@ export function FinancialTransactions(){
                         onPress={() => setIsInvoicing(true)}
                         buttonStyle={isInvoicing ? 'success' : 'outline'}
                         iconFamily={'Feather'}
-                        icon={'trending-up'}
+                        icon={'trendingUp'}
                     >
                         Entrada
                     </Button>
@@ -72,7 +72,7 @@ export function FinancialTransactions(){
                         onPress={() => setIsInvoicing(false)}
                         buttonStyle={!isInvoicing ? 'error' : 'outline'}
                         iconFamily={'Feather'}
-                        icon={'trending-down'}
+                        icon={'trendingDown'}
                     >
                         Saída
                     </Button>
@@ -114,7 +114,7 @@ export function FinancialTransactions(){
                     <Button 
                         buttonStyle={'primary'} 
                         onPress={() => openModal()}
-                        icon={'add-circle'}
+                        icon={'addCircle'}
                     />
                 </ContentHeader>
             </ContentBlock>

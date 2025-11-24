@@ -25,7 +25,7 @@ export function AmountIndicator({amount, isInvoicing}){
                 {!isInvoicing ? `${formatToBRL(Math.abs(amount))}` : `${formatToBRL(Math.abs(amount))}`}
             </Text>
             <Icon
-                name={isInvoicing ? 'arrow-circle-up' : 'arrow-circle-down'}
+                name={isInvoicing ? 'arrowUp' : 'arrowDown'}
                 color={!isInvoicing ? theme.colors.error.text : '#2ECC71'}
                 size={18}
             />

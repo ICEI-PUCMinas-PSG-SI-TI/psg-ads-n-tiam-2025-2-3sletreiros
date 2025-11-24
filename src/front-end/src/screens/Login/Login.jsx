@@ -118,7 +118,7 @@ export function Login() {
             onChangeText={(text) => dispatch({ type: "SET_FIELD", field: "password", value: text })}
             error={state.error.password}
             secureTextEntry={!showPassword}
-            rightIconName={showPassword ? 'visibility' : 'visibility-off'}
+            rightIconName={showPassword ? 'visibilityOn' : 'visibilityOff'}
             onPressRightIcon={() => {setShowPassword((prev) => !prev)}}
           />
 

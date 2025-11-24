@@ -17,7 +17,7 @@ export function AuthenticatedRoutes(){
         {
             name: 'Transactions',
             component: TransactionsStack,
-            icon: 'compare-arrows'
+            icon: 'arrowReverse'
         },
         {
             name: 'Products',

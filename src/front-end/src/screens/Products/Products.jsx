@@ -20,7 +20,7 @@ export function Products(){
                 <ContentHeader>
                     <Button 
                         buttonStyle={'primary'} 
-                        icon={'add-circle'}
+                        icon={'addCircle'}
                         onPress={() => navigation.navigate('CreateProduct')}
                         />
                     </ContentHeader>

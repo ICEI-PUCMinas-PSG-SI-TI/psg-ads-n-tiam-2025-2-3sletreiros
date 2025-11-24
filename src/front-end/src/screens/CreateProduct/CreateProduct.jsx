@@ -44,13 +44,13 @@ export function CreateProduct(){
                 <Text variant="subtitle">Estoque</Text>
                 <Button 
                     buttonStyle={'primary'} 
-                    icon={'remove-circle'}
+                    icon={'removeCircle'}
                     onPress={() => setStock(stock > 0 ? stock - 1 : 0)}
                 />
                 <Text variant="title">{stock}</Text>
                 <Button 
                     buttonStyle={'primary'} 
-                    icon={'add-circle'}
+                    icon={'addCircle'}
                     onPress={() => setStock(stock + 1)}
                 />
             </StockContainer>

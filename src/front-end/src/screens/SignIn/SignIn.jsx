@@ -303,7 +303,7 @@ export function SignIn() {
             onChangeText={(text) => dispatch({ type: "SET_FIELD", field: "password", value: text })}
             error={state.error.password}
             secureTextEntry={!showPass}
-            rightIconName={showPass ? 'visibility' : 'visibility-off'}
+            rightIconName={showPass ? 'visibilityOn' : 'visibilityOff'}
             onPressRightIcon={() => setShowPass(prev => !prev)}
           />
 
