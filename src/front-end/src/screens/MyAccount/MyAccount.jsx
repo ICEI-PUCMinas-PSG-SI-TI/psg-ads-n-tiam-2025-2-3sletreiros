@@ -29,11 +29,11 @@ export function MyAccount() {
             <AccountInfo>
                 <Button 
                     buttonStyle={'primary'} 
-                    icon={userData.plan.icon} 
+                    icon={userData.plan?.icon} 
                     onPress={() => navigation.navigate('SelectPlan')} 
                     flex={true}
                 >
-                    Plano {userData.plan.name} 
+                    Plano {userData.plan?.name} 
                 </Button>
                 <Text>
                     <Text style={{fontWeight: 500}}>Razão social:</Text> {`${userData.social} - ${formatCNPJ(userData.cnpj)}`}

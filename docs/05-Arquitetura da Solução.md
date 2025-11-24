@@ -1,6 +1,15 @@
 # Arquitetura da Solução
 
-![Arquitetura da Solução](img/arq-solucao.jpg)
+```
+Aplicativo Mobile (React Native)
+         ↓
+Firebase SDK
+         ↓
+    ┌────┴────┐
+    ↓         ↓
+Firebase    Cloud
+Auth        Firestore
+```
 
 ## Diagrama de Classes
 
@@ -104,16 +113,17 @@ db.vendas.insertOne({
 ```
 ## Tecnologias Utilizadas
 
-## Back-end
-- **Node.js** → Plataforma para construir a API do sistema.  
-- **Express.js** → Framework para criação de rotas, middlewares e gerenciamento das requisições.  
-- **MongoDB** → Banco de dados NoSQL, ideal para lidar com dados flexíveis e de alto volume.  
-- **Mongoose** → ODM (Object Data Modeling) para modelar e validar dados no MongoDB.  
-
 ## Front-end (Mobile)
 - **React Native** → Framework para desenvolvimento de aplicativos móveis multiplataforma (Android e iOS).  
 - **Expo** → Ferramenta para agilizar o desenvolvimento, testes e deploy do app.  
-- **Axios / Fetch API** → Consumo da API do back-end.  
+- **React Navigation** → Biblioteca para navegação entre telas no aplicativo.  
+- **Styled Components** → Biblioteca para estilização de componentes com CSS-in-JS.  
+
+## Backend as a Service (BaaS)
+- **Firebase Platform** → Plataforma completa do Google que fornece todos os serviços necessários para o backend.  
+  - **Firebase Authentication** → Serviço para autenticação segura de usuários (e-mail/senha, recuperação de senha, etc).  
+  - **Cloud Firestore** → Banco de dados NoSQL em tempo real, ideal para lidar com dados flexíveis e sincronização automática.  
+  - **Firebase SDK** → SDK oficial para integração do Firebase com React Native.  
 
 ## Autenticação e Segurança
 - **Firebase Authentication** → Serviço para autenticação segura de usuários (e-mail/senha, redes sociais, etc).  
@@ -122,7 +132,6 @@ db.vendas.insertOne({
 
 ## Ferramentas de Desenvolvimento
 - **Visual Studio Code** → IDE principal para desenvolvimento.  
-- **Postman / Insomnia** → Testes de requisições HTTP na API.  
 - **Git & GitHub** → Controle de versão e hospedagem do código.  
 
 ## Hospedagem
