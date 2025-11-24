@@ -9,7 +9,6 @@ import { ScrollContainer } from "../../styles/global";
 import { useNavigation } from "@react-navigation/native";
 
 
-
 export function Products(){
     const navigation = useNavigation()
     const item = {name: 'Produto', stock: 5, price: 3500}
