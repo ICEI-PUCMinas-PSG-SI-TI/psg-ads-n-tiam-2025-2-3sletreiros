@@ -37,6 +37,19 @@ export function CreateProduct(){
     const {user} = useAuth()
 
     const handleNameChange = (text) => setName(text);
+
+    const handleStockChange = (text) => {
+
+        if (text === "") {
+            setStock(0);
+            return;
+        }
+
+        const numericValue = Number(text);
+
+        setStock(numericValue);
+    }
+
     const handlePriceChange = (text) => setPrice(text);
 
     async function addProduct(){
