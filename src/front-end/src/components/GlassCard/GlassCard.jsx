@@ -1,7 +1,7 @@
 import { LinearGradient as CardContainer } from 'expo-linear-gradient';
 import { useTheme } from 'styled-components';
 
-export function GlassCard ({children}){
+export function GlassCard ({children, style}){
   const theme = useTheme();
   const isDark = theme.colors.background.default === '#1F2130';
 
@@ -23,7 +23,7 @@ export function GlassCard ({children}){
       }
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
-      style={{
+      style={[{
         borderRadius: 20,
         padding: 24,
         margin: 16,
@@ -37,7 +37,7 @@ export function GlassCard ({children}){
         shadowRadius: 15,
         elevation: 8,
         overflow: 'hidden',
-      }}>
+      }, style]}>
       {children}
     </CardContainer>
   );
