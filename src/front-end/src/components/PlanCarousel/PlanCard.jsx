@@ -2,12 +2,12 @@ import { View } from "react-native";
 import { GlassCard } from "../GlassCard/GlassCard";
 import { Icon } from "../Icon/Icon";
 import { Text } from "../Text/Text";
-import { ButtonContainer, Card, PlanTitle, PlanDescription, PlanValue } from "./style";
+import { ButtonContainer, PlanTitle, PlanDescription } from "./style";
 import { useTheme } from "styled-components";
 import { Button } from "../Button/Button";
 import { formatToBRL } from "../../utils/formatter";
 
-export function PlanCard({ plan }) {
+export function PlanCard({ plan, openModal }) {
     const theme = useTheme()
 
     return (
@@ -33,10 +33,10 @@ export function PlanCard({ plan }) {
                     </View>
                 ))}
             </View>
-            <PlanValue color={'#2ECC71'}>{formatToBRL(plan?.value)}</PlanValue>
+            
             <ButtonContainer>
-                <Button buttonStyle="primary" flex>
-                    Selecionar Plano
+                <Button buttonStyle="primary" flex onPress={() => openModal(plan)}>
+                    Assinar por <Text color={'#2ECC71'} style={{fontWeight: 'bold'}}>{formatToBRL(plan?.value)}</Text>
                 </Button>
             </ButtonContainer>
         </GlassCard>

@@ -20,8 +20,3 @@ export const PlanDescription = styled(Text)`
     font-size: 14px;
     margin-bottom: 32px;
 `;
-
-export const PlanValue = styled(Text)`
-    font-size: 20px;
-    margin-bottom: 32px;
-`;
