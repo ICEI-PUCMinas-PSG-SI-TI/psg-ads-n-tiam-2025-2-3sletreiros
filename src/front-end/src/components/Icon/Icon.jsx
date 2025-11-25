@@ -1,16 +1,20 @@
-import { MaterialIcons, Feather } from "@expo/vector-icons";
 import { useTheme } from "styled-components";
+import { icons } from "./utils";
 
+export function Icon({ name, size = 24, color }) {
+  const theme = useTheme()
+  const RenderedIcon = icons[name]
 
-export function Icon({ name, size = 24, color, family = 'MaterialIcons'}) {
-    const theme = useTheme()
+  if (!RenderedIcon) {
+    console.error(`Ícone não encontrado: "${name}"`);
+    return null;
+  }
 
-    switch(family){
-        case('MaterialIcons'):
-            return <MaterialIcons  name={name} size={size} color={!color ? theme.colors.buttonText : color}/>
-
-        case('Feather'):
-            return <Feather  name={name} size={size} color={!color ? theme.colors.buttonText : color}/>
-    }
-    
+  return (
+    <RenderedIcon
+      width={size}
+      height={size}
+      color={color ?? theme.colors.buttonText}
+    />
+  )
 }

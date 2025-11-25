@@ -27,7 +27,7 @@ export function Dashboard() {
                     <MainValue theme={theme}>{formatToBRL(currentMonthTransactions.total)}</MainValue>
                     <ProfitValue theme={theme}>
                       <Text color={'#2ECC71'}>R$ 20.248,67 </Text>
-                      <Icon family='Feather' size={16} name={'trending-up'} color={'#2ECC71'}/>
+                      <Icon family='Feather' size={16} name={'trendingUp'} color={'#2ECC71'}/>
                   </ProfitValue>
                   </ValueContainer>
                 </CardContent>

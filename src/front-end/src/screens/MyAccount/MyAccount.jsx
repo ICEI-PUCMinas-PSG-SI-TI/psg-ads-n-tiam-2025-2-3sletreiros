@@ -5,8 +5,6 @@ import { AccountInfo, Header, ActionButtonsContainer, Plan } from "./style";
 import { Button } from "../../components/Button/Button";
 import { useNavigation } from "@react-navigation/native";
 import { useUser } from "../../hooks/useUser";
-import { Icon } from "../../components/Icon/Icon";
-import { useTheme } from "styled-components";
 import { formatDate, formatCNPJ } from "../../utils/formatter";
 
 
