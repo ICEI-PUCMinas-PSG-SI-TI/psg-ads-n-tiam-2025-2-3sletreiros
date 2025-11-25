@@ -15,7 +15,8 @@ export function PlansCarousel({plans}) {
       mode="parallax"
       modeConfig={{
         parallaxScrollingScale: 0.9,
-        parallaxScrollingOffset: 50,
+        parallaxScrollingOffset: 90,
+        parallaxAdjacentItemScale: 0.85
       }}
     />
   );
