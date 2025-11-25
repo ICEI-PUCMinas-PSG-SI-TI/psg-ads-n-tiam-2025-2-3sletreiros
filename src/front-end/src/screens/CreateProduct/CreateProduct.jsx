@@ -19,10 +19,22 @@ export function CreateProduct(){
     const {showFlashMessage} = useFlashMessage()
 
     const handleNameChange = (text) => setName(text);
+
+    const handleStockChange = (text) => {
+
+        if (text === "") {
+            setStock(0);
+            return;
+        }
+
+        const numericValue = Number(text);
+
+        setStock(numericValue);
+    }
+
     const handlePriceChange = (text) => setPrice(text);
 
     function addProduct(){
-        //só teste
         showFlashMessage('Produto adicionado com sucesso!', 'success')
         navigation.navigate('Products')
     }
@@ -41,18 +53,15 @@ export function CreateProduct(){
             /> 
 
             <StockContainer>
-                <Text variant="subtitle">Estoque</Text>
-                <Button 
-                    buttonStyle={'primary'} 
-                    icon={'remove-circle'}
-                    onPress={() => setStock(stock > 0 ? stock - 1 : 0)}
-                />
-                <Text variant="title">{stock}</Text>
-                <Button 
-                    buttonStyle={'primary'} 
-                    icon={'add-circle'}
-                    onPress={() => setStock(stock + 1)}
-                />
+
+                <InputField
+                    label="Estoque"
+                    value={String(stock)}
+                    style={{width: '100%'}}
+                    onChangeText={handleStockChange}
+                    keyboardType="numeric"
+                /> 
+
             </StockContainer>
             
             <InputField

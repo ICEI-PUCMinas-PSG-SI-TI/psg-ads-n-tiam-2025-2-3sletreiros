@@ -1,6 +1,5 @@
-import { Text } from "../../components/Text/Text";
 import { InputField } from "../../components/Input/InputField";
-import { Container, ContentBlock } from "../../styles/global";
+import { ContentBlock } from "../../styles/global";
 import { Button } from "../../components/Button/Button";
 import { ContentHeader } from "../FinancialTransactions/style";
 import { ProductItem } from "../../components/ProductItem/ProductItem";
