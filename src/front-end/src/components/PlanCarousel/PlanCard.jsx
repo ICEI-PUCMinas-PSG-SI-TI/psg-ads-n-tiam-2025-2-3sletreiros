@@ -28,7 +28,7 @@ export function PlanCard({ plan, openModal }) {
                         }} 
                         key={feature.id}
                     >
-                        <Icon name="done" />
+                        <Icon name="done" color={theme.colors.text.primary}/>
                         <Text>{feature.name}</Text>
                     </View>
                 ))}
