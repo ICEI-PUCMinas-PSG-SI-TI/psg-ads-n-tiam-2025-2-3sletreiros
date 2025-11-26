@@ -7,3 +7,11 @@ export const StockContainer = styled.View`
     align-items: center;
     gap: 10px;
 `
+
+export const ButtonContainer = styled.View`
+    position: absolute;
+    bottom: 30px;
+    margin: auto;
+    flex-direction: row;
+    justify-content: center;
+`
