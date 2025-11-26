@@ -17,16 +17,20 @@ import Login from '../../../assets/icons/login.svg'
 import Eye from '../../../assets/icons/eye.svg'
 import EyeOff from '../../../assets/icons/eye-off.svg'
 import Done from '../../../assets/icons/done.svg' 
+import Calendar from '../../../assets/icons/calendar.svg'
+import Eraser from '../../../assets/icons/eraser.svg'
 
 export const icons = {
     addCircle: AddCircle,
     arrowDown: ArrowDown,
     arrowReverse: ArrowReverse,
     arrowUp: ArrowUp,
+    calendar: Calendar,
     crown: CrownIcon,
     delete: Delete,
     diamond: Diamond,
     done: Done,
+    eraser: Eraser,
     home: Home,
     inventory: Inventory,
     login: Login,

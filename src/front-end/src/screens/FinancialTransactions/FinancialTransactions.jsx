@@ -1,10 +1,9 @@
 import { Container, ContentBlock } from "../../styles/global";
 import { ContentHeader } from "./style";
-import { Text } from "../../components/Text/Text";
 import { Button } from "../../components/Button/Button";
 import { InputField } from "../../components/Input/InputField";
 import { ActivityIndicator, FlatList, View } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TransactionItem } from "../../components/TransactionItem/TransactionItem";
 import { CustomModal } from "../../components/CustomModal/CustomModal";
 import { useFlashMessage } from "../../hooks/useFlashMessage";
@@ -12,19 +11,30 @@ import { Timestamp } from "firebase/firestore";
 import { useTransactions } from "../../hooks/useTransactions";
 import { Icon } from "../../components/Icon/Icon";
 import { useTheme } from "styled-components";
-
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { formatDate } from "../../utils/formatter";
 
 export function FinancialTransactions(){
     const {transactions, loadingTransactions, createTransaction} = useTransactions()
+    const [filteredTransactions, setFilteredTransactions] = useState(transactions)
     const theme = useTheme()
 
     const [filter, setFilter] = useState()
+
     const [creatingTransaction, setCreatingTransaction] = useState(false)
 
     const [title, setTitle] = useState("")
     const [category, setCategory] = useState("")
     const [value, setValue] = useState("")
     const [isInvoicing, setIsInvoicing] = useState(true)
+
+    const [initialDate, setInitialDate] = useState(new Date())
+    const [openInitialDate, setOpenInitialDate] = useState()
+    const [finalDate, setFinalDate] = useState(new Date())
+    const [openFinalDate, setOpenFinalDate] = useState()
+
+    const [hasChosenInitial, setHasChosenInitital] = useState(false)    
+    const [hasChosenFinal, setHasChosenFinal] = useState(false)    
 
     const [visible, setVisible] = useState(false)
 
@@ -56,6 +66,39 @@ export function FinancialTransactions(){
         }
     }
 
+    function filterByDateRange() {
+        let result = transactions;
+
+        if (hasChosenInitial && hasChosenFinal) {
+            const start = new Date(initialDate.setHours(0,0,0,0));
+            const end = new Date(finalDate.setHours(23,59,59,999));
+
+            result = result.filter(t => {
+                const tDate = t.date.toDate();
+                return tDate >= start && tDate <= end;
+            });
+        }
+
+        if (filter && filter.trim() !== "") {
+            const lowered = filter.toLowerCase();
+            result = result.filter(t =>
+                t.name.toLowerCase().includes(lowered)
+            );
+        }
+
+        setFilteredTransactions(result);
+    }
+
+    function cleanFilters() {
+        setHasChosenFinal(false)
+        setHasChosenInitital(false)
+        setFilter("")
+    }
+
+    useEffect(() => {
+        filterByDateRange();
+    }, [initialDate, finalDate, transactions, filter]);
+
     return(
         <Container>
             <CustomModal visible={visible} onClose={closeModal}>
@@ -83,8 +126,6 @@ export function FinancialTransactions(){
                     value={title}
                     onChangeText={handleTitleChange}
                 />
-
-                
 
                 <InputField
                     label="Categoria"
@@ -124,17 +165,67 @@ export function FinancialTransactions(){
                     label={'Filtrar transações'}
                     placeholder="Pesquisar"
                     value={filter}
-                    onChangeText={setFilter}
+                    onChangeText={(text) => {
+                        setFilter(text)
+                        const lowered = text.toLowerCase()
+                        setFilteredTransactions(
+                            transactions.filter(t => t.name.toLowerCase().includes(lowered))
+                        )
+                    }}
+                    themeVariant="dark"
                 />
 
-                <Button
-                    buttonStyle="primary"
-                    flex={true}
-                    icon={'search'}
-                    iconPosition={'left'}
-                >
-                Buscar
-                </Button>
+                <View style={{flexDirection: 'row', gap: 10}}>
+                    <Button 
+                        onPress={() => setOpenInitialDate(true)} 
+                        buttonStyle={!hasChosenInitial ? "surface" : "primary"}
+                        icon={"calendar"}
+                        iconPosition={"left"}
+                    >
+                        {!hasChosenInitial ? 'Início' : formatDate(initialDate)}
+                    </Button>
+                    <Button 
+                        onPress={() => setOpenFinalDate(true)} 
+                        buttonStyle={!hasChosenFinal ? "surface" : "primary"}
+                        icon={"calendar"}
+                        iconPosition={"left"}
+                    >
+                        {!hasChosenFinal ? 'Final' : formatDate(finalDate)}
+                    </Button>
+                    <Button buttonStyle={"surface"} icon={'eraser'} onPress={cleanFilters}/>
+                </View>
+
+                
+
+                {openInitialDate && (
+                    <DateTimePicker
+                        value={initialDate}
+                        mode="date"
+                        display="calendar"
+                        onChange={(event, selected) => {
+                            setOpenInitialDate(false);
+                            if (selected) {
+                                setInitialDate(selected)
+                                setHasChosenInitital(true)
+                            }
+                        }}
+                    />
+                )}
+
+                {openFinalDate && (
+                    <DateTimePicker
+                        value={finalDate}
+                        mode="date"
+                        display="calendar"
+                        onChange={(event, selected) => {
+                            setOpenFinalDate(false);
+                            if (selected) {
+                                setFinalDate(selected)
+                                setHasChosenFinal(true)
+                            }
+                        }}
+                    />
+                )}
             </ContentBlock>
 
             <ContentBlock>
@@ -142,7 +233,7 @@ export function FinancialTransactions(){
                     loadingTransactions ? 
                     <ActivityIndicator /> :
                     <FlatList
-                        data={transactions}
+                        data={filteredTransactions}
                         showsVerticalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item }) => (

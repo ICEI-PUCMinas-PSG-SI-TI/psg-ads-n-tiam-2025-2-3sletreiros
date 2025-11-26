@@ -1,10 +1,21 @@
 export function formatDate(date) {
   if (!date) return '';
 
-  if (typeof date === 'string') return date;
+  if (date instanceof Date) {
+    return date.toLocaleDateString("pt-BR");
+  }
 
-  return date.toDate().toLocaleDateString("pt-BR");
+  if (date.toDate) {
+    return date.toDate().toLocaleDateString("pt-BR");
+  }
+
+  if (typeof date === 'string') {
+    return new Date(date).toLocaleDateString("pt-BR");
+  }
+
+  return '';
 }
+
 
 export function formatToBRL(value) {
   if (value == null || isNaN(value)) return "R$ 0,00";
