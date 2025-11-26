@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { useFocusEffect } from "@react-navigation/native";
+import { Text } from "../../components/Text/Text";
 
 export function SelectPlan() {
     const [plans, setPlans] = useState([])
@@ -53,6 +54,7 @@ export function SelectPlan() {
 
     return (
         <Container>
+            <Text style={{textAlign: 'center'}}>Selecione o plano ideal para impulsionar seus negócios! 🚀</Text>
             <PlansCarousel plans={plans} />
         </Container>
     )
