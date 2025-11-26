@@ -1,4 +1,4 @@
-import { darkTheme, lightTheme } from "../../theme/theme";
+import { useColorScheme } from "react-native";
 import styled from "styled-components/native";
 
 export const TouchableArea = styled.TouchableHighlight`
@@ -49,10 +49,17 @@ export function getButtonColors(buttonStyle, theme) {
                 borderWidth: 1,
                 borderRadius: 8
             }
+        case 'surface':
+            return {
+                backgroundColor: theme.colors.background.surface,
+                borderWidth: 2,
+                borderColor: theme.colors.background.surface
+            }
     }
 }
 
 export function getTextColor(buttonStyle, theme) {
+    const colorScheme = useColorScheme()
     switch(buttonStyle) {
         case 'primary':
             return {
@@ -69,6 +76,10 @@ export function getTextColor(buttonStyle, theme) {
         case 'outline':
             return {
                 color: theme.colors.primary
+            }
+        case 'surface':
+            return {
+                color: colorScheme === 'dark' ? theme.colors.text.primary : theme.colors.background.default
             }
     }
 }
