@@ -14,6 +14,7 @@ import { useTheme } from "styled-components";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { formatDate } from "../../utils/formatter";
 import { EmptyList } from "../../components/EmptyList/EmptyList";
+import { generatePDF } from "./service";
 
 export function FinancialTransactions(){
     const {transactions, loadingTransactions, createTransaction} = useTransactions()
@@ -96,6 +97,10 @@ export function FinancialTransactions(){
         setFilter("")
     }
 
+    function generateSummaryPDF() {
+        generatePDF(filteredTransactions, initialDate, finalDate)
+    }
+
     useEffect(() => {
         filterByDateRange();
     }, [initialDate, finalDate, transactions, filter]);
@@ -153,6 +158,11 @@ export function FinancialTransactions(){
 
             <ContentBlock>
                 <ContentHeader>
+                    <Button 
+                        buttonStyle={'surface'} 
+                        onPress={() => generateSummaryPDF()}
+                        icon={'addCircle'}
+                    />
                     <Button 
                         buttonStyle={'primary'} 
                         onPress={() => openModal()}
