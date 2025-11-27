@@ -17,7 +17,7 @@ export function CreateProduct(){
     const [name, setName] = useState("")
     const [stock, setStock] = useState(0)
     const [description, setDescription] = useState(0)
-    const [price, setPrice] = useState("")
+    const [price, setPrice] = useState(0)
     const [category, setCategory] = useState("")
     const [showPickerModal, setShowPickerModal] = useState(false)
 
@@ -249,26 +249,6 @@ export function CreateProduct(){
             >
                 Carregar imagem
             </Button>
-
-            {/* <Button
-                buttonStyle={'surface'}
-                flex
-                onPress={() => pickImage()}
-                loading={uploadingImage}
-                icon={'upload'}
-            >
-                Carregar imagem
-            </Button>
-
-            <Button
-                buttonStyle={'surface'}
-                flex
-                onPress={() => takePhoto()}
-                loading={uploadingImage}
-                icon={'upload'}
-            >
-                Tirar foto
-            </Button> */}
 
             <Button
                 buttonStyle={'primary'}

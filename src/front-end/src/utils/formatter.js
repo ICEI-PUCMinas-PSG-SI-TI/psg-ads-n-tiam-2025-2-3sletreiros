@@ -18,14 +18,19 @@ export function formatDate(date) {
 
 
 export function formatToBRL(value) {
-  if (value == null || isNaN(value)) return "R$ 0,00";
+  if (value == null) return "R$ 0,00";
 
-  return value.toLocaleString("pt-BR", {
+  const num = Number(value);
+
+  if (isNaN(num)) return "R$ 0,00";
+
+  return num.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
     minimumFractionDigits: 2,
   });
 }
+
 
 export function formatCNPJ(value) {
   const cleaned = value.replace(/\D/g, "");

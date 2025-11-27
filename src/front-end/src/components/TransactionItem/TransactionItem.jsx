@@ -13,6 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 import { formatDate } from "../../utils/formatter";
 
 export function TransactionItem({item}) {
+    console.log(item)
     const theme = useTheme()
     const {showFlashMessage} = useFlashMessage()
     const {user} = useAuth()
