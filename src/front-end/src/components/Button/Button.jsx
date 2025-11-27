@@ -5,7 +5,21 @@ import { Icon } from "../Icon/Icon";
 import { Text } from "../Text/Text";
 
 
-export function Button({children, buttonStyle, onPress, loading, flex, size, icon, iconPosition, iconFamily, disabled, style, iconSize = 18}) {
+export function Button({
+    children, 
+    buttonStyle, 
+    onPress, 
+    loading, 
+    flex, 
+    size, 
+    icon, 
+    iconPosition, 
+    iconFamily, 
+    disabled, 
+    style, 
+    iconSize = 18, 
+    fullWidth = false
+}) {
     const theme = useTheme()
     const colorScheme = useColorScheme()
 
@@ -15,6 +29,7 @@ export function Button({children, buttonStyle, onPress, loading, flex, size, ico
             onPress={onPress}
             disabled={disabled}
             style={style}
+            fullWidth={fullWidth}
         >
             <Container
                 style={[getButtonColors(buttonStyle, theme)]}

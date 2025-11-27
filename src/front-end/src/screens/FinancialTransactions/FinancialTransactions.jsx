@@ -13,6 +13,7 @@ import { Icon } from "../../components/Icon/Icon";
 import { useTheme } from "styled-components";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { formatDate } from "../../utils/formatter";
+import { EmptyList } from "../../components/EmptyList/EmptyList";
 
 export function FinancialTransactions(){
     const {transactions, loadingTransactions, createTransaction} = useTransactions()
@@ -239,6 +240,7 @@ export function FinancialTransactions(){
                         renderItem={({ item }) => (
                             <TransactionItem item={item}/>
                         )}
+                        ListEmptyComponent={<EmptyList message={'Nenhuma transação encontrada.'} />}
                     />
                 }
             </ContentBlock>

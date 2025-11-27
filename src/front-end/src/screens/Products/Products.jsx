@@ -3,20 +3,20 @@ import {  ContentBlock } from "../../styles/global";
 import { Button } from "../../components/Button/Button";
 import { ContentHeader } from "../FinancialTransactions/style";
 import { ProductItem } from "../../components/ProductItem/ProductItem";
-import { ScrollContainer } from "../../styles/global";
+import { ScrollContainer, Container } from "../../styles/global";
 import { useNavigation } from "@react-navigation/native";
 import { collection, getDocs, onSnapshot, query as dbQuery, orderBy } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { useAuth } from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
 import { FlatList } from "react-native";
+import { EmptyList } from "../../components/EmptyList/EmptyList";
 
 export function Products(){
     const [products, setProducts] = useState([])
 
     const {user} = useAuth()
-    
-    const item = {name: 'Produto', stock: 5, price: 3500}
+
     const navigation = useNavigation()
 
     async function fetchProducts() {
@@ -59,7 +59,7 @@ export function Products(){
     
     return(
         
-        <ScrollContainer
+        <Container
             showsVerticalScrollIndicator={false}
         >
             <ContentBlock>
@@ -73,23 +73,21 @@ export function Products(){
                 </ContentBlock>
             <InputField
                 label="Nome do produto"
-                placeholder='Ex.: bola'
+                placeholder='Bola'
             /> 
-            <ContentBlock>
-                <FlatList
-                    data={products}
-                    renderItem={({item}) => <ProductItem item={item} />}
-                    keyExtractor={(item, index) => index.toString()}
-                    numColumns={2}
-                    columnWrapperStyle={{ 
-                        justifyContent: 'space-between',
-                        marginBottom: 16 
-                    }}
-                />
-            </ContentBlock>
-            
-        </ScrollContainer>
-            
+            <FlatList
+                data={products}
+                renderItem={({item}) => <ProductItem item={item} />}
+                keyExtractor={(item, index) => index.toString()}
+                numColumns={2}
+                columnWrapperStyle={{
+                    marginBottom: 16,
+                    justifyContent: 'space-between'
+                }}
+                showsHorizontalScrollIndicator={false}
+                showsVerticalScrollIndicator={false}
+                ListEmptyComponent={<EmptyList message={'Nenhum produto encontrado.'}/>}
+            />
+        </Container>       
     )
-    
 }

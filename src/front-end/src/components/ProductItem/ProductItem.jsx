@@ -7,7 +7,7 @@ export function ProductItem({item}){
 
     return(
         <Card>
-            <Image source={{uri: item.image}} style={{ width: 150, height: 150, borderRadius: 8 }}/>
+            <Image source={{uri: item.image}} style={{ width: '100%', height: 150, borderRadius: 8 }}/>
             <Text variant="subtitle" style={{ marginTop: 10}}>{item.name}</Text>
             <Text>Estoque: {item.stock}</Text>
             <Text>Preço: {formatToBRL(item.price)}</Text>

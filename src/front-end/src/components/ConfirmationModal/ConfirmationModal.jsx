@@ -18,8 +18,8 @@ export function ConfirmationModal({ visible, onClose, transparent = true, onConf
                             <Text variant="subtitle" style={{textAlign: 'center'}}>{title}</Text>
                             <Text style={{textAlign: 'center'}}>{description}</Text>
                             <View style={{flexDirection: 'row', gap: 15}}>
-                                <Button buttonStyle={'error'} onPress={onCancel} style={{flex: 1}} >Cancelar</Button>
-                                <Button buttonStyle={'success'} onPress={onConfirmation} style={{flex: 1}} >Confirmar</Button>
+                                <Button buttonStyle={'error'} onPress={onCancel} fullWidth >Cancelar</Button>
+                                <Button buttonStyle={'success'} onPress={onConfirmation} fullWidth >Confirmar</Button>
                             </View>
                         </View>
                     </ModalContent>

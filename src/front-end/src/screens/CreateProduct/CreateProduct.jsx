@@ -1,16 +1,17 @@
 import { Container } from "../../styles/global"
 import { InputField } from "../../components/Input/InputField"
 import { Button } from "../../components/Button/Button"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useNavigation } from "@react-navigation/native";
 import { useFlashMessage } from "../../hooks/useFlashMessage";
 import { CLOUDINARY_URL, UPLOAD_PRESET } from '@env'
-import {CustomModal} from "../../components/CustomModal/CustomModal"
+import {CustomModal as PreviewImageModal} from "../../components/CustomModal/CustomModal"
 import * as ImagePicker from 'expo-image-picker'
 import { Image, View } from "react-native";
-import { addDoc, collection, getDoc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { useAuth } from "../../hooks/useAuth";
+import { BottomPickerModal } from "../../components/BottomPickerModal/BottomPickerModal";
 
 export function CreateProduct(){
     const [name, setName] = useState("")
@@ -18,6 +19,7 @@ export function CreateProduct(){
     const [description, setDescription] = useState(0)
     const [price, setPrice] = useState("")
     const [category, setCategory] = useState("")
+    const [showPickerModal, setShowPickerModal] = useState(false)
 
     const [imageUri, setImageUri] = useState("")
     const [showPreviewModal, setShowPreviewModal] = useState(false)
@@ -26,7 +28,6 @@ export function CreateProduct(){
     const [creatingProduct, setCreatingProduct] = useState(false)
 
     const [uploadingImage, setUploadingImage] = useState(false)
-    const [imageUrl, setImageUrl] = useState(false)
 
     const navigation = useNavigation()
 
@@ -40,15 +41,17 @@ export function CreateProduct(){
     async function addProduct(){
         setCreatingProduct(true)
         try {
-            const imageUrl = await uploadImage(imageUri)
-            const createdProductRef = addDoc(collection(db, "company", user?.uid, "products"), {
+            setUploadingImage(true)
+            const image = await uploadImage(imageUri)
+            await addDoc(collection(db, "company", user?.uid, "products"), {
                 name,
                 stock,
                 description,
                 category,
-                image: imageUrl,
+                image,
                 price
             })
+            setUploadingImage(false)
             showFlashMessage('Produto adicionado com sucesso!', 'success')
             navigation.goBack()
         } catch (error) {
@@ -122,9 +125,44 @@ export function CreateProduct(){
         }
     }
 
+    async function takePhoto() {
+        try {
+            const { status } = await ImagePicker.requestCameraPermissionsAsync()
+
+            if (status !== 'granted'){
+                showFlashMessage('Permissão negada, não será possível abrir a câmera do dispotivo.', 'error')
+                return
+            }
+                
+            const response = await ImagePicker.launchCameraAsync({
+                aspect: [4,3],
+                quality: 0.8
+            })
+
+            if (!response.canceled) {
+                console.log(response.assets[0].uri)
+                setImageData(response.assets[0])
+                setImageUri(response.assets[0].uri)
+                setShowPreviewModal(true)
+            }
+        } catch (error) {
+            showFlashMessage(error.message || 'Ocorreu um erro ao tirar a foto. Por favor, tente novamente', 'error')
+        }
+    }
+
+    async function pickCamera() {
+        setShowPickerModal(false)
+        await takePhoto()
+    }
+
+    async function pickGallery() {
+        setShowPickerModal(false)
+        await pickImage()
+    }
+
     return(
         <Container>
-            <CustomModal
+            <PreviewImageModal
                 visible={showPreviewModal}
                 onClose={() => setShowPreviewModal(false)}
             >
@@ -140,11 +178,36 @@ export function CreateProduct(){
                             resizeMode="contain"    
                     />}
                     <View style={{flexDirection: 'row', gap: 10}}>
-                        <Button buttonStyle={'error'} style={{flex: 1}}>Trocar</Button>
-                        <Button buttonStyle={'primary'} style={{flex: 1}} onPress={() => setShowPreviewModal(false)}>Confirmar</Button>
+                        <Button 
+                            buttonStyle={'error'} 
+                            fullWidth 
+                            onPress={() => {
+                                setShowPreviewModal(false)
+                                setImageUri("")
+                                setShowPickerModal(true)
+                            }}
+                        >
+                            Trocar
+                        </Button>
+                        <Button 
+                            buttonStyle={'primary'} 
+                            fullWidth 
+                            onPress={() => setShowPreviewModal(false)}
+                        >
+                            Confirmar
+
+                        </Button>
                     </View>
                 </View>
-            </CustomModal>
+            </PreviewImageModal>
+
+            <BottomPickerModal 
+                visible={showPickerModal}
+                onClose={() => setShowPickerModal(false)}
+                onPickCamera={pickCamera}
+                onPickGallery={pickGallery}
+            />
+
             <InputField
                 label="Nome do produto"
                 value={name}
@@ -178,7 +241,17 @@ export function CreateProduct(){
             />
 
             <Button
-                buttonStyle={'primary'}
+                buttonStyle={'surface'}
+                flex
+                onPress={() => setShowPickerModal(true)}
+                loading={uploadingImage}
+                icon={'upload'}
+            >
+                Carregar imagem
+            </Button>
+
+            {/* <Button
+                buttonStyle={'surface'}
                 flex
                 onPress={() => pickImage()}
                 loading={uploadingImage}
@@ -188,7 +261,17 @@ export function CreateProduct(){
             </Button>
 
             <Button
-                buttonStyle={'success'}
+                buttonStyle={'surface'}
+                flex
+                onPress={() => takePhoto()}
+                loading={uploadingImage}
+                icon={'upload'}
+            >
+                Tirar foto
+            </Button> */}
+
+            <Button
+                buttonStyle={'primary'}
                 onPress={addProduct}
                 style={{position: 'absolute', bottom: 15, left: 10, right: 10}}
                 icon={'done'}

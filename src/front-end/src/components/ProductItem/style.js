@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Text } from "../Text/Text";
 
 export const Card = styled.View`
     padding: 8px;
