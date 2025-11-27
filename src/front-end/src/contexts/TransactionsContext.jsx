@@ -71,7 +71,9 @@ export function TransactionsProvider({children}) {
   }
 
   function getTotalValue(transactions){ 
-    return transactions.reduce((total, transaction) => { return total + Number(transaction.amount) }, 0) 
+    return transactions.reduce((total, transaction) => { 
+      return total + Number(transaction.type === 'invoice' ? transaction.amount : transaction.amount * -1) 
+    }, 0) 
   }
 
   async function refresh() {

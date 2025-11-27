@@ -4,8 +4,6 @@ import { Image } from "react-native";
 import {formatToBRL} from "../../utils/formatter"
 
 export function ProductItem({item}){
-    console.log(item)
-
     return(
         <Card>
             <Image source={{uri: item.image}} style={{ width: '100%', height: 150, borderRadius: 8 }}/>

@@ -5,10 +5,14 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { useFocusEffect } from "@react-navigation/native";
 import { Text } from "../../components/Text/Text";
+import { ActivityIndicator } from "react-native";
+import { useTheme } from "styled-components";
 
 export function SelectPlan() {
     const [plans, setPlans] = useState([])
     const [loading, setLoading] = useState(true)
+
+    const theme = useTheme()
 
     async function getPlans() {
         try {
@@ -51,6 +55,11 @@ export function SelectPlan() {
     useFocusEffect(useCallback(() => {
         getPlans()
     }, []))
+
+    if (loading)
+        return <Container style={{justifyContent: 'center'}}>
+            <ActivityIndicator color={theme.colors.primary} />
+        </Container>
 
     return (
         <Container>

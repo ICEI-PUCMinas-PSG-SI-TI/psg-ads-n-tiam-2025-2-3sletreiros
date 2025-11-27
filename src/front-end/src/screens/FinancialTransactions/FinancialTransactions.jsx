@@ -144,7 +144,7 @@ export function FinancialTransactions(){
                     buttonStyle={'primary'} 
                     size={'large'} 
                     flex
-                    onPress={() => addTransaction({amount: value, name: title, category, date: Timestamp.now()})}
+                    onPress={() => addTransaction({amount: value, name: title, category, date: Timestamp.now(), type: isInvoicing ? 'invoice' : 'expense'})}
                     loading={creatingTransaction}
                 >
                     <Icon name={'done'} color={theme.colors.success.text}/>

@@ -13,13 +13,12 @@ import { useNavigation } from "@react-navigation/native";
 import { formatDate } from "../../utils/formatter";
 
 export function TransactionItem({item}) {
-    console.log(item)
     const theme = useTheme()
     const {showFlashMessage} = useFlashMessage()
     const {user} = useAuth()
     const navigation = useNavigation()
 
-    const isInvoicing = item.amount > 0
+    const isInvoicing = item.type === 'invoice'
 
     async function deleteTransaction() {
         try {
