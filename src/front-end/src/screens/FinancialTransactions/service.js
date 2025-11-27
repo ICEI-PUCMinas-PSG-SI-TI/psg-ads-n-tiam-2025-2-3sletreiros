@@ -96,18 +96,15 @@ export async function generatePDF(transactions, startDate, finalDate) {
     const destFile = new File(reportsDir, uniqueFileName)
 
     const dirExists = await reportsDir.exists
-    if (!dirExists) {
-        await reportsDir.create()
-        console.log("Diretório 'reports' criado.")
-    }
+    
+    if (!dirExists) 
+      await reportsDir.create()
 
     const srcFile = new File(tempUri)
     
     await srcFile.move(destFile)
     
     const finalUri = destFile.uri 
-    
-    console.log('Final URI para compartilhamento:', finalUri)
 
     await Sharing.shareAsync(finalUri)
 

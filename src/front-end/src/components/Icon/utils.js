@@ -23,6 +23,7 @@ import Upload from '../../../assets/icons/upload.svg'
 import Camera from '../../../assets/icons/camera.svg'
 import Gallery from '../../../assets/icons/gallery.svg'
 import Close from '../../../assets/icons/close.svg'
+import Download from '../../../assets/icons/download.svg'
 
 export const icons = {
     addCircle: AddCircle,
@@ -36,6 +37,7 @@ export const icons = {
     delete: Delete,
     diamond: Diamond,
     done: Done,
+    download: Download,
     eraser: Eraser,
     gallery: Gallery,
     home: Home,

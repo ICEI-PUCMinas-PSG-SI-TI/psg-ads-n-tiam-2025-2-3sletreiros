@@ -37,6 +37,7 @@ export function FinancialTransactions(){
 
     const [hasChosenInitial, setHasChosenInitital] = useState(false)    
     const [hasChosenFinal, setHasChosenFinal] = useState(false)    
+    const [downloadingPdf, setDownloadingPdf] = useState(false)
 
     const [visible, setVisible] = useState(false)
 
@@ -97,8 +98,10 @@ export function FinancialTransactions(){
         setFilter("")
     }
 
-    function generateSummaryPDF() {
-        generatePDF(filteredTransactions, initialDate, finalDate)
+    async function generateSummaryPDF() {
+        setDownloadingPdf(true)
+        await generatePDF(filteredTransactions, initialDate, finalDate)
+        setDownloadingPdf(false)
     }
 
     useEffect(() => {
@@ -159,9 +162,10 @@ export function FinancialTransactions(){
             <ContentBlock>
                 <ContentHeader>
                     <Button 
-                        buttonStyle={'surface'} 
+                        buttonStyle={!downloadingPdf ? 'primary' : 'outline'} 
                         onPress={() => generateSummaryPDF()}
-                        icon={'addCircle'}
+                        icon={'download'}
+                        loading={downloadingPdf}
                     />
                     <Button 
                         buttonStyle={'primary'} 
