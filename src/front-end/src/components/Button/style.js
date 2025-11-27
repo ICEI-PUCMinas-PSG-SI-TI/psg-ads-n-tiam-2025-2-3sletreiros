@@ -58,8 +58,7 @@ export function getButtonColors(buttonStyle, theme) {
     }
 }
 
-export function getTextColor(buttonStyle, theme) {
-    const colorScheme = useColorScheme()
+export function getTextColor(buttonStyle, theme, colorScheme) {
     switch(buttonStyle) {
         case 'primary':
             return {

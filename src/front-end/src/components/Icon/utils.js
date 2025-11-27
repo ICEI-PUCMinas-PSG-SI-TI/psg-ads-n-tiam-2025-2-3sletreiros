@@ -19,6 +19,7 @@ import EyeOff from '../../../assets/icons/eye-off.svg'
 import Done from '../../../assets/icons/done.svg' 
 import Calendar from '../../../assets/icons/calendar.svg'
 import Eraser from '../../../assets/icons/eraser.svg'
+import Upload from '../../../assets/icons/upload.svg'
 
 export const icons = {
     addCircle: AddCircle,
@@ -40,6 +41,7 @@ export const icons = {
     search: Search,
     trendingDown: TrendingDown,
     trendingUp: TrendingUp,
+    upload: Upload,
     visibilityOff: EyeOff,
     visibilityOn: Eye,
     
