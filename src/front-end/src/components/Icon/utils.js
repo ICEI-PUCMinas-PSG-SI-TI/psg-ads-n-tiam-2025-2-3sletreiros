@@ -19,6 +19,10 @@ import EyeOff from '../../../assets/icons/eye-off.svg'
 import Done from '../../../assets/icons/done.svg' 
 import Calendar from '../../../assets/icons/calendar.svg'
 import Eraser from '../../../assets/icons/eraser.svg'
+import Upload from '../../../assets/icons/upload.svg'
+import Camera from '../../../assets/icons/camera.svg'
+import Gallery from '../../../assets/icons/gallery.svg'
+import Close from '../../../assets/icons/close.svg'
 
 export const icons = {
     addCircle: AddCircle,
@@ -26,11 +30,14 @@ export const icons = {
     arrowReverse: ArrowReverse,
     arrowUp: ArrowUp,
     calendar: Calendar,
+    camera: Camera,
+    close: Close,
     crown: CrownIcon,
     delete: Delete,
     diamond: Diamond,
     done: Done,
     eraser: Eraser,
+    gallery: Gallery,
     home: Home,
     inventory: Inventory,
     login: Login,
@@ -40,7 +47,7 @@ export const icons = {
     search: Search,
     trendingDown: TrendingDown,
     trendingUp: TrendingUp,
+    upload: Upload,
     visibilityOff: EyeOff,
     visibilityOn: Eye,
-    
 }

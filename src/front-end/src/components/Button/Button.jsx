@@ -1,12 +1,27 @@
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, useColorScheme } from "react-native";
 import { useTheme } from "styled-components";
 import { ChildrenContainer, Container, getButtonColors, getTextColor, TouchableArea } from "./style";
 import { Icon } from "../Icon/Icon";
 import { Text } from "../Text/Text";
 
 
-export function Button({children, buttonStyle, onPress, loading, flex, size, icon, iconPosition, iconFamily, disabled, style, iconSize = 18}) {
+export function Button({
+    children, 
+    buttonStyle, 
+    onPress, 
+    loading, 
+    flex, 
+    size, 
+    icon, 
+    iconPosition, 
+    iconFamily, 
+    disabled, 
+    style, 
+    iconSize = 18, 
+    fullWidth = false
+}) {
     const theme = useTheme()
+    const colorScheme = useColorScheme()
 
     return (
         <TouchableArea
@@ -14,6 +29,7 @@ export function Button({children, buttonStyle, onPress, loading, flex, size, ico
             onPress={onPress}
             disabled={disabled}
             style={style}
+            fullWidth={fullWidth}
         >
             <Container
                 style={[getButtonColors(buttonStyle, theme)]}
@@ -24,10 +40,10 @@ export function Button({children, buttonStyle, onPress, loading, flex, size, ico
                 }
                 <ChildrenContainer iconPosition={iconPosition}>
                     {
-                        icon && !loading && <Icon name={icon} color={getTextColor(buttonStyle, theme).color} size={iconSize} family={iconFamily}/>
+                        icon && !loading && <Icon name={icon} color={getTextColor(buttonStyle, theme, colorScheme).color} size={iconSize} family={iconFamily}/>
                     }
                     {children && !loading &&
-                        <Text style={[getTextColor(buttonStyle, theme)]}>
+                        <Text style={[getTextColor(buttonStyle, theme, colorScheme)]}>
                             {children}
                         </Text>
                     }

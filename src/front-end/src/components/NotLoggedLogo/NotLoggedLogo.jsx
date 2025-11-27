@@ -8,8 +8,8 @@ export function NotLoggedLogo() {
         <>
         {
             deviceTheme === 'light' ? 
-            <Logo source={require('../../../assets/LogoHomeLight.png')} width={50} height={50}/> : 
-            <Logo source={require('../../../assets/LogoHome.png')} width={50} height={50}/>
+            <Logo source={require('../../../assets/images/LogoHomeLight.png')} width={50} height={50}/> : 
+            <Logo source={require('../../../assets/images/LogoHome.png')} width={50} height={50}/>
         }
         </>
     )

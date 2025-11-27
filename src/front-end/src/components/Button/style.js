@@ -4,6 +4,7 @@ import styled from "styled-components/native";
 export const TouchableArea = styled.TouchableHighlight`
     align-self: ${({flex}) => flex ? 'auto' : 'flex-start'};
     border-radius: 16px;
+    flex: ${props => (props.fullWidth ? '1' : 'none')};
 `
 
 export const Container = styled.View`
@@ -12,6 +13,7 @@ export const Container = styled.View`
     padding:  ${props => (props.size === 'large' ? '12' : '8')}px
     ${props => (props.size === 'large' ? '24' : '16')}px;
     border-radius: 8px;
+    width: 100%;
 `
 
 export const ChildrenContainer = styled.View`
@@ -58,8 +60,7 @@ export function getButtonColors(buttonStyle, theme) {
     }
 }
 
-export function getTextColor(buttonStyle, theme) {
-    const colorScheme = useColorScheme()
+export function getTextColor(buttonStyle, theme, colorScheme) {
     switch(buttonStyle) {
         case 'primary':
             return {
