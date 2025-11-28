@@ -4,7 +4,7 @@ import { DashBoardStack } from "./routes/stack/DashBoardStack"
 import { TransactionsStack } from "./routes/stack/TransactionsStack"
 import { MyAccountStack } from "./routes/stack/MyAccountStack"
 import { ProductsStack } from "./routes/stack/ProductsStack"
-
+import { AIReport } from "../screens/AIReport/AIReport"
 
 export function AuthenticatedRoutes(){
 
@@ -25,10 +25,15 @@ export function AuthenticatedRoutes(){
             icon: 'inventory'
         },
         {
+            name: 'AIReport',
+            component: AIReport,
+            icon: 'artificialIntelligence'
+        },
+        {
             name: 'MyAccount',
             component: MyAccountStack,
             icon: 'person'
-        }
+        },
     ]
 
     return (

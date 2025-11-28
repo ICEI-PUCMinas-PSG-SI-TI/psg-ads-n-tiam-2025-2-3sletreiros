@@ -24,12 +24,14 @@ import Camera from '../../../assets/icons/camera.svg'
 import Gallery from '../../../assets/icons/gallery.svg'
 import Close from '../../../assets/icons/close.svg'
 import Download from '../../../assets/icons/download.svg'
+import ArtificialIntelligence from '../../../assets/icons/gemini.svg'
 
 export const icons = {
     addCircle: AddCircle,
     arrowDown: ArrowDown,
     arrowReverse: ArrowReverse,
     arrowUp: ArrowUp,
+    artificialIntelligence: ArtificialIntelligence,
     calendar: Calendar,
     camera: Camera,
     close: Close,
