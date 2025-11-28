@@ -14,6 +14,20 @@ module.exports = function (api) {
           allowUndefined: true,
         },
       ],
+      [
+        'module-resolver',
+        {
+          root: ['./'],
+          alias: {
+            '@components': './src/components',
+            '@screens': './src/screens',
+            '@assets': './src/assets',
+            '@hooks': './src/hooks',
+            '@utils': './src/utils',
+            '@services': './src/services',
+          },
+        },
+      ],
     ],
   };
 };
