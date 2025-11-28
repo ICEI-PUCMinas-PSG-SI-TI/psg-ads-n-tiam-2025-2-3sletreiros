@@ -12,6 +12,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { useAuth } from "../../hooks/useAuth";
 import { BottomPickerModal } from "../../components/BottomPickerModal/BottomPickerModal";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export function CreateProduct(){
     const [name, setName] = useState("")
@@ -140,7 +141,6 @@ export function CreateProduct(){
             })
 
             if (!response.canceled) {
-                console.log(response.assets[0].uri)
                 setImageData(response.assets[0])
                 setImageUri(response.assets[0].uri)
                 setShowPreviewModal(true)
@@ -161,103 +161,112 @@ export function CreateProduct(){
     }
 
     return(
-        <Container>
-            <PreviewImageModal
-                visible={showPreviewModal}
-                onClose={() => setShowPreviewModal(false)}
-            >
-                <View style={{alignItems: 'center', gap: 10}}>
-                    {imageUri && 
-                        <Image 
-                            source={{uri: imageUri}}
-                            style={{
-                                width: '60%',
-                                aspectRatio: imageData.width / imageData.height,
-                                borderRadius: 12
-                            }}
-                            resizeMode="contain"    
-                    />}
-                    <View style={{flexDirection: 'row', gap: 10}}>
-                        <Button 
-                            buttonStyle={'error'} 
-                            fullWidth 
-                            onPress={() => {
-                                setShowPreviewModal(false)
-                                setImageUri("")
-                                setShowPickerModal(true)
-                            }}
-                        >
-                            Trocar
-                        </Button>
-                        <Button 
-                            buttonStyle={'primary'} 
-                            fullWidth 
-                            onPress={() => setShowPreviewModal(false)}
-                        >
-                            Confirmar
+        <KeyboardAwareScrollView
+            contentContainerStyle={{ flexGrow: 1 }}
+            enableOnAndroid
+            showsVerticalScrollIndicator={false}
+        >
+            <Container>
 
-                        </Button>
+                <PreviewImageModal
+                    visible={showPreviewModal}
+                    onClose={() => setShowPreviewModal(false)}
+                >
+                    <View style={{alignItems: 'center', gap: 10}}>
+                        {imageUri && 
+                            <Image 
+                                source={{uri: imageUri}}
+                                style={{
+                                    width: '60%',
+                                    aspectRatio: imageData.width / imageData.height,
+                                    borderRadius: 12
+                                }}
+                                resizeMode="contain"    
+                        />}
+                        <View style={{flexDirection: 'row', gap: 10}}>
+                            <Button 
+                                buttonStyle={'error'} 
+                                fullWidth 
+                                onPress={() => {
+                                    setShowPreviewModal(false)
+                                    setImageUri("")
+                                    setShowPickerModal(true)
+                                }}
+                            >
+                                Trocar
+                            </Button>
+                            <Button 
+                                buttonStyle={'primary'} 
+                                fullWidth 
+                                onPress={() => setShowPreviewModal(false)}
+                            >
+                                Confirmar
+                            </Button>
+                        </View>
                     </View>
-                </View>
-            </PreviewImageModal>
+                </PreviewImageModal>
 
-            <BottomPickerModal 
-                visible={showPickerModal}
-                onClose={() => setShowPickerModal(false)}
-                onPickCamera={pickCamera}
-                onPickGallery={pickGallery}
-            />
+                <BottomPickerModal 
+                    visible={showPickerModal}
+                    onClose={() => setShowPickerModal(false)}
+                    onPickCamera={pickCamera}
+                    onPickGallery={pickGallery}
+                />
 
-            <InputField
-                label="Nome do produto"
-                value={name}
-                onChangeText={handleNameChange}
-            /> 
+                <InputField
+                    label="Nome do produto"
+                    value={name}
+                    onChangeText={handleNameChange}
+                /> 
 
-            <InputField
-                value={stock}
-                label={'Estoque'}
-                keyboardType="numeric"
-                onChangeText={setStock}
-            />
-            
-            <InputField
-                label="Preço"
-                value={price}
-                onChangeText={handlePriceChange}
-                keyboardType="numeric"
-            /> 
+                <InputField
+                    value={stock}
+                    label={'Estoque'}
+                    keyboardType="numeric"
+                    onChangeText={setStock}
+                />
+                
+                <InputField
+                    label="Preço"
+                    value={price}
+                    onChangeText={handlePriceChange}
+                    keyboardType="numeric"
+                /> 
 
-            <InputField
-                label="Descrição"
-                value={description}
-                onChangeText={setDescription}
-            /> 
+                <InputField
+                    label="Descrição"
+                    value={description}
+                    onChangeText={setDescription}
+                /> 
 
-            <InputField
-                label="Categoria"
-                value={category}
-                onChangeText={setCategory}
-            />
+                <InputField
+                    label="Categoria"
+                    value={category}
+                    onChangeText={setCategory}
+                />
 
-            <Button
-                buttonStyle={'surface'}
-                flex
-                onPress={() => setShowPickerModal(true)}
-                loading={uploadingImage}
-                icon={'upload'}
-            >
-                Carregar imagem
-            </Button>
+                <Button
+                    buttonStyle={'surface'}
+                    flex
+                    onPress={() => setShowPickerModal(true)}
+                    loading={uploadingImage}
+                    icon={'upload'}
+                >
+                    Carregar imagem
+                </Button>
 
-            <Button
-                buttonStyle={'primary'}
-                onPress={addProduct}
-                style={{position: 'absolute', bottom: 15, left: 10, right: 10}}
-                icon={'done'}
-                loading={creatingProduct}
-            />
+                <View style={{ height: 50 }} />
 
-        </Container>
+                <Button
+                    buttonStyle={'primary'}
+                    onPress={addProduct}
+                    icon={'done'}
+                    loading={creatingProduct}
+                    fullWidth
+                    flex
+                />
+
+            </Container>
+        </KeyboardAwareScrollView>
     )
 }
