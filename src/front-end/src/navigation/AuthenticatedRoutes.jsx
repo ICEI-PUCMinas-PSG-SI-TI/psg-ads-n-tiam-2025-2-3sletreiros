@@ -1,4 +1,4 @@
-import {TabsNavigator} from "../components/TabsNavigator/TabsNavigator"
+import {TabsNavigator} from "@components/TabsNavigator/TabsNavigator"
 
 import { DashBoardStack } from "./routes/stack/DashBoardStack"
 import { TransactionsStack } from "./routes/stack/TransactionsStack"

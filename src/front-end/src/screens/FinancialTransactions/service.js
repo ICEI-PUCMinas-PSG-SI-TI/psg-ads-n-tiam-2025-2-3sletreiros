@@ -1,7 +1,7 @@
 import * as Print from "expo-print"
 import * as Sharing from "expo-sharing"
 import { File, Directory, Paths } from "expo-file-system"
-import { formatToBRL, formatDate } from "../../utils/formatter";
+import { formatToBRL, formatDate } from "@utils/formatter";
 
 function safeDate(date) {
   return formatDate(date).replace(/\//g, "-")

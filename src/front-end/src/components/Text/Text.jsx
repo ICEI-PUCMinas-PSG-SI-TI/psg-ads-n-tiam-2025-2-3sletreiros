@@ -1,5 +1,5 @@
 import { useTheme } from "styled-components";
-import { getTextStyle, TextStyled } from "./style";
+import { getTextStyle, TextStyled } from "@components/Text/style";
 
 export function Text({children, variant = 'body', style, numLines, color, align}) {
     const theme = useTheme()

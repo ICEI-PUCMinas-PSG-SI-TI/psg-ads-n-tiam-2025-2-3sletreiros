@@ -1,5 +1,5 @@
 import { useRoute } from "@react-navigation/native";
-import { Text } from "../../components/Text/Text";
+import { Text } from "@components/Text/Text";
 import { ScrollContainer } from "../../styles/global";
 
 export function TransactionDetails() {

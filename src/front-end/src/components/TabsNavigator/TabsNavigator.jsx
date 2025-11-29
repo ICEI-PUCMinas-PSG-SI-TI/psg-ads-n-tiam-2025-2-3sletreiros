@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import { CustomTabBar } from "../CustomTabBar/CustomTabBar"
+import { CustomTabBar } from "@components/CustomTabBar/CustomTabBar"
 import { useTheme } from 'styled-components'
 
 const Tab = createBottomTabNavigator()

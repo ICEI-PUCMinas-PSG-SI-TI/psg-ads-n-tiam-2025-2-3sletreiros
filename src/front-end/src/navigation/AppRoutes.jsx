@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from "@hooks/useAuth";
 import { ActivityIndicator, View } from 'react-native';
 import { useTheme } from 'styled-components';
 import { AuthenticatedRoutes } from './AuthenticatedRoutes';

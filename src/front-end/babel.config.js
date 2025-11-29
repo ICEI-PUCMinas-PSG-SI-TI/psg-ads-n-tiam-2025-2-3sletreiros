@@ -21,10 +21,15 @@ module.exports = function (api) {
           alias: {
             '@components': './src/components',
             '@screens': './src/screens',
-            '@assets': './src/assets',
+            '@assets': './assets',
             '@hooks': './src/hooks',
+            '@theme': './src/theme',
+            '@navigation': './src/navigation',
+            '@config': './src/config',
             '@utils': './src/utils',
-            '@services': './src/services',
+            '@contexts': './src/contexts',
+            '@modules': './src/modules',
+            '@routes': './src/routes'
           },
         },
       ],

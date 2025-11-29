@@ -1,7 +1,7 @@
 import { Modal, TouchableOpacity } from "react-native";
-import { Overlay, CenterContainer, ModalContent, HeaderContainer, ButtonsContainer } from "./style";
-import { Button } from "../Button/Button";
-import { Icon } from "../Icon/Icon";
+import { Overlay, CenterContainer, ModalContent, HeaderContainer, ButtonsContainer } from "@components/BottomPickerModal/style";
+import { Button } from "@components/Button/Button";
+import { Icon } from "@components/Icon/Icon";
 import { useTheme } from "styled-components";
 
 export function BottomPickerModal({ visible, onClose, transparent = true, onPickGallery, onPickCamera }) {

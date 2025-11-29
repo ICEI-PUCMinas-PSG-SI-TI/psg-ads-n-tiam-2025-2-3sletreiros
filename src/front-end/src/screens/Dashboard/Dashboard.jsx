@@ -1,15 +1,15 @@
 import { ScrollContainer } from "../../styles/global";
-import { useAuth } from "../../hooks/useAuth";
-import { Button } from "../../components/Button/Button";
+import { useAuth } from "@hooks/useAuth";
+import { Button } from "@components/Button/Button";
 import { useNavigation } from '@react-navigation/native';
 import { View } from "react-native";
-import { GlassCard } from "../../components/GlassCard/GlassCard";
-import { Icon } from "../../components/Icon/Icon";
-import { Text } from "../../components/Text/Text";
-import { CardContent, CardTitle, MainValue, ProfitValue, ValueContainer } from './style';
+import { GlassCard } from "@components/GlassCard/GlassCard";
+import { Icon } from "@components/Icon/Icon";
+import { Text } from "@components/Text/Text";
+import { CardContent, CardTitle, MainValue, ProfitValue, ValueContainer } from "@screens/Dashboard/style";
 import { useTheme } from "styled-components";
-import { useTransactions } from "../../hooks/useTransactions";
-import { formatToBRL } from "../../utils/formatter";
+import { useTransactions } from "@hooks/useTransactions";
+import { formatToBRL } from "@utils/formatter";
 
 export function Dashboard() {
     const {currentMonthTransactions} = useTransactions()

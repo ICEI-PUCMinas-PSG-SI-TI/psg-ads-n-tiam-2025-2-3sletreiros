@@ -1,7 +1,7 @@
 import { useColorScheme } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Button, Container, Logo, Subtitle, TextButton } from "./style";
-import { NotLoggedLogo } from "../../components/NotLoggedLogo/NotLoggedLogo";
+import { Button, Container, Logo, Subtitle, TextButton } from "@screens/Home/style";
+import { NotLoggedLogo } from "@components/NotLoggedLogo/NotLoggedLogo";
 
 export function Home() {
     const deviceTheme = useColorScheme()

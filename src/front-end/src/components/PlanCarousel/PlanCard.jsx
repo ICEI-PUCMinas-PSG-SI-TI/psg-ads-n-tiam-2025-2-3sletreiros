@@ -1,11 +1,11 @@
 import { View } from "react-native";
-import { GlassCard } from "../GlassCard/GlassCard";
-import { Icon } from "../Icon/Icon";
-import { Text } from "../Text/Text";
-import { ButtonContainer, PlanTitle, PlanDescription } from "./style";
+import { GlassCard } from "@components/GlassCard/GlassCard";
+import { Icon } from "@components/Icon/Icon";
+import { Text } from "@components/Text/Text";
+import { ButtonContainer, PlanTitle, PlanDescription } from "@components/PlanCarousel/style";
 import { useTheme } from "styled-components";
-import { Button } from "../Button/Button";
-import { formatToBRL } from "../../utils/formatter";
+import { Button } from "@components/Button/Button";
+import { formatToBRL } from "@utils/formatter";
 
 export function PlanCard({ plan, openModal }) {
     const theme = useTheme()

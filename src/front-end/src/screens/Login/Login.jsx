@@ -1,12 +1,12 @@
 import { KeyboardAvoidingView, ScrollView, Platform } from "react-native";
-import { Button } from "../../components/Button/Button";
-import { InputField } from "../../components/Input/InputField";
+import { Button } from "@components/Button/Button";
+import { InputField } from "@components/Input/InputField";
 import { Container } from "../../styles/global";
 import { useReducer, useState } from "react";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "@hooks/useAuth";
 import { useNavigation } from "@react-navigation/native";
-import { NotLoggedLogo } from "../../components/NotLoggedLogo/NotLoggedLogo";
-import { useFlashMessage } from "../../hooks/useFlashMessage";
+import { NotLoggedLogo } from "@components/NotLoggedLogo/NotLoggedLogo";
+import { useFlashMessage } from "@hooks/useFlashMessage";
 
 const initialState = {
   email: "",

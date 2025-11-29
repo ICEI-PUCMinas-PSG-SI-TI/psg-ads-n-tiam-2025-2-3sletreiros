@@ -1,11 +1,11 @@
 import { KeyboardAvoidingView, ScrollView, Platform, View } from "react-native";
-import { Button } from "../../components/Button/Button";
-import { InputField } from "../../components/Input/InputField";
+import { Button } from "@components/Button/Button";
+import { InputField } from "@components/Input/InputField";
 import { Container, ContentBlock } from "../../styles/global";
-import { Text } from "../../components/Text/Text";
+import { Text } from "@components/Text/Text";
 import { useReducer, useState, useEffect } from "react";
-import { useAuth } from "../../hooks/useAuth";
-import { useFlashMessage } from "../../hooks/useFlashMessage";
+import { useAuth } from "@hooks/useAuth";
+import { useFlashMessage } from "@hooks/useFlashMessage";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { useNavigation } from "@react-navigation/native";

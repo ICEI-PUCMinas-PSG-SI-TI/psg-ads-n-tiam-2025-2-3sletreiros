@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../config/firebase';
-import { useFlashMessage } from '../../hooks/useFlashMessage';
+import { useFlashMessage } from "@hooks/useFlashMessage";
 import { Container } from '../../styles/global';
-import { InputField } from '../../components/Input/InputField';
-import { Button } from '../../components/Button/Button';
-import { NotLoggedLogo } from '../../components/NotLoggedLogo/NotLoggedLogo';
+import { InputField } from "@components/Input/InputField";
+import { Button } from "@components/Button/Button";
+import { NotLoggedLogo } from "@components/NotLoggedLogo/NotLoggedLogo";
 
 export default function ForgotPassword({ navigation }) {
   const [email, setEmail] = useState('');

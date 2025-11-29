@@ -1,20 +1,20 @@
 import { Container, ContentBlock } from "../../styles/global";
-import { ContentHeader } from "./style";
-import { Button } from "../../components/Button/Button";
-import { InputField } from "../../components/Input/InputField";
+import { ContentHeader } from "@screens/FinancialTransactions/style";
+import { Button } from "@components/Button/Button";
+import { InputField } from "@components/Input/InputField";
 import { ActivityIndicator, FlatList, View } from "react-native";
 import { useEffect, useState } from "react";
-import { TransactionItem } from "../../components/TransactionItem/TransactionItem";
-import { CustomModal } from "../../components/CustomModal/CustomModal";
-import { useFlashMessage } from "../../hooks/useFlashMessage";
+import { TransactionItem } from "@components/TransactionItem/TransactionItem";
+import { CustomModal } from "@components/CustomModal/CustomModal";
+import { useFlashMessage } from "@hooks/useFlashMessage";
 import { Timestamp } from "firebase/firestore";
-import { useTransactions } from "../../hooks/useTransactions";
-import { Icon } from "../../components/Icon/Icon";
+import { useTransactions } from "@hooks/useTransactions";
+import { Icon } from "@components/Icon/Icon";
 import { useTheme } from "styled-components";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { formatDate } from "../../utils/formatter";
-import { EmptyList } from "../../components/EmptyList/EmptyList";
-import { generatePDF } from "./service";
+import { formatDate } from "@utils/formatter";
+import { EmptyList } from "@components/EmptyList/EmptyList";
+import { generatePDF } from "@screens/FinancialTransactions/service";
 
 export function FinancialTransactions(){
     const {transactions, loadingTransactions, createTransaction} = useTransactions()
