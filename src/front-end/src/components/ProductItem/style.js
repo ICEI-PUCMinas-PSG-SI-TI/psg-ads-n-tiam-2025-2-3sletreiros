@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Card = styled.View`
+export const Card = styled.Pressable`
     padding: 12px;
     flex-direction: column;
     gap: 5px;
