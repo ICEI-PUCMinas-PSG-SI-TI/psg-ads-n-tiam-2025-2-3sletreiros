@@ -1,8 +1,8 @@
 import { View } from "react-native";
-import { Text } from "../Text/Text";
-import { Icon } from "../Icon/Icon";
+import { Text } from "@components/Text/Text";
+import { Icon } from "@components/Icon/Icon";
 import { useTheme } from "styled-components";
-import { formatToBRL } from "../../utils/formatter";
+import { formatToBRL } from "@utils/formatter";
 
 export function AmountIndicator({amount, isInvoicing}){
     const theme = useTheme()

@@ -1,11 +1,11 @@
-import { Text } from "../../components/Text/Text";
-import { useAuth } from "../../hooks/useAuth";
+import { Text } from "@components/Text/Text";
+import { useAuth } from "@hooks/useAuth";
 import { Container } from "../../styles/global";
-import { AccountInfo, Header, ActionButtonsContainer, Plan } from "./style";
-import { Button } from "../../components/Button/Button";
+import { AccountInfo, Header, ActionButtonsContainer, Plan } from "@screens/MyAccount/style";
+import { Button } from "@components/Button/Button";
 import { useNavigation } from "@react-navigation/native";
-import { useUser } from "../../hooks/useUser";
-import { formatDate, formatCNPJ } from "../../utils/formatter";
+import { useUser } from "@hooks/useUser";
+import { formatDate, formatCNPJ } from "@utils/formatter";
 
 
 export function MyAccount() {

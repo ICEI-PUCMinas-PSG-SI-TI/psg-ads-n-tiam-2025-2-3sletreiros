@@ -1,17 +1,17 @@
-import { Container } from "../../styles/global"
-import { InputField } from "../../components/Input/InputField"
-import { Button } from "../../components/Button/Button"
+import { Container } from "src/styles/global"
+import { InputField } from "@components/Input/InputField"
+import { Button } from "@components/Button/Button"
 import { useState } from "react"
 import { useNavigation } from "@react-navigation/native";
-import { useFlashMessage } from "../../hooks/useFlashMessage";
+import { useFlashMessage } from "@hooks/useFlashMessage";
 import { CLOUDINARY_URL, UPLOAD_PRESET } from '@env'
-import {CustomModal as PreviewImageModal} from "../../components/CustomModal/CustomModal"
+import {CustomModal as PreviewImageModal} from "@components/CustomModal/CustomModal"
 import * as ImagePicker from 'expo-image-picker'
 import { Image, View } from "react-native";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../config/firebase";
-import { useAuth } from "../../hooks/useAuth";
-import { BottomPickerModal } from "../../components/BottomPickerModal/BottomPickerModal";
+import { useAuth } from "@hooks/useAuth";
+import { BottomPickerModal } from "@components/BottomPickerModal/BottomPickerModal";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export function CreateProduct(){

@@ -1,16 +1,16 @@
-import { InputField } from "../../components/Input/InputField";
+import { InputField } from "@components/Input/InputField";
 import {  ContentBlock } from "../../styles/global";
-import { Button } from "../../components/Button/Button";
-import { ContentHeader } from "../FinancialTransactions/style";
-import { ProductItem } from "../../components/ProductItem/ProductItem";
+import { Button } from "@components/Button/Button";
+import { ContentHeader } from "@screens/FinancialTransactions/style";
+import { ProductItem } from "@components/ProductItem/ProductItem";
 import { ScrollContainer, Container } from "../../styles/global";
 import { useNavigation } from "@react-navigation/native";
 import { collection, getDocs, onSnapshot, query as dbQuery, orderBy } from "firebase/firestore";
 import { db } from "../../config/firebase";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "@hooks/useAuth";
 import { useEffect, useState } from "react";
 import { FlatList } from "react-native";
-import { EmptyList } from "../../components/EmptyList/EmptyList";
+import { EmptyList } from "@components/EmptyList/EmptyList";
 
 export function Products(){
     const [products, setProducts] = useState([])

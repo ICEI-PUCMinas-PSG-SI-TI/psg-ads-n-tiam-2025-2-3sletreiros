@@ -1,13 +1,13 @@
 import Carousel from 'react-native-reanimated-carousel';
-import { ConfirmationModal } from '../ConfirmationModal/ConfirmationModal';
+import { ConfirmationModal } from "@components/ConfirmationModal/ConfirmationModal";
 import { Dimensions, View } from 'react-native';
-import { PlanCard } from './PlanCard';
+import { PlanCard } from "@components/PlanCarousel/PlanCard";
 import { useState } from 'react';
 import { getAuth } from 'firebase/auth';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../config/firebase';
 import { useNavigation } from '@react-navigation/native';
-import { useFlashMessage } from '../../hooks/useFlashMessage';
+import { useFlashMessage } from "@hooks/useFlashMessage";
 
 const { width } = Dimensions.get('window');
 

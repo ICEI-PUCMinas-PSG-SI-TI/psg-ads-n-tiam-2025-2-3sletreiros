@@ -1,7 +1,7 @@
-import {StackNavigator} from "../../../components/StackNavigator/StackNavigator"
+import {StackNavigator} from "@components/StackNavigator/StackNavigator"
 
-import {FinancialTransactions} from "../../../screens/FinancialTransactions/FinancialTransactions"
-import { TransactionDetails } from "../../../screens/TransactionDetails/TransactionDetails"
+import {FinancialTransactions} from "@screens/FinancialTransactions/FinancialTransactions"
+import { TransactionDetails } from "@screens/TransactionDetails/TransactionDetails"
 
 export function TransactionsStack() {
     const screens = [
