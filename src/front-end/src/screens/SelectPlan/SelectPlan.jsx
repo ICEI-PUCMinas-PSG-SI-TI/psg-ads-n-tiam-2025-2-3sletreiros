@@ -2,7 +2,7 @@ import { Container } from "../../styles/global";
 import { PlansCarousel } from "@components/PlanCarousel/PlanCarousel"
 import { useCallback, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../config/firebase";
+import { db } from "@config/firebase";
 import { useFocusEffect } from "@react-navigation/native";
 import { Text } from "@components/Text/Text";
 import { ActivityIndicator } from "react-native";

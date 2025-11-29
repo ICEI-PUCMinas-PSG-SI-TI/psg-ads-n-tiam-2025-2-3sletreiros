@@ -9,21 +9,27 @@ module.exports = function transformer(fileInfo, api) {
     "@screens": "./src/screens",
     "@assets": "./assets",
     "@hooks": "./src/hooks",
+    "@theme": "./src/theme",
+    "@navigation": "./src/navigation",
+    "@config": "./src/config",
     "@utils": "./src/utils",
-    "@services": "./src/services"
+    "@contexts": "./src/contexts",
+    "@modules": "./src/modules",
+    "@routes": "./src/routes"
   }
 
   root.find(j.ImportDeclaration).forEach(pathImport => {
-    const value = pathImport.node.source.value
+    const importPath = pathImport.node.source.value
 
-    if (!value.startsWith(".")) return
+    if (!importPath.startsWith(".")) return
 
-    Object.entries(aliases).forEach(([alias, folder]) => {
-      const resolved = path.resolve(fileInfo.path, "..", value)
-      const normalizedFolder = path.resolve(folder)
+    const absoluteSource = path.resolve(fileInfo.path, "..", importPath)
 
-      if (resolved.startsWith(normalizedFolder)) {
-        const newPath = alias + resolved.replace(normalizedFolder, "")
+    Object.entries(aliases).forEach(([alias, folderPath]) => {
+      const absoluteAliasFolder = path.resolve(folderPath)
+
+      if (absoluteSource.startsWith(absoluteAliasFolder)) {
+        const newPath = alias + absoluteSource.replace(absoluteAliasFolder, "")
         pathImport.node.source.value = newPath.replace(/\\/g, "/")
       }
     })

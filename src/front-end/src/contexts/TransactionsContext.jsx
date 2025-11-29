@@ -1,6 +1,6 @@
 const { createContext, useEffect, useState } = require("react");
 import { collection, getDocs, query as dbQuery, where, addDoc, getDoc, orderBy, onSnapshot } from "firebase/firestore";
-import { db } from "../config/firebase";
+import { db } from "@config/firebase";
 import { useFlashMessage } from "@hooks/useFlashMessage";
 import { useAuth } from "@hooks/useAuth";
 
