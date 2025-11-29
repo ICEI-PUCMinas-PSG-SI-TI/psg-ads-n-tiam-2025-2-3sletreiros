@@ -7,7 +7,7 @@ import { useReducer, useState, useEffect } from "react";
 import { useAuth } from "@hooks/useAuth";
 import { useFlashMessage } from "@hooks/useFlashMessage";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { db } from "../../config/firebase";
+import { db } from "@config/firebase";
 import { useNavigation } from "@react-navigation/native";
 
 const initialState = {

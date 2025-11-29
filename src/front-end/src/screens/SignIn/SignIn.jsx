@@ -7,7 +7,7 @@ import { useAuth } from "@hooks/useAuth"
 import { NotLoggedLogo } from "@components/NotLoggedLogo/NotLoggedLogo"
 import { InputError } from "../../error/InputError"
 import { Icon } from "@components/Icon/Icon"
-import { darkTheme } from "../../theme/theme"
+import { darkTheme } from "@theme/theme"
 import { InputContainer } from "@screens/SignIn/style"
 
 const initialState = {

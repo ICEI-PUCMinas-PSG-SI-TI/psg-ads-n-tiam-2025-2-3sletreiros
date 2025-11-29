@@ -9,7 +9,7 @@ import {CustomModal as PreviewImageModal} from "@components/CustomModal/CustomMo
 import * as ImagePicker from 'expo-image-picker'
 import { Image, View } from "react-native";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../config/firebase";
+import { db } from "@config/firebase";
 import { useAuth } from "@hooks/useAuth";
 import { BottomPickerModal } from "@components/BottomPickerModal/BottomPickerModal";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";

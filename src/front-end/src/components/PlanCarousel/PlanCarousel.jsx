@@ -5,7 +5,7 @@ import { PlanCard } from "@components/PlanCarousel/PlanCard";
 import { useState } from 'react';
 import { getAuth } from 'firebase/auth';
 import { doc, updateDoc } from 'firebase/firestore';
-import { db } from '../../config/firebase';
+import { db } from "@config/firebase";
 import { useNavigation } from '@react-navigation/native';
 import { useFlashMessage } from "@hooks/useFlashMessage";
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
 import { sendPasswordResetEmail } from 'firebase/auth';
-import { auth } from '../../config/firebase';
+import { auth } from "@config/firebase";
 import { useFlashMessage } from "@hooks/useFlashMessage";
 import { Container } from '../../styles/global';
 import { InputField } from "@components/Input/InputField";

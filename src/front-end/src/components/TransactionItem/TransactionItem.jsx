@@ -6,7 +6,7 @@ import {  Pressable, View } from "react-native";
 import { AmountIndicator } from "@components/AmountIndicator/AmountIndicator";
 import { DeleteItemButton, SecundaryText } from "@components/TransactionItem/style";
 import { deleteDoc, doc } from "firebase/firestore";
-import { db } from "../../config/firebase";
+import { db } from "@config/firebase";
 import { useAuth } from "@hooks/useAuth";
 import { useFlashMessage } from "@hooks/useFlashMessage";
 import { useNavigation } from "@react-navigation/native";

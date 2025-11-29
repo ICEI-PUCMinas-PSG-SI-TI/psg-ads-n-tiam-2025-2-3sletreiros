@@ -6,7 +6,7 @@ import { ProductItem } from "@components/ProductItem/ProductItem";
 import { ScrollContainer, Container } from "../../styles/global";
 import { useNavigation } from "@react-navigation/native";
 import { collection, getDocs, onSnapshot, query as dbQuery, orderBy } from "firebase/firestore";
-import { db } from "../../config/firebase";
+import { db } from "@config/firebase";
 import { useAuth } from "@hooks/useAuth";
 import { useEffect, useState } from "react";
 import { FlatList } from "react-native";

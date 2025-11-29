@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { Animated, StyleSheet, Text, View, Dimensions } from 'react-native';
-import { darkTheme } from '../../theme/theme'; 
+import { darkTheme } from "@theme/theme"; 
 
 const { width } = Dimensions.get('window');
 const HORIZONTAL_MARGIN = 20;
