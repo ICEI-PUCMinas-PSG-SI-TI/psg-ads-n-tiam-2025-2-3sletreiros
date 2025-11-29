@@ -1,7 +1,7 @@
-import { StackNavigator } from "../../../components/StackNavigator/StackNavigator";
+import { StackNavigator } from "@components/StackNavigator/StackNavigator";
 
-import { CreateProduct } from "../../../screens/CreateProduct/CreateProduct";
-import { Products } from "../../../screens/Products/Products";
+import { CreateProduct } from "@screens/CreateProduct/CreateProduct";
+import { Products } from "@screens/Products/Products";
 
 export function ProductsStack() {
     const screens = [

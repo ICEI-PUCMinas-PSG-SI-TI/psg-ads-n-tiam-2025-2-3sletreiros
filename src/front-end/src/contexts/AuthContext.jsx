@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { auth, db } from "../config/firebase";
+import { auth, db } from "@config/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -14,7 +14,7 @@ import {
 } from "firebase/auth";
 import { InputError } from "../error/InputError";
 import { doc, setDoc } from "firebase/firestore";
-import { useFlashMessage } from "../hooks/useFlashMessage";
+import { useFlashMessage } from "@hooks/useFlashMessage";
 
 export const AuthContext = createContext({});
 

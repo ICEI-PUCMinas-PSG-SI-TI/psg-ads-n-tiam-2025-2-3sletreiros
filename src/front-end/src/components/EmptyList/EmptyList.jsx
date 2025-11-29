@@ -1,7 +1,7 @@
 import LottieView from "lottie-react-native";
 import styled from "styled-components/native";
-import emptyAnimation from "../../../assets/animations/empty-box.json";
-import { Text } from "../Text/Text";
+import emptyAnimation from "@assets/animations/empty-box.json";
+import { Text } from "@components/Text/Text";
 
 export function EmptyList({message}) {
   return (

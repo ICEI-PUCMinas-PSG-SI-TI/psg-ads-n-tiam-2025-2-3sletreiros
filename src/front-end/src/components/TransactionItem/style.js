@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Text } from "../Text/Text";
+import { Text } from "@components/Text/Text";
 import { Pressable } from "react-native";
 
 export const SecundaryText = styled(Text)`

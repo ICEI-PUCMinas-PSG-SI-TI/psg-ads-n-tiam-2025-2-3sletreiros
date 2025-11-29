@@ -1,14 +1,14 @@
 import { KeyboardAvoidingView, ScrollView, Platform, View, Text } from "react-native"
-import { Button } from "../../components/Button/Button"
-import { InputField } from "../../components/Input/InputField"
+import { Button } from "@components/Button/Button"
+import { InputField } from "@components/Input/InputField"
 import { Container } from "../../styles/global"
 import { useEffect, useReducer, useState } from "react"
-import { useAuth } from "../../hooks/useAuth"
-import { NotLoggedLogo } from "../../components/NotLoggedLogo/NotLoggedLogo"
+import { useAuth } from "@hooks/useAuth"
+import { NotLoggedLogo } from "@components/NotLoggedLogo/NotLoggedLogo"
 import { InputError } from "../../error/InputError"
-import { Icon } from "../../components/Icon/Icon"
-import { darkTheme } from "../../theme/theme"
-import { InputContainer } from "./style"
+import { Icon } from "@components/Icon/Icon"
+import { darkTheme } from "@theme/theme"
+import { InputContainer } from "@screens/SignIn/style"
 
 const initialState = {
   email: "",

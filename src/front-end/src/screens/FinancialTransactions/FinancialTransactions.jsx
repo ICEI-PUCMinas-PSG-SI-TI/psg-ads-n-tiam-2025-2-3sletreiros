@@ -1,19 +1,20 @@
 import { Container, ContentBlock } from "../../styles/global";
-import { ContentHeader } from "./style";
-import { Button } from "../../components/Button/Button";
-import { InputField } from "../../components/Input/InputField";
+import { ContentHeader } from "@screens/FinancialTransactions/style";
+import { Button } from "@components/Button/Button";
+import { InputField } from "@components/Input/InputField";
 import { ActivityIndicator, FlatList, View } from "react-native";
 import { useEffect, useState } from "react";
-import { TransactionItem } from "../../components/TransactionItem/TransactionItem";
-import { CustomModal } from "../../components/CustomModal/CustomModal";
-import { useFlashMessage } from "../../hooks/useFlashMessage";
+import { TransactionItem } from "@components/TransactionItem/TransactionItem";
+import { CustomModal } from "@components/CustomModal/CustomModal";
+import { useFlashMessage } from "@hooks/useFlashMessage";
 import { Timestamp } from "firebase/firestore";
-import { useTransactions } from "../../hooks/useTransactions";
-import { Icon } from "../../components/Icon/Icon";
+import { useTransactions } from "@hooks/useTransactions";
+import { Icon } from "@components/Icon/Icon";
 import { useTheme } from "styled-components";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { formatDate } from "../../utils/formatter";
-import { EmptyList } from "../../components/EmptyList/EmptyList";
+import { formatDate } from "@utils/formatter";
+import { EmptyList } from "@components/EmptyList/EmptyList";
+import { generatePDF } from "@screens/FinancialTransactions/service";
 
 export function FinancialTransactions(){
     const {transactions, loadingTransactions, createTransaction} = useTransactions()
@@ -36,6 +37,7 @@ export function FinancialTransactions(){
 
     const [hasChosenInitial, setHasChosenInitital] = useState(false)    
     const [hasChosenFinal, setHasChosenFinal] = useState(false)    
+    const [downloadingPdf, setDownloadingPdf] = useState(false)
 
     const [visible, setVisible] = useState(false)
 
@@ -96,6 +98,12 @@ export function FinancialTransactions(){
         setFilter("")
     }
 
+    async function generateSummaryPDF() {
+        setDownloadingPdf(true)
+        await generatePDF(filteredTransactions, initialDate, finalDate)
+        setDownloadingPdf(false)
+    }
+
     useEffect(() => {
         filterByDateRange();
     }, [initialDate, finalDate, transactions, filter]);
@@ -153,6 +161,12 @@ export function FinancialTransactions(){
 
             <ContentBlock>
                 <ContentHeader>
+                    <Button 
+                        buttonStyle={!downloadingPdf ? 'primary' : 'outline'} 
+                        onPress={() => generateSummaryPDF()}
+                        icon={'download'}
+                        loading={downloadingPdf}
+                    />
                     <Button 
                         buttonStyle={'primary'} 
                         onPress={() => openModal()}

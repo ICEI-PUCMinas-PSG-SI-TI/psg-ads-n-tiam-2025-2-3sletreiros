@@ -1,8 +1,8 @@
 import { ActivityIndicator, useColorScheme } from "react-native";
 import { useTheme } from "styled-components";
-import { ChildrenContainer, Container, getButtonColors, getTextColor, TouchableArea } from "./style";
-import { Icon } from "../Icon/Icon";
-import { Text } from "../Text/Text";
+import { ChildrenContainer, Container, getButtonColors, getTextColor, TouchableArea } from "@components/Button/style";
+import { Icon } from "@components/Icon/Icon";
+import { Text } from "@components/Text/Text";
 
 
 export function Button({

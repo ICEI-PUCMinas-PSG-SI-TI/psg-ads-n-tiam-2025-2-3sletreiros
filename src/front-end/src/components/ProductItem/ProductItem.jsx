@@ -1,7 +1,7 @@
-import { Text } from "../Text/Text";
-import { Card } from "./style";
+import { Text } from "@components/Text/Text";
+import { Card } from "@components/ProductItem/style";
 import { Image } from "react-native";
-import {formatToBRL} from "../../utils/formatter"
+import {formatToBRL} from "@utils/formatter"
 
 export function ProductItem({item}){
     return(

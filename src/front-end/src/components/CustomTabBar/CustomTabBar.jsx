@@ -1,6 +1,6 @@
 import { PlatformPressable } from '@react-navigation/elements';
-import { Icon } from '../Icon/Icon';
-import { Container } from './style';
+import { Icon } from "@components/Icon/Icon";
+import { Container } from "@components/CustomTabBar/style";
 import { useTheme } from 'styled-components';
 import { useColorScheme } from 'react-native';
 
