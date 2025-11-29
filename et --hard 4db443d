@@ -1,0 +1,32 @@
+[33mbc4fa41[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mTransactionDetails[m[33m, [m[1;31morigin/TransactionDetails[m[33m)[m HEAD@{0}: checkout: moving from CreateProductScreen to TransactionDetails
+[33m16039ef[m[33m ([m[1;32mCreateProductScreen[m[33m)[m HEAD@{1}: reset: moving to HEAD
+[33m16039ef[m[33m ([m[1;32mCreateProductScreen[m[33m)[m HEAD@{2}: checkout: moving from TransactionDetails to CreateProductScreen
+[33mbc4fa41[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mTransactionDetails[m[33m, [m[1;31morigin/TransactionDetails[m[33m)[m HEAD@{3}: checkout: moving from CreateProductScreen to TransactionDetails
+[33m16039ef[m[33m ([m[1;32mCreateProductScreen[m[33m)[m HEAD@{4}: rebase (finish): returning to refs/heads/CreateProductScreen
+[33m16039ef[m[33m ([m[1;32mCreateProductScreen[m[33m)[m HEAD@{5}: rebase (continue): mudando input do estoque
+[33m641ec71[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{6}: rebase (start): checkout origin/main
+[33m4db443d[m[33m ([m[1;31morigin/CreateProductScreen[m[33m)[m HEAD@{7}: rebase (abort): returning to refs/heads/CreateProductScreen
+[33mbc4fa41[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mTransactionDetails[m[33m, [m[1;31morigin/TransactionDetails[m[33m)[m HEAD@{8}: commit: buscando transacao do firebase
+[33mac84a08[m[33m ([m[1;32mmain[m[33m)[m HEAD@{9}: checkout: moving from main to TransactionDetails
+[33mac84a08[m[33m ([m[1;32mmain[m[33m)[m HEAD@{10}: pull: Fast-forward
+[33me4782be[m HEAD@{11}: checkout: moving from CreateProductScreen to main
+[33m4db443d[m[33m ([m[1;31morigin/CreateProductScreen[m[33m)[m HEAD@{12}: checkout: moving from 1f3300e74639ca52fe73f3e9a4f725d2cce19ae1 to CreateProductScreen
+[33m1f3300e[m HEAD@{13}: pull origin main: Merge made by the 'ort' strategy.
+[33m0cfceea[m HEAD@{14}: commit: resolvendo conflitos
+[33m30dd8fe[m HEAD@{15}: pull origin main --rebase (start): checkout 30dd8feed57755db6265306cd66efa811be6daae
+[33m4db443d[m[33m ([m[1;31morigin/CreateProductScreen[m[33m)[m HEAD@{16}: commit: mudando input do estoque
+[33m7216646[m HEAD@{17}: commit: criando os estados
+[33ma8f0f9e[m HEAD@{18}: commit: implementando tela de criação de produtos
+[33me4782be[m HEAD@{19}: checkout: moving from main to CreateProductScreen
+[33me4782be[m HEAD@{20}: pull: Fast-forward
+[33mc6d1bc5[m HEAD@{21}: checkout: moving from ProductScreen to main
+[33m2d9dbe2[m[33m ([m[1;31morigin/ProductScreen[m[33m, [m[1;32mProductScreen[m[33m)[m HEAD@{22}: commit: impplementando tela de produtos
+[33mc6d1bc5[m HEAD@{23}: checkout: moving from main to ProductScreen
+[33mc6d1bc5[m HEAD@{24}: pull: Fast-forward
+[33m64055db[m HEAD@{25}: checkout: moving from tela_movimentacoes_financeiras to main
+[33m372197f[m[33m ([m[1;31morigin/tela_movimentacoes_financeiras[m[33m, [m[1;32mtela_movimentacoes_financeiras[m[33m)[m HEAD@{26}: commit: tela finalizada
+[33m54f11e7[m HEAD@{27}: commit: ajustando a rota
+[33m6998b12[m HEAD@{28}: commit: criando branch e pasta para tela de movimentacoes financeiras
+[33m64055db[m HEAD@{29}: checkout: moving from main to tela_movimentacoes_financeiras
+[33m64055db[m HEAD@{30}: pull: Fast-forward
+[33m7a77226[m HEAD@{31}: clone: from https://github.com/ICEI-PUCMinas-PSG-SI-TI/psg-ads-n-tiam-2025-2-3sletreiros.git
