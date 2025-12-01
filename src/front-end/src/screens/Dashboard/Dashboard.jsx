@@ -5,7 +5,7 @@ import { Image, View } from "react-native";
 import { GlassCard } from "@components/GlassCard/GlassCard";
 import { Icon } from "@components/Icon/Icon";
 import { Text } from "@components/Text/Text";
-import { CardContent, CardTitle, MainValue, ProfitValue, ValueContainer, Header } from "@screens/Dashboard/style";
+import { CardContent, CardTitle, MainValue, ProfitValue, ValueContainer, Header, AccountInfo } from "@screens/Dashboard/style";
 import { useTheme } from "styled-components";
 import { useTransactions } from "@hooks/useTransactions";
 import { formatToBRL } from "@utils/formatter";
@@ -14,32 +14,38 @@ import { useUser } from "@hooks/useUser";
 export function Dashboard() {
     const {currentMonthTransactions} = useTransactions()
     const {userData} = useUser()
+    const {logout} = useAuth()
     
     const theme = useTheme();
 
     return (
         <ScrollContainer>
           <Header>
-            {
-              userData?.logo && 
-              <View
-                style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: 20,
-                  overflow: 'hidden',
-                }}
-              >
-                <Image
-                  source={{ uri: userData?.logo }}
+            <AccountInfo>
+              {
+                userData?.logo &&
+                <View
                   style={{
-                    width: '100%',
-                    height: '100%',
-                    resizeMode: 'cover',
+                    width: 40,
+                    height: 40,
+                    borderRadius: 20,
+                    overflow: 'hidden',
                   }}
-                />
-              </View>
-            }
+                >
+                  <Image
+                    source={{ uri: userData?.logo }}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      resizeMode: 'cover',
+                    }}
+                  />
+                </View>
+              }
+              <Text>{userData?.social}</Text>
+            </AccountInfo>
+
+            <Button buttonStyle={'error'} onPress={() => logout()} icon={'logout'} />
           </Header>
           <View style={{gap: 16}}>
             <GlassCard>

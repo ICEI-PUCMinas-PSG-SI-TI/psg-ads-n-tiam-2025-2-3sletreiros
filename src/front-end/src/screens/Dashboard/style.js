@@ -3,8 +3,15 @@ import styled from "styled-components/native";
 
 export const Header = styled.View`
     flex-direction: row;
-    gap: 8px;
     align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+`
+
+export const AccountInfo = styled.View`
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
 `
 
 export const ProfileLogo = styled.Image`
