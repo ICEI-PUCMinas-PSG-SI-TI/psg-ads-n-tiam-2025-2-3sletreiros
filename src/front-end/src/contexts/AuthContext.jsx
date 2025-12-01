@@ -22,6 +22,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const { showFlashMessage } = useFlashMessage()
+  const [isRegistering, setIsRegistering] = useState(false)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (usr) => {
@@ -34,6 +35,7 @@ export const AuthProvider = ({ children }) => {
 
   async function register(email, password, displayName, userData) {
     try {
+      setIsRegistering(true)
       const cred = await createUserWithEmailAndPassword(auth, email, password);
 
       if (displayName) {
@@ -76,6 +78,8 @@ export const AuthProvider = ({ children }) => {
           console.error("Erro inesperado no register:", error);
           throw error;
       }
+    } finally {
+      setIsRegistering(false)
     }
   }
 
@@ -131,7 +135,8 @@ export const AuthProvider = ({ children }) => {
         login,
         logout,
         resetPassword,
-        deleteAccount
+        deleteAccount,
+        isRegistering
       }}
     >
       {children}
