@@ -24,6 +24,7 @@ import Camera from '@assets/icons/camera.svg'
 import Gallery from '@assets/icons/gallery.svg'
 import Close from '@assets/icons/close.svg'
 import Download from '@assets/icons/download.svg'
+import Error from '@assets/icons/error.svg'
 
 export const icons = {
     addCircle: AddCircle,
@@ -39,6 +40,7 @@ export const icons = {
     done: Done,
     download: Download,
     eraser: Eraser,
+    error: Error,
     gallery: Gallery,
     home: Home,
     inventory: Inventory,
