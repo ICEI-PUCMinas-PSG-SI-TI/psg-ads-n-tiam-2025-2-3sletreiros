@@ -13,6 +13,7 @@ import { useAuth } from "@hooks/useAuth";
 import { BottomPickerModal } from "@components/BottomPickerModal/BottomPickerModal";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useImage } from "@hooks/useImage";
+import { CreatingProductAnimation } from "@components/CreatingProductAnimation/CreatingProductAnimation";
 
 export function CreateProduct(){
     const [name, setName] = useState("")
@@ -98,6 +99,9 @@ export function CreateProduct(){
         setShowPickerModal(false)
         await pickPhoto()
     }
+
+    if (creatingProduct)
+        return <CreatingProductAnimation />
 
     return(
         <KeyboardAwareScrollView
