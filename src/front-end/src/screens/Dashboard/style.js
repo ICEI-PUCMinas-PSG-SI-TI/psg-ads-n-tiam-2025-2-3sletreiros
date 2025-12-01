@@ -8,7 +8,7 @@ export const Header = styled.View`
     margin-bottom: 16px;
 `
 
-export const AccountInfo = styled.View`
+export const AccountInfo = styled.Pressable`
   flex-direction: row;
   align-items: center;
   gap: 10px;
@@ -33,7 +33,9 @@ export const CardTitle = styled.Text`
 `;
 
 export const ValueContainer = styled.View`
+  flex-direction: row;
   align-items: center;
+  gap: 10px;
 `;
 
 export const MainValue = styled.Text`

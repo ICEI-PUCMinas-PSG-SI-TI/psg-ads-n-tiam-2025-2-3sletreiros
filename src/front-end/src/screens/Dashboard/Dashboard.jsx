@@ -8,9 +8,10 @@ import { Text } from "@components/Text/Text";
 import { CardContent, CardTitle, MainValue, ProfitValue, ValueContainer, Header, AccountInfo } from "@screens/Dashboard/style";
 import { useTheme } from "styled-components";
 import { useTransactions } from "@hooks/useTransactions";
-import { formatToBRL } from "@utils/formatter";
+import { formatDate, formatToBRL } from "@utils/formatter";
 import { useUser } from "@hooks/useUser";
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 export function Dashboard() {
     const {currentMonthTransactions} = useTransactions()
@@ -19,11 +20,13 @@ export function Dashboard() {
     
     const theme = useTheme();
 
+    const navigation = useNavigation()
+
     function resolveMainText(){
       if (currentMonthTransactions.total === 0)
         return <MainValue theme={theme} style={{color: theme.colors.text.secondary}}>{formatToBRL(currentMonthTransactions.total)}</MainValue>
       else if (currentMonthTransactions.total > 0)
-        return <MainValue theme={theme} style={{color: '#2ECC71'}}>{formatToBRL(currentMonthTransactions.total)}</MainValue>
+        return <MainValue theme={theme} style={{color: '#2ECC71'}}>{formatToBRL(currentMonthTransactions.total)} </MainValue>
       else
         return <MainValue theme={theme} style={{color: theme.colors.error.text}}>{formatToBRL(currentMonthTransactions.total)}</MainValue>
     }
@@ -31,7 +34,7 @@ export function Dashboard() {
     return (
         <ScrollContainer>
           <Header>
-            <AccountInfo>
+            <AccountInfo onPress={() => navigation.navigate('MyAccount')}>
               {
                 userData?.logo &&
                 <View
@@ -60,18 +63,18 @@ export function Dashboard() {
           <View style={{gap: 16}}>
             <GlassCard>
               <CardContent>
-                <CardTitle theme={theme}>Resumo 11/2025</CardTitle>
+                <CardTitle theme={theme}>Resumo {new Date().toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' })}</CardTitle>
                 
                 <ValueContainer>
                   {resolveMainText()}
-                <ProfitValue theme={theme}>
+                  {currentMonthTransactions.total !== 0 && 
                     <Icon 
                       family='Feather' 
-                      size={16} 
+                      size={24} 
                       name={currentMonthTransactions.total > 0 ? 'trendingUp' : 'trendingDown'} 
                       color={currentMonthTransactions.total > 0 ? '#2ECC71' : theme.colors.error.text}
                     />
-                </ProfitValue>
+                  }
                 </ValueContainer>
               </CardContent>
             </GlassCard>
