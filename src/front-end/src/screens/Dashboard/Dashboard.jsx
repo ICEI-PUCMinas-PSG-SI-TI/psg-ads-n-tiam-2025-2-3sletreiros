@@ -10,6 +10,7 @@ import { useTheme } from "styled-components";
 import { useTransactions } from "@hooks/useTransactions";
 import { formatToBRL } from "@utils/formatter";
 import { useUser } from "@hooks/useUser";
+import { useState } from "react";
 
 export function Dashboard() {
     const {currentMonthTransactions} = useTransactions()
@@ -17,6 +18,15 @@ export function Dashboard() {
     const {logout} = useAuth()
     
     const theme = useTheme();
+
+    function resolveMainText(){
+      if (currentMonthTransactions.total === 0)
+        return <MainValue theme={theme} style={{color: theme.colors.text.secondary}}>{formatToBRL(currentMonthTransactions.total)}</MainValue>
+      else if (currentMonthTransactions.total > 0)
+        return <MainValue theme={theme} style={{color: '#2ECC71'}}>{formatToBRL(currentMonthTransactions.total)}</MainValue>
+      else
+        return <MainValue theme={theme} style={{color: theme.colors.error.text}}>{formatToBRL(currentMonthTransactions.total)}</MainValue>
+    }
 
     return (
         <ScrollContainer>
@@ -53,10 +63,14 @@ export function Dashboard() {
                 <CardTitle theme={theme}>Resumo 11/2025</CardTitle>
                 
                 <ValueContainer>
-                  <MainValue theme={theme}>{formatToBRL(currentMonthTransactions.total)}</MainValue>
-                  <ProfitValue theme={theme}>
-                    <Text color={'#2ECC71'}>R$ 20.248,67 </Text>
-                    <Icon family='Feather' size={16} name={'trendingUp'} color={'#2ECC71'}/>
+                  {resolveMainText()}
+                <ProfitValue theme={theme}>
+                    <Icon 
+                      family='Feather' 
+                      size={16} 
+                      name={currentMonthTransactions.total > 0 ? 'trendingUp' : 'trendingDown'} 
+                      color={currentMonthTransactions.total > 0 ? '#2ECC71' : theme.colors.error.text}
+                    />
                 </ProfitValue>
                 </ValueContainer>
               </CardContent>
