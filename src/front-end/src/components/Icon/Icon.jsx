@@ -6,7 +6,6 @@ export function Icon({ name, size = 24, color }) {
   const RenderedIcon = icons[name]
 
   if (!RenderedIcon) {
-    console.error(`Ícone não encontrado: "${name}"`);
     return null;
   }
 

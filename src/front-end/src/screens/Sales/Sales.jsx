@@ -8,9 +8,11 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { useSales } from "@hooks/useSales";
 import { EmptyList } from "@components/EmptyList/EmptyList";
 import { SaleItem } from "@components/SaleItem/SaleItem";
+import { useNavigation } from "@react-navigation/native";
 
 export function Sales() {
     const {sales, loadingSales} = useSales()
+
     const [downloadingPdf, setDownloadingPdf] = useState(false)
 
     const [initialDate, setInitialDate] = useState(new Date())
@@ -20,35 +22,13 @@ export function Sales() {
 
     const [hasChosenInitial, setHasChosenInitital] = useState(false) 
     const [hasChosenFinal, setHasChosenFinal] = useState(false) 
+
+    const navigation = useNavigation()
     
     function cleanFilters() {
         setHasChosenFinal(false)
         setHasChosenInitital(false)
     }
-
-    const mock = [
-        {
-            id: "venda_id_123", 
-            name: "Venda de Software X", 
-            amount: 4500.50,
-            date: new Date(), 
-            category: "Serviços", 
-        },
-        {
-            id: "venda_id_456",
-            name: "Consultoria de 3 horas",
-            amount: 750.00,
-            date: new Date(2025, 11, 28),
-            category: "Consultoria",
-        },
-        {
-            id: "venda_id_789",
-            name: "Licença Premium Anual",
-            amount: 1200.00,
-            date: new Date(2025, 11, 15),
-            category: "Assinaturas",
-        },
-    ]
 
     return (
         <Container>
@@ -62,7 +42,7 @@ export function Sales() {
                     />
                     <Button 
                         buttonStyle={'primary'} 
-                        onPress={() => openModal()}
+                        onPress={() => navigation.navigate('CreateSale')}
                         icon={'addCircle'}
                     />
                 </ContentHeader>
@@ -125,7 +105,7 @@ export function Sales() {
                     loadingSales ? 
                     <ActivityIndicator /> :
                     <FlatList
-                        data={mock}
+                        data={sales}
                         showsVerticalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item }) => (

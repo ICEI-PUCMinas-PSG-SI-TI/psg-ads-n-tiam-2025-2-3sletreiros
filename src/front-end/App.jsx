@@ -10,6 +10,7 @@ import { FlashMessageProvider } from './src/contexts/FlashMessageContext';
 import { TransactionsProvider } from './src/contexts/TransactionsContext';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SalesProvider } from './src/contexts/SalesContext';
+import { ProductsProvider } from './src/contexts/ProductsContext'
 
 export default function App() {
   const deviceTheme = useColorScheme()
@@ -28,18 +29,20 @@ export default function App() {
     <GestureHandlerRootView style={{flex: 1}}>
       <FlashMessageProvider>
         <AuthProvider>
-          <SalesProvider>
-            <TransactionsProvider>
-              <ThemeProvider theme={theme}>
-                <Container>
-                  <NavigationContainer theme={navigationTheme}>
-                    <StatusBar style={deviceTheme === 'dark' ? 'light' : 'dark'} backgroundColor={theme.colors.background.default} />
-                    <AppRoutes />
-                  </NavigationContainer>
-                </Container>
-              </ThemeProvider>
-            </TransactionsProvider>
-          </SalesProvider>
+          <ProductsProvider>
+            <SalesProvider>
+              <TransactionsProvider>
+                <ThemeProvider theme={theme}>
+                  <Container>
+                    <NavigationContainer theme={navigationTheme}>
+                      <StatusBar style={deviceTheme === 'dark' ? 'light' : 'dark'} backgroundColor={theme.colors.background.default} />
+                      <AppRoutes />
+                    </NavigationContainer>
+                  </Container>
+                </ThemeProvider>
+              </TransactionsProvider>
+            </SalesProvider>
+          </ProductsProvider>
         </AuthProvider>
       </FlashMessageProvider>
     </GestureHandlerRootView>
