@@ -448,7 +448,7 @@ export function SignIn() {
             buttonStyle={'surface'}
             flex
             onPress={openModal}
-            loading={isLoading}
+            disabled={isLoading}
             icon={'upload'}
             style={{marginBottom: 10}}
           >

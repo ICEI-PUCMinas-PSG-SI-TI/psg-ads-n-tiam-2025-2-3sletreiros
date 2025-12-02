@@ -4,6 +4,7 @@ import { DashBoardStack } from "@navigation/routes/stack/DashBoardStack"
 import { TransactionsStack } from "@navigation/routes/stack/TransactionsStack"
 import { MyAccountStack } from "@navigation/routes/stack/MyAccountStack"
 import { ProductsStack } from "@navigation/routes/stack/ProductsStack"
+import { SalesStack } from "./routes/stack/SalesStack"
 
 
 export function AuthenticatedRoutes(){
@@ -23,6 +24,11 @@ export function AuthenticatedRoutes(){
             name: 'Products',
             component: ProductsStack,
             icon: 'inventory'
+        },
+        {
+            name: 'Sales',
+            component: SalesStack,
+            icon: 'coin'
         },
         {
             name: 'MyAccount',
