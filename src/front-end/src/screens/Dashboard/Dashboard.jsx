@@ -12,9 +12,10 @@ import { formatDate, formatToBRL } from "@utils/formatter";
 import { useUser } from "@hooks/useUser";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { useSales } from "@hooks/useSales";
 
 export function Dashboard() {
-    const {currentMonthTransactions} = useTransactions()
+    const {currentMonthSales} = useSales()
     const {userData} = useUser()
     const {logout} = useAuth()
     
@@ -23,12 +24,12 @@ export function Dashboard() {
     const navigation = useNavigation()
 
     function resolveMainText(){
-      if (currentMonthTransactions.total === 0)
-        return <MainValue theme={theme} style={{color: theme.colors.text.secondary}}>{formatToBRL(currentMonthTransactions.total)}</MainValue>
-      else if (currentMonthTransactions.total > 0)
-        return <MainValue theme={theme} style={{color: '#2ECC71'}}>{formatToBRL(currentMonthTransactions.total)} </MainValue>
+      if (currentMonthSales.total === 0)
+        return <MainValue theme={theme} style={{color: theme.colors.text.secondary}}>{formatToBRL(currentMonthSales.total)}</MainValue>
+      else if (currentMonthSales.total > 0)
+        return <MainValue theme={theme} style={{color: '#2ECC71'}}>{formatToBRL(currentMonthSales.total)} </MainValue>
       else
-        return <MainValue theme={theme} style={{color: theme.colors.error.text}}>{formatToBRL(currentMonthTransactions.total)}</MainValue>
+        return <MainValue theme={theme} style={{color: theme.colors.error.text}}>{formatToBRL(currentMonthSales.total)}</MainValue>
     }
 
     return (
@@ -67,12 +68,12 @@ export function Dashboard() {
                 
                 <ValueContainer>
                   {resolveMainText()}
-                  {currentMonthTransactions.total !== 0 && 
+                  {currentMonthSales.total !== 0 && 
                     <Icon 
                       family='Feather' 
                       size={24} 
-                      name={currentMonthTransactions.total > 0 ? 'trendingUp' : 'trendingDown'} 
-                      color={currentMonthTransactions.total > 0 ? '#2ECC71' : theme.colors.error.text}
+                      name={currentMonthSales.total > 0 ? 'trendingUp' : 'trendingDown'} 
+                      color={currentMonthSales.total > 0 ? '#2ECC71' : theme.colors.error.text}
                     />
                   }
                 </ValueContainer>

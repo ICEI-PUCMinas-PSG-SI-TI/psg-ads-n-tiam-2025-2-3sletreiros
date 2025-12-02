@@ -2,12 +2,15 @@ import { useState } from "react";
 import { Button } from "@components/Button/Button";
 import { Container, ContentBlock } from "src/styles/global";
 import { ContentHeader } from "./style";
-import { InputField } from "@components/Input/InputField";
-import { View } from "react-native";
+import { ActivityIndicator, FlatList, View } from "react-native";
 import { formatDate } from "@utils/formatter";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { useSales } from "@hooks/useSales";
+import { EmptyList } from "@components/EmptyList/EmptyList";
+import { SaleItem } from "@components/SaleItem/SaleItem";
 
 export function Sales() {
+    const {sales, loadingSales} = useSales()
     const [downloadingPdf, setDownloadingPdf] = useState(false)
 
     const [initialDate, setInitialDate] = useState(new Date())
@@ -22,6 +25,30 @@ export function Sales() {
         setHasChosenFinal(false)
         setHasChosenInitital(false)
     }
+
+    const mock = [
+        {
+            id: "venda_id_123", 
+            name: "Venda de Software X", 
+            amount: 4500.50,
+            date: new Date(), 
+            category: "Serviços", 
+        },
+        {
+            id: "venda_id_456",
+            name: "Consultoria de 3 horas",
+            amount: 750.00,
+            date: new Date(2025, 11, 28),
+            category: "Consultoria",
+        },
+        {
+            id: "venda_id_789",
+            name: "Licença Premium Anual",
+            amount: 1200.00,
+            date: new Date(2025, 11, 15),
+            category: "Assinaturas",
+        },
+    ]
 
     return (
         <Container>
@@ -91,6 +118,22 @@ export function Sales() {
                         }}
                     />
                 )}
+            </ContentBlock>
+
+            <ContentBlock>
+                {
+                    loadingSales ? 
+                    <ActivityIndicator /> :
+                    <FlatList
+                        data={mock}
+                        showsVerticalScrollIndicator={false}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item }) => (
+                            <SaleItem item={item}/>
+                        )}
+                        ListEmptyComponent={<EmptyList message={'Nenhuma venda encontrada.'} />}
+                    />
+                }
             </ContentBlock>
         </Container>
     )
