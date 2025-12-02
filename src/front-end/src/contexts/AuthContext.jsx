@@ -15,6 +15,7 @@ import {
 import { InputError } from "../error/InputError";
 import { doc, setDoc } from "firebase/firestore";
 import { useFlashMessage } from "@hooks/useFlashMessage";
+import { plans } from "src/constants";
 
 export const AuthContext = createContext({});
 
@@ -47,9 +48,10 @@ export const AuthProvider = ({ children }) => {
       await setDoc(doc(db, "company", cred.user.uid), {
         name: displayName,
         email,
+        plan: doc(db, "plan", plans.empreendedor),
         ...userData,
         createdAt: date,
-        updatedAt: date
+        updatedAt: date,
       });
 
       showFlashMessage("Conta criada com sucesso. Você será redirecionado para realizar login.", "success");
