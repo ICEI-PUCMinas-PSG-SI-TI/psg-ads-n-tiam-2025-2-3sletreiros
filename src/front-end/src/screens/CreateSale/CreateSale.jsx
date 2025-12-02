@@ -7,9 +7,9 @@ export function CreateSale() {
     
     return (
         <Container>
-            <View style={{flexDirection: 'row', alignItems: 'center', gap: 10, justifyContent: 'center'}}>
-                <Text variant="subtitle" align={'center'}>Lance uma nova venda</Text>
-                <CustomAnimation name={'money'} size={40}/>
+            <View style={{alignItems: 'center', gap: 10, justifyContent: 'center'}}>
+                <CustomAnimation name={'sale'} size={120}/>
+                <Text>Lance novas vendas</Text>
             </View>
         </Container>
     )
