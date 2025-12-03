@@ -26,12 +26,14 @@ import Close from '@assets/icons/close.svg'
 import Download from '@assets/icons/download.svg'
 import Error from '@assets/icons/error.svg'
 import Coin from '@assets/icons/coin.svg'
+import Build from '@assets/icons/build.svg'
 
 export const icons = {
     addCircle: AddCircle,
     arrowDown: ArrowDown,
     arrowReverse: ArrowReverse,
     arrowUp: ArrowUp,
+    build: Build,
     calendar: Calendar,
     camera: Camera,
     close: Close,
