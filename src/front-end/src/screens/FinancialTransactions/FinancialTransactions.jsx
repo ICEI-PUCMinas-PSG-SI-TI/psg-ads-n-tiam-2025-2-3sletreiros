@@ -55,10 +55,29 @@ export function FinancialTransactions(){
         setVisible(false)
     }
 
+    const handlePriceChange = (text) => {
+        const numbers = text.replace(/\D/g, '');
+        
+        if (numbers === '') {
+            setPrice('');
+            return;
+        }
+        
+        const parsedValue = parseFloat(numbers) / 100;
+        
+        const formatted = parsedValue.toLocaleString('pt-BR', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+        
+        setValue(formatted);
+    }
+
     async function addTransaction(transaction) {
         try {
+            const parsedValue = parseFloat(price.replace(/\./g, '').replace(',', '.'))
             setCreatingTransaction(true)
-            await createTransaction(transaction)
+            await createTransaction({...transaction, amount: parsedValue})
             
             closeModal()
             showFlashMessage('Transação adicionada com sucesso!', 'success')
@@ -145,14 +164,14 @@ export function FinancialTransactions(){
                 <InputField
                     label="Valor"
                     value={value}
-                    onChangeText={handleValueChange}
+                    onChangeText={handlePriceChange}
                     keyboardType="numeric"
                 />
                 <Button 
                     buttonStyle={'primary'} 
                     size={'large'} 
                     flex
-                    onPress={() => addTransaction({amount: value, name: title, category, date: Timestamp.now(), type: isInvoicing ? 'invoice' : 'expense'})}
+                    onPress={() => addTransaction({name: title, category, date: Timestamp.now(), type: isInvoicing ? 'invoice' : 'expense'})}
                     loading={creatingTransaction}
                 >
                     <Icon name={'done'} color={theme.colors.success.text}/>
