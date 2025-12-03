@@ -39,6 +39,19 @@ export function CreateProduct(){
     const {uploadImage, pickImage, takeImage} = useImage()
 
     const handleNameChange = (text) => setName(text);
+
+    const handleStockChange = (text) => {
+
+        if (text === "") {
+            setStock(0);
+            return;
+        }
+
+        const numericValue = Number(text);
+
+        setStock(numericValue);
+    }
+
     const handlePriceChange = (text) => setPrice(text);
 
     async function addProduct(){
@@ -155,6 +168,25 @@ export function CreateProduct(){
                     onPickCamera={pickCamera}
                     onPickGallery={pickGallery}
                 />
+            <StockContainer>
+
+                <InputField
+                    label="Estoque"
+                    value={String(stock)}
+                    style={{width: '100%'}}
+                    onChangeText={handleStockChange}
+                    keyboardType="numeric"
+                /> 
+
+            </StockContainer>
+            
+            <InputField
+                label="Preço"
+                value={price}
+                placeholder='Ex: 1000'
+                onChangeText={handlePriceChange}
+                keyboardType="numeric"
+            /> 
 
                 <InputField
                     label="Nome do produto"
