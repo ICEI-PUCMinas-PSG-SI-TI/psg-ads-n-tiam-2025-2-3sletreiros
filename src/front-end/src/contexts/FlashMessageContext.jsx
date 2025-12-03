@@ -1,5 +1,5 @@
 import { createContext, useState, useCallback } from 'react';
-import FlashMessage from '../components/FlashMessage/FlashMessage';
+import FlashMessage from "@components/FlashMessage/FlashMessage";
 
 export const FlashMessageContext = createContext();
 

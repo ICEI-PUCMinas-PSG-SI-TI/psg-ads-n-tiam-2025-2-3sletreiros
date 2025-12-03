@@ -1,8 +1,8 @@
-import { StackNavigator } from "../../../components/StackNavigator/StackNavigator";
+import { StackNavigator } from "@components/StackNavigator/StackNavigator";
 
-import { EditProfile } from "../../../screens/EditProfile/EditProfile";
-import { MyAccount } from "../../../screens/MyAccount/MyAccount";
-import { SelectPlan } from "../../../screens/SelectPlan/SelectPlan";
+import { EditProfile } from "@screens/EditProfile/EditProfile";
+import { MyAccount } from "@screens/MyAccount/MyAccount";
+import { SelectPlan } from "@screens/SelectPlan/SelectPlan";
 
 
 export function MyAccountStack() {

@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { auth, db } from "../config/firebase";
+import { auth, db } from "@config/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -14,7 +14,8 @@ import {
 } from "firebase/auth";
 import { InputError } from "../error/InputError";
 import { doc, setDoc } from "firebase/firestore";
-import { useFlashMessage } from "../hooks/useFlashMessage";
+import { useFlashMessage } from "@hooks/useFlashMessage";
+import { plans } from "src/constants";
 
 export const AuthContext = createContext({});
 
@@ -22,6 +23,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const { showFlashMessage } = useFlashMessage()
+  const [isRegistering, setIsRegistering] = useState(false)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (usr) => {
@@ -34,6 +36,7 @@ export const AuthProvider = ({ children }) => {
 
   async function register(email, password, displayName, userData) {
     try {
+      setIsRegistering(true)
       const cred = await createUserWithEmailAndPassword(auth, email, password);
 
       if (displayName) {
@@ -45,9 +48,10 @@ export const AuthProvider = ({ children }) => {
       await setDoc(doc(db, "company", cred.user.uid), {
         name: displayName,
         email,
+        plan: doc(db, "plan", plans.empreendedor),
         ...userData,
         createdAt: date,
-        updatedAt: date
+        updatedAt: date,
       });
 
       showFlashMessage("Conta criada com sucesso. Você será redirecionado para realizar login.", "success");
@@ -76,6 +80,8 @@ export const AuthProvider = ({ children }) => {
           console.error("Erro inesperado no register:", error);
           throw error;
       }
+    } finally {
+      setIsRegistering(false)
     }
   }
 
@@ -131,7 +137,8 @@ export const AuthProvider = ({ children }) => {
         login,
         logout,
         resetPassword,
-        deleteAccount
+        deleteAccount,
+        isRegistering
       }}
     >
       {children}

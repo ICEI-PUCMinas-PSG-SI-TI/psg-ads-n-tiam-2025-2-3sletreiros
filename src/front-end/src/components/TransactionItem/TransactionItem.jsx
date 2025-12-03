@@ -1,16 +1,16 @@
 import { useTheme } from "styled-components";
 import { ContentBlock } from "../../styles/global";
-import { Text } from "../Text/Text";
-import { Icon } from "../Icon/Icon";
+import { Text } from "@components/Text/Text";
+import { Icon } from "@components/Icon/Icon";
 import {  Pressable, View } from "react-native";
-import { AmountIndicator } from "../AmountIndicator/AmountIndicator";
-import { DeleteItemButton, SecundaryText } from "./style";
+import { AmountIndicator } from "@components/AmountIndicator/AmountIndicator";
+import { DeleteItemButton, SecundaryText } from "@components/TransactionItem/style";
 import { deleteDoc, doc } from "firebase/firestore";
-import { db } from "../../config/firebase";
-import { useAuth } from "../../hooks/useAuth";
-import { useFlashMessage } from "../../hooks/useFlashMessage";
+import { db } from "@config/firebase";
+import { useAuth } from "@hooks/useAuth";
+import { useFlashMessage } from "@hooks/useFlashMessage";
 import { useNavigation } from "@react-navigation/native";
-import { formatDate } from "../../utils/formatter";
+import { formatDate } from "@utils/formatter";
 
 export function TransactionItem({item}) {
     const theme = useTheme()

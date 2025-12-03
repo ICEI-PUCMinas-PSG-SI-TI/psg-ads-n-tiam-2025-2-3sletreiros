@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Text } from "../Text/Text";
+import { Text } from "@components/Text/Text";
 
 export const PlanTitle = styled(Text)`
     font-size: 18px;

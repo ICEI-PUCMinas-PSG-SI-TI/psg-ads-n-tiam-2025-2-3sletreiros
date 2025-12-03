@@ -1,19 +1,17 @@
 import LottieView from "lottie-react-native";
 import styled from "styled-components/native";
-import emptyAnimation from "@assets/animations/empty-box.json";
+import creatingProduct from "@assets/animations/creating-product.json"
 import { Text } from "@components/Text/Text";
 
-export function EmptyList({message}) {
+export function CreatingProductAnimation() {
   return (
     <Container>
       <LottieView
-        source={emptyAnimation}
+        source={creatingProduct}
         autoPlay
         loop
-        style={{ width: 200, height: 200 }}
+        style={{ width: 250, height: 250 }}
       />
-
-      <Text>{message}</Text>
     </Container>
   );
 }

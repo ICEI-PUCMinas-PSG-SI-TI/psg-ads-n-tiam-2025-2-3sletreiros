@@ -1,26 +1,23 @@
 import LottieView from "lottie-react-native";
 import styled from "styled-components/native";
-import emptyAnimation from "@assets/animations/empty-box.json";
-import { Text } from "@components/Text/Text";
+import creatingAccount from "@assets/animations/creating-account.json"
 
-export function EmptyList({message}) {
+export function CreatingAccountAnimation() {
   return (
     <Container>
       <LottieView
-        source={emptyAnimation}
+        source={creatingAccount}
         autoPlay
         loop
-        style={{ width: 200, height: 200 }}
+        style={{ width: 250, height: 250 }}
       />
-
-      <Text>{message}</Text>
     </Container>
   );
 }
 
 const Container = styled.View`
+  flex: 1;
   width: 100%;
   align-items: center;
   justify-content: center;
-  margin-top: 40px;
 `;

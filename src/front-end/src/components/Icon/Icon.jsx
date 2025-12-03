@@ -1,5 +1,5 @@
 import { useTheme } from "styled-components";
-import { icons } from "./utils";
+import { icons } from "@components/Icon/utils";
 
 export function Icon({ name, size = 24, color }) {
   const theme = useTheme()

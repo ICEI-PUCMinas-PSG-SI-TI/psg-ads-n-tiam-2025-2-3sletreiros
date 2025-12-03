@@ -1,18 +1,19 @@
-import { Container } from "../../styles/global"
-import { InputField } from "../../components/Input/InputField"
-import { Button } from "../../components/Button/Button"
+import { Container } from "src/styles/global"
+import { InputField } from "@components/Input/InputField"
+import { Button } from "@components/Button/Button"
 import { useState } from "react"
 import { useNavigation } from "@react-navigation/native";
-import { useFlashMessage } from "../../hooks/useFlashMessage";
-import { CLOUDINARY_URL, UPLOAD_PRESET } from '@env'
-import {CustomModal as PreviewImageModal} from "../../components/CustomModal/CustomModal"
+import { useFlashMessage } from "@hooks/useFlashMessage";
+import {CustomModal as PreviewImageModal} from "@components/CustomModal/CustomModal"
 import * as ImagePicker from 'expo-image-picker'
 import { Image, View } from "react-native";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../config/firebase";
-import { useAuth } from "../../hooks/useAuth";
-import { BottomPickerModal } from "../../components/BottomPickerModal/BottomPickerModal";
+import { db } from "@config/firebase";
+import { useAuth } from "@hooks/useAuth";
+import { BottomPickerModal } from "@components/BottomPickerModal/BottomPickerModal";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useImage } from "@hooks/useImage";
+import { CreatingProductAnimation } from "@components/CreatingProductAnimation/CreatingProductAnimation";
 
 export function CreateProduct(){
     const [name, setName] = useState("")
@@ -35,6 +36,7 @@ export function CreateProduct(){
     const {showFlashMessage} = useFlashMessage()
 
     const {user} = useAuth()
+    const {uploadImage, pickImage, takeImage} = useImage()
 
     const handleNameChange = (text) => setName(text);
 
@@ -76,89 +78,27 @@ export function CreateProduct(){
         }
     }
 
-    async function pickImage() {
+    async function pickPhoto() {
         try {
-            const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync()
+            const response = await pickImage()
 
-            if (status !== 'granted') {
-                showFlashMessage('Permissão negada, não será possível carregar a imagem da galeria.', 'error')
-                return
-            }
-
-            const response = await ImagePicker.launchImageLibraryAsync({
-                mediaTypes: ImagePicker.MediaTypeOptions.Images,
-                aspect: [4,4],
-                quality: 0.8
-            })
-
-            if (!response.canceled) {
-                setImageData(response.assets[0])
-                setImageUri(response.assets[0].uri)
-                setShowPreviewModal(true)
-            }
+            setImageData(response.assets[0])
+            setImageUri(response.assets[0].uri)
+            setShowPreviewModal(true)
         } catch (error) {
-            console.error(error)
-            showFlashMessage('Erro ao acessar galeria', 'error')
-        }
-    }
-
-    async function uploadImage(uri){
-        try {
-            const formData = new FormData()
-
-            const file = uri.split('/').pop()
-            const match = /\.(\w+)$/.exec(file);
-            const type = match ? `image/${match[1]}` : 'image/jpeg';
-
-            formData.append('file', {
-                uri: uri,
-                type: type,
-                name: file,
-            });
-
-            formData.append('upload_preset', UPLOAD_PRESET);
-
-            const response = await fetch(CLOUDINARY_URL, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                'Content-Type': 'multipart/form-data',
-                },
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                return data.secure_url
-            } else {
-                throw new Error(data?.error?.message || 'Erro ao enviar foto.')
-            }
-        } catch (error) {
-            console.error(error)
-            throw new Error('Erro ao enviar imagem do produto.')
+            showFlashMessage('Permissão negada, não será possível carregar a imagem da galeria.', 'error')
         }
     }
 
     async function takePhoto() {
         try {
-            const { status } = await ImagePicker.requestCameraPermissionsAsync()
+            const response = await takeImage()
 
-            if (status !== 'granted'){
-                showFlashMessage('Permissão negada, não será possível abrir a câmera do dispotivo.', 'error')
-                return
-            }
-                
-            const response = await ImagePicker.launchCameraAsync({
-                aspect: [4,3],
-                quality: 0.8
-            })
-
-            if (!response.canceled) {
-                setImageData(response.assets[0])
-                setImageUri(response.assets[0].uri)
-                setShowPreviewModal(true)
-            }
+            setImageData(response.assets[0])
+            setImageUri(response.assets[0].uri)
+            setShowPreviewModal(true)
         } catch (error) {
+            console.error(error)
             showFlashMessage(error.message || 'Ocorreu um erro ao tirar a foto. Por favor, tente novamente', 'error')
         }
     }
@@ -170,8 +110,11 @@ export function CreateProduct(){
 
     async function pickGallery() {
         setShowPickerModal(false)
-        await pickImage()
+        await pickPhoto()
     }
+
+    if (creatingProduct)
+        return <CreatingProductAnimation />
 
     return(
         <KeyboardAwareScrollView

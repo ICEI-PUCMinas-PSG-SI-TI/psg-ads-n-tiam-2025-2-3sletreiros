@@ -1,14 +1,17 @@
-import { KeyboardAvoidingView, ScrollView, Platform, View, Text } from "react-native"
-import { Button } from "../../components/Button/Button"
-import { InputField } from "../../components/Input/InputField"
+import { KeyboardAvoidingView, ScrollView, Platform, View, Text, Image } from "react-native"
+import { Button } from "@components/Button/Button"
+import { InputField } from "@components/Input/InputField"
 import { Container } from "../../styles/global"
 import { useEffect, useReducer, useState } from "react"
-import { useAuth } from "../../hooks/useAuth"
-import { NotLoggedLogo } from "../../components/NotLoggedLogo/NotLoggedLogo"
+import { useAuth } from "@hooks/useAuth"
+import { NotLoggedLogo } from "@components/NotLoggedLogo/NotLoggedLogo"
 import { InputError } from "../../error/InputError"
-import { Icon } from "../../components/Icon/Icon"
-import { darkTheme } from "../../theme/theme"
-import { InputContainer } from "./style"
+import { Icon } from "@components/Icon/Icon"
+import { darkTheme } from "@theme/theme"
+import { InputContainer } from "@screens/SignIn/style"
+import { BottomPickerModal } from "@components/BottomPickerModal/BottomPickerModal"
+import { useImage } from "@hooks/useImage"
+import {CustomModal as PreviewImageModal} from "@components/CustomModal/CustomModal"
 
 const initialState = {
   email: "",
@@ -86,8 +89,21 @@ export function SignIn() {
   const [state, dispatch] = useReducer(formReducer, initialState)
   const [isLoading, setIsLoading] = useState(false)
   const [showPass, setShowPass] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+  const [imageUri, setImageUri] = useState("")
+  const [showPreviewModal, setShowPreviewModal] = useState(false)
+  const [imageData, setImageData] = useState({})
   
   const { register } = useAuth()
+  const { pickImage, takeImage, uploadImage } = useImage()
+
+  function openModal(){
+    setShowModal(true)
+  }
+
+  function closeModal(){
+    setShowModal(false)
+  }
 
   async function handleSubmit() {
     setIsLoading(true)
@@ -100,7 +116,8 @@ export function SignIn() {
     const {email, password, name, social, cnpj, address} = state
 
     try {
-        await register(email, password, name, {email, name, social, cnpj, address})
+      const logo = await uploadImage(imageUri)
+      await register(email, password, name, {email, name, social, cnpj, address, logo})
     } catch (error) {
         if (error instanceof InputError)
           dispatch({ type: "SET_ERROR", field: error.field, value: error.message })
@@ -190,6 +207,41 @@ export function SignIn() {
     fetchCep()
   }, [state.address.cep])
 
+  async function pickPhoto() {
+    try {
+      const response = await pickImage()
+
+      setImageData(response.assets[0])
+      setImageUri(response.assets[0].uri)
+      setShowPreviewModal(true)
+    } catch (error) {
+      showFlashMessage('Permissão negada, não será possível carregar a imagem da galeria.', 'error')
+    }
+  }
+
+  async function takePhoto() {
+    try {
+      const response = await takeImage()
+
+      setImageData(response.assets[0])
+      setImageUri(response.assets[0].uri)
+      setShowPreviewModal(true)
+    } catch (error) {
+      console.error(error)
+      showFlashMessage(error.message || 'Ocorreu um erro ao tirar a foto. Por favor, tente novamente', 'error')
+    }
+  }
+
+  async function pickCamera() {
+    setShowModal(false)
+    await takePhoto()
+  }
+
+  async function pickGallery() {
+    setShowModal(false)
+    await pickPhoto()
+  }
+
 
   return (
     <KeyboardAvoidingView
@@ -203,6 +255,50 @@ export function SignIn() {
         showsVerticalScrollIndicator={false}
       >
         <Container>
+          <BottomPickerModal
+            visible={showModal}
+            onClose={closeModal}
+            onPickCamera={pickCamera}
+            onPickGallery={pickGallery}
+          />
+
+          <PreviewImageModal
+            visible={showPreviewModal}
+            onClose={() => setShowPreviewModal(false)}
+          >
+            <View style={{alignItems: 'center', gap: 10}}>
+              {imageUri && 
+                <Image 
+                  source={{uri: imageUri}}
+                  style={{
+                      width: '60%',
+                      aspectRatio: imageData.width / imageData.height,
+                      borderRadius: 12
+                  }}
+                  resizeMode="contain"    
+              />}
+              <View style={{flexDirection: 'row', gap: 10}}>
+                  <Button 
+                    buttonStyle={'error'} 
+                    fullWidth 
+                    onPress={() => {
+                      setShowPreviewModal(false)
+                      setImageUri("")
+                      setShowModal(true)
+                    }}
+                  >
+                    Trocar
+                  </Button>
+                  <Button 
+                    buttonStyle={'primary'} 
+                    fullWidth 
+                    onPress={() => setShowPreviewModal(false)}
+                  >
+                    Confirmar
+                  </Button>
+              </View>
+            </View>
+          </PreviewImageModal>
           <NotLoggedLogo />
 
           <InputField
@@ -328,7 +424,7 @@ export function SignIn() {
                     }}
                   >
                     <Icon
-                      name={valid ? "check" : "error"}
+                      name={valid ? "done" : "error"}
                       color={valid ? darkTheme.colors.success.background : darkTheme.colors.error.background}
                       size={16}
                     />
@@ -347,6 +443,17 @@ export function SignIn() {
               })}
             </View>
           )}
+
+          <Button
+            buttonStyle={'surface'}
+            flex
+            onPress={openModal}
+            loading={isLoading}
+            icon={'upload'}
+            style={{marginBottom: 10}}
+          >
+            Inserir Logo
+          </Button>
 
           <Button
             buttonStyle="primary"

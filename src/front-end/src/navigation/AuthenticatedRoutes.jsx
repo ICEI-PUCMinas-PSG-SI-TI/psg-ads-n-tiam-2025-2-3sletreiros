@@ -1,9 +1,9 @@
-import {TabsNavigator} from "../components/TabsNavigator/TabsNavigator"
+import {TabsNavigator} from "@components/TabsNavigator/TabsNavigator"
 
-import { DashBoardStack } from "./routes/stack/DashBoardStack"
-import { TransactionsStack } from "./routes/stack/TransactionsStack"
-import { MyAccountStack } from "./routes/stack/MyAccountStack"
-import { ProductsStack } from "./routes/stack/ProductsStack"
+import { DashBoardStack } from "@navigation/routes/stack/DashBoardStack"
+import { TransactionsStack } from "@navigation/routes/stack/TransactionsStack"
+import { MyAccountStack } from "@navigation/routes/stack/MyAccountStack"
+import { ProductsStack } from "@navigation/routes/stack/ProductsStack"
 
 
 export function AuthenticatedRoutes(){

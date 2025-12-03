@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useTheme } from "styled-components";
 import { TouchableOpacity } from "react-native"; 
-import { Container, InputContainer, Label, StyledInput, ErrorText } from "./style";
+import { Container, InputContainer, Label, StyledInput, ErrorText } from "@components/Input/style";
 import { MaskedTextInput } from "react-native-mask-text";
-import { Icon } from "../Icon/Icon";
+import { Icon } from "@components/Icon/Icon";
 
 export function InputField({
     label,

@@ -1,5 +1,5 @@
 import { Modal } from "react-native";
-import { Overlay, CenterContainer, ModalContent } from "./style";
+import { Overlay, CenterContainer, ModalContent } from "@components/CustomModal/style";
 
 export function CustomModal({ visible, onClose, children, transparent = true }) {
   return (
