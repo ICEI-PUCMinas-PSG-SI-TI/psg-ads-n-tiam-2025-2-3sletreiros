@@ -6,7 +6,7 @@ import { formatToBRL } from "@utils/formatter";
 import { useState } from "react";
 import { Button } from "@components/Button/Button";
 
-export function ProductSelectionModal({isVisible, onClose, onConfirm}) {
+export function ProductSelectionModal({isVisible, onClose, onConfirm, addedProducts = []}) {
     const {products} = useProducts()
 
     const [selectedProducts, setSelectedProducts] = useState([])
@@ -41,13 +41,17 @@ export function ProductSelectionModal({isVisible, onClose, onConfirm}) {
                             data={products}
                             showsVerticalScrollIndicator={false}
                             keyExtractor={(item, index) => index.toString()}
-                            renderItem={({ item }) => (
-                                <ProductItem 
-                                    item={item}
-                                    selected={!!selectedProducts.find(p => p.id === item.id)}
-                                    onPress={() => toggleSelect(item)}
-                                />
-                            )}
+                            renderItem={({ item }) => {
+                                const isAlreadyAdded = addedProducts.some(p => p.id === item.id)
+                                return (
+                                    <ProductItem 
+                                        item={item}
+                                        selected={!!selectedProducts.find(p => p.id === item.id)}
+                                        disabled={isAlreadyAdded}
+                                        onPress={() => !isAlreadyAdded && toggleSelect(item)}
+                                    />
+                                )
+                            }}
                         />
 
                          <Button
@@ -66,11 +70,12 @@ export function ProductSelectionModal({isVisible, onClose, onConfirm}) {
     )
 }
 
-function ProductItem({ item, selected, onPress }) {
+function ProductItem({ item, selected, onPress, disabled }) {
     return (
         <Card
             selected={selected}
             onTouchEnd={onPress}
+            style={{ opacity: disabled ? 0.5 : 1 }}
         >
             <Image source={{uri: item.image}} style={{ width: 90, height: 90, borderRadius: 8, resizeMode: 'contain' }}/>
             <ProductInfoContainer>
