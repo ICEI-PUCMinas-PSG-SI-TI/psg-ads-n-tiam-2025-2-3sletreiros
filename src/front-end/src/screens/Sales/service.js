@@ -109,6 +109,7 @@ export async function generateSalesPDF(sales, startDate, finalDate) {
               (sale) => `
                 <div class="sale-block">
                   <p><strong>ID da Venda:</strong> ${sale.id}</p>
+                  <p><strong>Cliente:</strong> ${sale.clientName}</p>
                   <p><strong>Data:</strong> ${formatDate(firestoreDateToJs(sale.date))}</p>
                   <p><strong>Valor Total:</strong> ${formatToBRL(sale.amount)}</p>
 

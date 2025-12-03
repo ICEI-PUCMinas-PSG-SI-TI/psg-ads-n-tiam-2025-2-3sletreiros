@@ -63,6 +63,7 @@ export function SalesProvider({ children }) {
   async function createSale(sale) {
     try {
       if (!sale.amount || !sale.items) throw new Error('Adicione produtos antes de lançar uma nova venda.');
+      if (!sale.clientName || !sale.clientName === '') throw new Error('Insira o nome do cliente.')
 
       for (const item of sale.items) {
       const productRef = doc(db, 'company', user.uid, 'products', item.id);

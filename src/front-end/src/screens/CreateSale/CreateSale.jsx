@@ -14,6 +14,7 @@ import { Timestamp } from "firebase/firestore";
 import { useSales } from "@hooks/useSales";
 import { useFlashMessage } from "@hooks/useFlashMessage";
 import { useNavigation } from "@react-navigation/native";
+import { InputField } from "@components/Input/InputField";
 
 export function CreateSale() {
     const colorScheme = useColorScheme()
@@ -25,6 +26,7 @@ export function CreateSale() {
     const [addedProducts, setAddedProducts] = useState([])
     const [selectingProduct, setSelectingProduct] = useState(false)
     const [total, setTotal] = useState(0)
+    const [clientName, setClientName] = useState('')
 
     const [creatingSale, setCreatingSale] = useState(false)
 
@@ -75,14 +77,15 @@ export function CreateSale() {
             const items = addedProducts.map((orderItem) => {
                 return {
                     ...orderItem,
-                    amount: orderItem.quantity * orderItem.price
+                    amount: orderItem.quantity * orderItem.price,
                 }
             })
 
             const sale = {
                 amount: total,
                 items: items,
-                date: Timestamp.now()
+                date: Timestamp.now(),
+                clientName
             }
             await createSale(sale)
 
@@ -144,6 +147,13 @@ export function CreateSale() {
             </View>
 
             <Text color={theme.colors.text.secondary} style={{marginVertical: 15}}>Total do pedido: {formatToBRL(total)}</Text>
+
+            <InputField
+                label={'Nome do cliente:'}
+                value={clientName}
+                onChangeText={setClientName}
+                placeholder={'Samuel Maia'}
+            />
 
             <FlatList
                 data={addedProducts}
