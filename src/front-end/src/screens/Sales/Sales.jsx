@@ -9,6 +9,8 @@ import { useSales } from "@hooks/useSales";
 import { EmptyList } from "@components/EmptyList/EmptyList";
 import { SaleItem } from "@components/SaleItem/SaleItem";
 import { useNavigation } from "@react-navigation/native";
+import { generateSalesPDF } from "./service";
+import { CustomAnimation } from "@components/CustomAnimation/CustomAnimation";
 
 export function Sales() {
     const {sales, loadingSales} = useSales()
@@ -28,6 +30,20 @@ export function Sales() {
     function cleanFilters() {
         setHasChosenFinal(false)
         setHasChosenInitital(false)
+    }
+    
+    async function generateSummaryPDF() {
+        setDownloadingPdf(true)
+        await generateSalesPDF(sales, initialDate, finalDate)
+        setDownloadingPdf(false)
+    }
+
+    if (downloadingPdf) {
+        return (
+            <View style={{alignItems: 'center', gap: 10, justifyContent: 'center', flex: 1}}>
+                <CustomAnimation name={'downloadingPdf'} size={220}/>
+            </View>
+        )
     }
 
     return (
