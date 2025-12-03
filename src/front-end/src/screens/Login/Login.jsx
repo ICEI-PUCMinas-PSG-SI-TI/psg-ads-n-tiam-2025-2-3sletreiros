@@ -147,6 +147,18 @@ export function Login() {
           >
             Esqueceu a senha?
           </Button>
+       <Button
+            buttonStyle="tertiary"
+            size="large"
+            flex={true}
+            onPress={() => navigation.navigate("Cadastro")}
+            style={{
+              marginTop: 10
+            }}
+          >
+            Não possui conta? Cadastre-se
+          </Button>
+
         </Container>
       </ScrollView>
     </KeyboardAvoidingView>
