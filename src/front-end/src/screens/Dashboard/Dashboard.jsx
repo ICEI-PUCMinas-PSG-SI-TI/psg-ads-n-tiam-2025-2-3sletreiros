@@ -5,16 +5,19 @@ import { Image, View } from "react-native";
 import { GlassCard } from "@components/GlassCard/GlassCard";
 import { Icon } from "@components/Icon/Icon";
 import { Text } from "@components/Text/Text";
-import { CardContent, CardTitle, MainValue, ProfitValue, ValueContainer, Header, AccountInfo } from "@screens/Dashboard/style";
+import { CardContent, CardTitle, MainValue, ValueContainer, Header, AccountInfo } from "@screens/Dashboard/style";
 import { useTheme } from "styled-components";
 import { useTransactions } from "@hooks/useTransactions";
-import { formatDate, formatToBRL } from "@utils/formatter";
+import { formatToBRL } from "@utils/formatter";
 import { useUser } from "@hooks/useUser";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { useSales } from "@hooks/useSales";
 
 export function Dashboard() {
+    const {currentMonthSales} = useSales()
     const {currentMonthTransactions} = useTransactions()
+    const [finalValue, setFinalValue] = useState(currentMonthSales.total + currentMonthTransactions.total)
     const {userData} = useUser()
     const {logout} = useAuth()
     
@@ -23,13 +26,17 @@ export function Dashboard() {
     const navigation = useNavigation()
 
     function resolveMainText(){
-      if (currentMonthTransactions.total === 0)
-        return <MainValue theme={theme} style={{color: theme.colors.text.secondary}}>{formatToBRL(currentMonthTransactions.total)}</MainValue>
-      else if (currentMonthTransactions.total > 0)
-        return <MainValue theme={theme} style={{color: '#2ECC71'}}>{formatToBRL(currentMonthTransactions.total)} </MainValue>
+      if (finalValue === 0)
+        return <MainValue theme={theme} style={{color: theme.colors.text.secondary}}>{formatToBRL(finalValue)}</MainValue>
+      else if (finalValue > 0)
+        return <MainValue theme={theme} style={{color: '#2ECC71'}}>{formatToBRL(finalValue)} </MainValue>
       else
-        return <MainValue theme={theme} style={{color: theme.colors.error.text}}>{formatToBRL(currentMonthTransactions.total)}</MainValue>
+        return <MainValue theme={theme} style={{color: theme.colors.error.text}}>{formatToBRL(finalValue)}</MainValue>
     }
+
+    useEffect(() => {
+      setFinalValue(currentMonthSales.total + currentMonthTransactions.total)
+    }, [currentMonthSales, currentMonthTransactions])
 
     return (
         <ScrollContainer>
@@ -67,12 +74,12 @@ export function Dashboard() {
                 
                 <ValueContainer>
                   {resolveMainText()}
-                  {currentMonthTransactions.total !== 0 && 
+                  {currentMonthSales.total !== 0 && 
                     <Icon 
                       family='Feather' 
                       size={24} 
-                      name={currentMonthTransactions.total > 0 ? 'trendingUp' : 'trendingDown'} 
-                      color={currentMonthTransactions.total > 0 ? '#2ECC71' : theme.colors.error.text}
+                      name={finalValue > 0 ? 'trendingUp' : 'trendingDown'} 
+                      color={finalValue > 0 ? '#2ECC71' : theme.colors.error.text}
                     />
                   }
                 </ValueContainer>

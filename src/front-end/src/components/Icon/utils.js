@@ -25,6 +25,7 @@ import Gallery from '@assets/icons/gallery.svg'
 import Close from '@assets/icons/close.svg'
 import Download from '@assets/icons/download.svg'
 import Error from '@assets/icons/error.svg'
+import Coin from '@assets/icons/coin.svg'
 
 export const icons = {
     addCircle: AddCircle,
@@ -34,6 +35,7 @@ export const icons = {
     calendar: Calendar,
     camera: Camera,
     close: Close,
+    coin: Coin,
     crown: CrownIcon,
     delete: Delete,
     diamond: Diamond,
