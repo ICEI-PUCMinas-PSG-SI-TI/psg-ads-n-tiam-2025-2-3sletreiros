@@ -1,35 +1,35 @@
-import { useTheme } from "styled-components";
 import { ContentBlock } from "../../styles/global";
 import { Text } from "@components/Text/Text";
-import { Icon } from "@components/Icon/Icon";
 import {  Pressable, View } from "react-native";
 import { AmountIndicator } from "@components/AmountIndicator/AmountIndicator";
-import { DeleteItemButton, SecundaryText } from "@components/TransactionItem/style";
+import { Header, SecundaryText } from "./style";
 import { formatDate } from "@utils/formatter";
+import { Button } from "@components/Button/Button";
 
 export function SaleItem({item}) {
-    const theme = useTheme()
 
     return (
         <Pressable>
             <ContentBlock>
-                <Text variant="subtitle" style={{marginVertical: 5}}>{item.name}</Text>
-                <ContentBlock  style={{flexDirection: "row", justifyContent: "space-between", alignItems: "flex-end"}}>
-                    <View>
-                        <SecundaryText color={'#8C8C8C'}>{formatDate(item.date)}</SecundaryText>
-                        <SecundaryText color={'#8C8C8C'}>{item.category}</SecundaryText>
-                    </View>                     
+                <Header>
+                    <Text variant="subtitle" style={{marginVertical: 5}}>{formatDate(item.date)}</Text>
                     <AmountIndicator amount={item.amount} isInvoicing={true}/>
+                </Header>
+                <ContentBlock  style={{flexDirection: "row", justifyContent: "space-between", alignItems: "flex-end"}}>
+                    <View style={{maxWidth: '50%'}}>
+                        {item.items.map((product) => {
+                            return (
+                            <SecundaryText color={'#8C8C8C'} numLines={1} key={product.id}>
+                                {`${product.quantity}x ${product.name}`}    
+                            </SecundaryText>)
+                        })}
+                    </View> 
+                    <Button 
+                        buttonStyle={'error'}
+                    >
+                        Excluir
+                    </Button>                 
                 </ContentBlock>
-                <DeleteItemButton onPress={(event) => {
-                    event.stopPropagation()
-                    deleteTransaction()
-                }}>
-                    <Text color={theme.colors.error.text}>
-                        Excluir 
-                    </Text>
-                    <Icon name={'delete'} size={14} color={theme.colors.error.text}/>
-                </DeleteItemButton>
             </ContentBlock>
         </Pressable>
     )

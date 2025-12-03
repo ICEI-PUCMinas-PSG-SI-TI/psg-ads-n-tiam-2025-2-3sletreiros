@@ -2,23 +2,35 @@ import { Button } from "@components/Button/Button";
 import { CustomAnimation } from "@components/CustomAnimation/CustomAnimation";
 import { EmptyList } from "@components/EmptyList/EmptyList";
 import { Text } from "@components/Text/Text";
-import { useProducts } from "@hooks/useProducts";
 import { useEffect, useState } from "react";
-import { Image, TouchableOpacity, useColorScheme, View } from "react-native";
+import { Image, useColorScheme, View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { Container } from "src/styles/global";
 import { ProductSelectionModal } from "./ProductSelectionModal/ProductSelectionModal";
 import { formatToBRL } from "@utils/formatter";
 import { useTheme } from "styled-components";
-import { Card, ProductInfoContainer } from "./ProductSelectionModal/style";
+import { ProductInfoContainer } from "./ProductSelectionModal/style";
+import { Timestamp } from "firebase/firestore";
+import { useSales } from "@hooks/useSales";
+import { useFlashMessage } from "@hooks/useFlashMessage";
+import { useNavigation } from "@react-navigation/native";
 
 export function CreateSale() {
     const colorScheme = useColorScheme()
     const theme = useTheme()
+    const { createSale } = useSales()
+    const { showFlashMessage } = useFlashMessage()
+    const navigation = useNavigation()
 
     const [addedProducts, setAddedProducts] = useState([])
     const [selectingProduct, setSelectingProduct] = useState(false)
     const [total, setTotal] = useState(0)
+
+    const [creatingSale, setCreatingSale] = useState(false)
+
+    function cleanList() {
+        setAddedProducts([])
+    }
 
     function handleConfirmProducts(selectedProducts) {
         setAddedProducts(prev => {
@@ -56,11 +68,48 @@ export function CreateSale() {
         })
     }
 
+    async function addSale() {
+        try {
+            setCreatingSale(true)
+
+            const items = addedProducts.map((orderItem) => {
+                return {
+                    ...orderItem,
+                    amount: orderItem.quantity * orderItem.price
+                }
+            })
+
+            const sale = {
+                amount: total,
+                items: items,
+                date: Timestamp.now()
+            }
+            await createSale(sale)
+
+            showFlashMessage('Venda lançada com sucesso!', 'success')
+
+            if (navigation.canGoBack)
+                navigation.goBack()
+        } catch (error) {
+            showFlashMessage(error.message || 'Erro ao lançar venda. Por favor, tente novamente.', 'error')
+        } finally {
+            setCreatingSale(false)
+        }
+    }
+
     useEffect(() => {
         setTotal(() => {
             return addedProducts.reduce((acc, item) => acc + item.price * item.quantity, 0);
         })
     }, [addedProducts])
+
+    if (creatingSale) {
+        return (
+            <View style={{alignItems: 'center', gap: 10, justifyContent: 'center', flex: 1}}>
+                <CustomAnimation name={'sale'} size={220}/>
+            </View>
+        )
+    }
 
     return (
         <Container>
@@ -70,19 +119,29 @@ export function CreateSale() {
                 onConfirm={handleConfirmProducts}
                 addedProducts={addedProducts}
             />
-            <View style={{alignItems: 'center', gap: 10, justifyContent: 'center'}}>
-                <CustomAnimation name={'sale'} size={120}/>
-                <Text>Lance novas vendas</Text>
-            </View>
             
-            <Button
-                flex
-                buttonStyle={colorScheme === 'dark' ? 'primary' : 'surface'}
-                style={{marginTop: 10}}
-                onPress={() => setSelectingProduct(true)}
-            >
-                Adicionar Produto
-            </Button>
+            <View style={{flexDirection: 'row', gap: 12}}>
+                <Button
+                    fullWidth
+                    flex
+                    buttonStyle={colorScheme === 'dark' ? 'primary' : 'surface'}
+                    style={{marginTop: 10}}
+                    onPress={() => setSelectingProduct(true)}
+                    icon={'addCircle'}
+                >
+                    Adicionar Produto
+                </Button>
+                <Button
+                    fullWidth
+                    flex
+                    buttonStyle={'error'}
+                    style={{marginTop: 10}}
+                    onPress={() => cleanList()}
+                    icon={'eraser'}
+                >
+                    Limpar Lista
+                </Button>
+            </View>
 
             <Text color={theme.colors.text.secondary} style={{marginVertical: 15}}>Total do pedido: {formatToBRL(total)}</Text>
 
@@ -95,6 +154,14 @@ export function CreateSale() {
                 )}
                 ListEmptyComponent={<EmptyList message={'Nenhum produto adicionado ainda'} />}
             />
+
+            <Button
+                buttonStyle={'success'}
+                flex
+                onPress={() => addSale()}
+            >
+                Lançar Venda
+            </Button>
         </Container>
     )
 }

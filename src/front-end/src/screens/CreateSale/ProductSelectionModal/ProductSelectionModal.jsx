@@ -42,12 +42,14 @@ export function ProductSelectionModal({isVisible, onClose, onConfirm, addedProdu
                             showsVerticalScrollIndicator={false}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item }) => {
+                                console.log(JSON.stringify(item, null, 2))
+                                console.log(item.stock)
                                 const isAlreadyAdded = addedProducts.some(p => p.id === item.id)
                                 return (
                                     <ProductItem 
                                         item={item}
                                         selected={!!selectedProducts.find(p => p.id === item.id)}
-                                        disabled={isAlreadyAdded}
+                                        disabled={isAlreadyAdded || item.stock === 0}
                                         onPress={() => !isAlreadyAdded && toggleSelect(item)}
                                     />
                                 )

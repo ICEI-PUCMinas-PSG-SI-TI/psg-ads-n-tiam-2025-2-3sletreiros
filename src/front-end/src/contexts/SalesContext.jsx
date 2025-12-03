@@ -7,11 +7,14 @@ import {
   addDoc, 
   getDoc, 
   orderBy, 
-  onSnapshot 
+  onSnapshot, 
+  writeBatch,
+  doc
 } from "firebase/firestore";
 import { db } from "@config/firebase";
 import { useFlashMessage } from "@hooks/useFlashMessage";
 import { useAuth } from "@hooks/useAuth";
+import { useProducts } from "@hooks/useProducts";
 
 export const SalesContext = createContext();
 
@@ -19,6 +22,7 @@ export function SalesProvider({ children }) {
   const [sales, setSales] = useState([]);
   const [loadingSales, setLoadingSales] = useState(false);
   const [currentMonthSales, setCurrentMonthSales] = useState({ docs: [], total: 0 });
+  const {products} = useProducts()
 
   const { user } = useAuth();
   const { showFlashMessage } = useFlashMessage();
@@ -58,7 +62,27 @@ export function SalesProvider({ children }) {
 
   async function createSale(sale) {
     try {
-      if (!sale.name || !sale.amount) throw new Error('Insira todos os campos obrigatórios: nome e valor.');
+      if (!sale.amount || !sale.items) throw new Error('Adicione produtos antes de lançar uma nova venda.');
+
+      for (const item of sale.items) {
+      const productRef = doc(db, 'company', user.uid, 'products', item.id);
+      const productSnap = await getDoc(productRef);
+
+      if (!productSnap.exists()) {
+        throw new Error(`Produto "${item.name}" não encontrado.`);
+      }
+
+      const data = productSnap.data();
+      const currentStock = Number(data.stock || 0);
+      const requested = Number(item.quantity);
+
+      if (requested > currentStock) {
+        throw new Error(
+          `Estoque insuficiente para o produto "${item.name}". ` +
+          `Disponível: ${currentStock}, solicitado: ${requested}.`
+        );
+      }
+    }
 
       const ref = collection(db, 'company', user.uid, 'sales');
 
@@ -68,17 +92,27 @@ export function SalesProvider({ children }) {
         amount: Number(sale.amount)
       });
 
-      const snapshot = await getDoc(createdSaleRef);
+      const batch = writeBatch(db);
 
-      showFlashMessage('Venda registrada com sucesso!', 'success');
+      for (const item of sale.items) {
+        const productRef = doc(db, 'company', user.uid, 'products', item.id);
+
+        batch.update(productRef, {
+          stock: Number(item.stock) - Number(item.quantity)
+        });
+      }
+
+    await batch.commit();
+
+      const snapshot = await getDoc(createdSaleRef);
 
       return {
         id: snapshot.id,
         ...snapshot.data()
       };
     } catch (error) {
-      showFlashMessage(`Erro ao criar venda: ${error.message}`, 'error');
-      throw new Error(error.message);
+      console.log(error.message)
+      throw new Error(error.message || 'Erro ao lançar venda. Por favor, tente novamente.');
     }
   }
 
