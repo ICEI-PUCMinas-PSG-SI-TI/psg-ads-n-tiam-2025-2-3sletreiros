@@ -9,7 +9,8 @@ import {
   orderBy, 
   onSnapshot, 
   writeBatch,
-  doc
+  doc,
+  deleteDoc
 } from "firebase/firestore";
 import { db } from "@config/firebase";
 import { useFlashMessage } from "@hooks/useFlashMessage";
@@ -66,24 +67,24 @@ export function SalesProvider({ children }) {
       if (!sale.clientName || !sale.clientName === '') throw new Error('Insira o nome do cliente.')
 
       for (const item of sale.items) {
-      const productRef = doc(db, 'company', user.uid, 'products', item.id);
-      const productSnap = await getDoc(productRef);
+        const productRef = doc(db, 'company', user.uid, 'products', item.id);
+        const productSnap = await getDoc(productRef);
 
-      if (!productSnap.exists()) {
-        throw new Error(`Produto "${item.name}" não encontrado.`);
+        if (!productSnap.exists()) {
+          throw new Error(`Produto "${item.name}" não encontrado.`);
+        }
+
+        const data = productSnap.data();
+        const currentStock = Number(data.stock || 0);
+        const requested = Number(item.quantity);
+
+        if (requested > currentStock) {
+          throw new Error(
+            `Estoque insuficiente para o produto "${item.name}". ` +
+            `Disponível: ${currentStock}, solicitado: ${requested}.`
+          );
+        }
       }
-
-      const data = productSnap.data();
-      const currentStock = Number(data.stock || 0);
-      const requested = Number(item.quantity);
-
-      if (requested > currentStock) {
-        throw new Error(
-          `Estoque insuficiente para o produto "${item.name}". ` +
-          `Disponível: ${currentStock}, solicitado: ${requested}.`
-        );
-      }
-    }
 
       const ref = collection(db, 'company', user.uid, 'sales');
 
@@ -103,7 +104,7 @@ export function SalesProvider({ children }) {
         });
       }
 
-    await batch.commit();
+      await batch.commit();
 
       const snapshot = await getDoc(createdSaleRef);
 
@@ -112,8 +113,28 @@ export function SalesProvider({ children }) {
         ...snapshot.data()
       };
     } catch (error) {
-      console.log(error.message)
       throw new Error(error.message || 'Erro ao lançar venda. Por favor, tente novamente.');
+    }
+  }
+
+  async function deleteSale(sale) {
+    try {
+      if (!sale?.id) throw new Error('Venda inválida.');
+
+      const saleRef = doc(db, 'company', user.uid, 'sales', sale.id);
+      const batch = writeBatch(db);
+
+      for (const item of sale.items) {
+        const productRef = doc(db, 'company', user.uid, 'products', item.id);
+        batch.update(productRef, {
+          stock: Number(item.stock) + Number(item.quantity)
+        });
+      }
+
+      batch.delete(saleRef);
+      await batch.commit();
+    } catch (error) {
+      throw new Error(error.message || 'Erro ao deletar venda.');
     }
   }
 
@@ -137,7 +158,6 @@ export function SalesProvider({ children }) {
     }, (error) => {
         setLoadingSales(false);
         showFlashMessage('Erro ao assinar atualizações de vendas.', 'error');
-        console.error("Firebase onSnapshot error: ", error);
     });
 
     return () => unsubscribe();
@@ -145,9 +165,7 @@ export function SalesProvider({ children }) {
 
   useEffect(() => {
     if (!user?.uid) return;
-    if (sales.length > 0) {
-      fetchSalesFromCurrentMonth();
-    }
+    fetchSalesFromCurrentMonth();
   }, [sales, user?.uid]);
 
   return (
@@ -156,6 +174,7 @@ export function SalesProvider({ children }) {
         sales,
         loadingSales,
         createSale,
+        deleteSale,
         fetchSalesFromCurrentMonth,
         getTotalValue,
         currentMonthSales,

@@ -11,9 +11,11 @@ import { SaleItem } from "@components/SaleItem/SaleItem";
 import { useNavigation } from "@react-navigation/native";
 import { generateSalesPDF } from "./service";
 import { CustomAnimation } from "@components/CustomAnimation/CustomAnimation";
+import { useFlashMessage } from "@hooks/useFlashMessage";
 
 export function Sales() {
-    const {sales, loadingSales} = useSales()
+    const {sales, loadingSales, deleteSale} = useSales()
+    const {showFlashMessage} = useFlashMessage()
 
     const [downloadingPdf, setDownloadingPdf] = useState(false)
 
@@ -36,6 +38,16 @@ export function Sales() {
         setDownloadingPdf(true)
         await generateSalesPDF(sales, initialDate, finalDate)
         setDownloadingPdf(false)
+    }
+
+    async function removeSale(sale) {
+        try {
+            await deleteSale(sale)
+            showFlashMessage('Venda deletada com sucesso.', 'success')
+        } catch (error) {
+            console.error(error)
+            showFlashMessage('Erro ao deletar venda.', 'error')
+        }
     }
 
     if (downloadingPdf) {
@@ -125,7 +137,7 @@ export function Sales() {
                         showsVerticalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item }) => (
-                            <SaleItem item={item}/>
+                            <SaleItem item={item} onDelete={() => removeSale(item)}/>
                         )}
                         ListEmptyComponent={<EmptyList message={'Nenhuma venda encontrada.'} />}
                     />
