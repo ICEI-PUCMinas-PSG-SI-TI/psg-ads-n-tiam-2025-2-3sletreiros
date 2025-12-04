@@ -6,8 +6,7 @@ export const Container = styled.View`
     justify-content: center;
     gap: 24px;
     background-color: ${({ color }) => color};
-    width: 80%;
     align-self: center;
-    padding: 8px;
+    padding: 12px;
     border-radius: 32px;
 `

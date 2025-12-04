@@ -39,12 +39,30 @@ export function CreateProduct(){
     const {uploadImage, pickImage, takeImage} = useImage()
 
     const handleNameChange = (text) => setName(text);
-    const handlePriceChange = (text) => setPrice(text);
+
+    const handlePriceChange = (text) => {
+        const numbers = text.replace(/\D/g, '');
+        
+        if (numbers === '') {
+            setPrice('');
+            return;
+        }
+        
+        const value = parseFloat(numbers) / 100;
+        
+        const formatted = value.toLocaleString('pt-BR', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+        
+        setPrice(formatted);
+    }
 
     async function addProduct(){
         setCreatingProduct(true)
         try {
             setUploadingImage(true)
+            const priceValue = parseFloat(price.replace(/\./g, '').replace(',', '.'))
             const image = await uploadImage(imageUri)
             await addDoc(collection(db, "company", user?.uid, "products"), {
                 name,
@@ -52,7 +70,7 @@ export function CreateProduct(){
                 description,
                 category,
                 image,
-                price
+                price: priceValue
             })
             setUploadingImage(false)
             showFlashMessage('Produto adicionado com sucesso!', 'success')
