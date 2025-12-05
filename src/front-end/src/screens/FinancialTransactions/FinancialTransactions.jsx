@@ -75,7 +75,7 @@ export function FinancialTransactions(){
 
     async function addTransaction(transaction) {
         try {
-            const parsedValue = parseFloat(price.replace(/\./g, '').replace(',', '.'))
+            const parsedValue = parseFloat(value.replace(/\./g, '').replace(',', '.'))
             setCreatingTransaction(true)
             await createTransaction({...transaction, amount: parsedValue})
             

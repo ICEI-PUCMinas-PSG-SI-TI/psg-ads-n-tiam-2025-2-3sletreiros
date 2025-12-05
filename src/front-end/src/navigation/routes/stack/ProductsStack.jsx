@@ -3,6 +3,7 @@ import { StackNavigator } from "@components/StackNavigator/StackNavigator";
 import { CreateProduct } from "@screens/CreateProduct/CreateProduct";
 import { Products } from "@screens/Products/Products";
 import { ProductDetails } from "@screens/ProductDetails/ProductDetails";
+import { EditProduct } from "@screens/EditProduct/EditProduct";
 
 export function ProductsStack() {
     const screens = [
@@ -17,6 +18,10 @@ export function ProductsStack() {
         {
             component: ProductDetails,
             name: 'ProductDetails'
+        },
+        {
+            component: EditProduct,
+            name: 'EditProduct'
         }
     ]
     return (

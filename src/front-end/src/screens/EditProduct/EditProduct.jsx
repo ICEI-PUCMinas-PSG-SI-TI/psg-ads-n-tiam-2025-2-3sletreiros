@@ -1,25 +1,18 @@
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { useAuth } from "../../hooks/useAuth";
-import {formatToBRL} from "@utils/formatter"
 
-import { useState } from "react";
-import { useFocusEffect } from "@react-navigation/native";
-import { useCallback } from "react";
-
+import { useState, useEffect } from "react";
 import { doc, getDoc , updateDoc} from "firebase/firestore";
 import { db } from "../../config/firebase";
 
-import { Image } from "react-native";
 import { Container, ScrollContainer } from "src/styles/global";
 import { Text } from "@components/Text/Text";
 import { InputField } from "../../components/Input/InputField";
 import { Box,  ButtonContainer } from "@screens/TransactionDetails/style";
 import { useFlashMessage } from "../../hooks/useFlashMessage";
 import { Button } from "../../components/Button/Button";
-import { DetailsContainer } from "./style";
 
-
-export function ProductDetails(){
+export function EditProduct(){
     const { user } = useAuth();
     
     const route = useRoute()
@@ -33,7 +26,6 @@ export function ProductDetails(){
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
-    const [image, setImage] = useState("");
     
     const { showFlashMessage } = useFlashMessage();
 
@@ -53,7 +45,6 @@ export function ProductDetails(){
                 setPrice(String(data.price || ""));
                 setDescription(data.description || "");
                 setCategory(data.category || "");
-                setImage(data.image || "");
 
             }
             else {
@@ -64,52 +55,76 @@ export function ProductDetails(){
         }
     }
 
-    useFocusEffect(
-        useCallback(() => {
-            getProduct();
-        }, [productId])
-    );
+    useEffect(() => {
+        getProduct();
+    }, []);
 
+    async function updateProcuct() {
+            try {
+                const productRef = doc(
+                    db,
+                    "company",
+                    user.uid,
+                    "products",
+                    productId
+                );
+    
+                await updateDoc(productRef, {
+                    name,
+                    stock,
+                    price: Number(price),
+                    description,
+                    category,
+                });
+    
+                      
+                showFlashMessage("Dados atualizados com sucesso!", "success");
+                navigation.goBack();
+            } catch (error) {
+                showFlashMessage("Erro ao atualizar produto", "error");
+                console.error("Erro ao atualizar produto:", error);
+            }
+        }
 
     return (
         <ScrollContainer>
-            <Text variant="title">Detalhes do produto</Text>
+            <Text variant="title">Editar produto</Text>
 
             <Container>
-                <DetailsContainer>
-                    <Image source={{uri: image}} style={{ width: '100%', height: '60%', borderRadius: 8, resizeMode: 'cover' }}/>
+                <InputField 
+                    label="Nome do produto" 
+                    value={name}
+                    onChangeText={setName}
+                />
 
-                    <Box style={{marginTop: 10}}>
-                        <Text variant="subtitle">Nome do produto:</Text>
-                        <Text>{product?.name}</Text>
-                    </Box>
+                <InputField 
+                    label="Estoque"
+                    value={stock}
+                    onChangeText={setStock}
+                />
 
-                    <Box>
-                        <Text variant="subtitle">Estoque:</Text>
-                        <Text>{product?.stock}</Text>
-                    </Box>
+                <InputField 
+                    label="Valor da transação"
+                    value={price}
+                    onChangeText={setPrice}
+                    keyboardType="numeric"
+                />
 
-                    <Box>
-                        <Text variant="subtitle">Preço:</Text>
-                        <Text>{formatToBRL(product?.price)}</Text>
-                    </Box>
+                <InputField 
+                    label="Categoria do produto"
+                    value={category}
+                    onChangeText={setCategory}
+                />
 
-                    <Box>
-                        <Text variant="subtitle">Categoria:</Text>
-                        <Text>{product?.category}</Text>
-                    </Box>
-
-                    <Box>
-                        <Text variant="subtitle">Descrição:</Text>
-                        <Text>{product?.description}</Text>
-                    </Box>
-
-                </DetailsContainer>
-                
+                <InputField 
+                    label="Descrição do produto"
+                    value={description}
+                    onChangeText={setDescription}
+                />
 
                 <ButtonContainer>
-                    <Button buttonStyle={"primary"} flex onPress={() => navigation.navigate("EditProduct", { productId})}>
-                        Editar
+                    <Button buttonStyle={"primary"} flex onPress={updateProcuct}>
+                        Salvar
                     </Button>
                 
                     <Button
@@ -117,7 +132,7 @@ export function ProductDetails(){
                         flex
                         onPress={() => navigation.goBack()}
                     >
-                        Voltar
+                        Cancelar
                     </Button>
                 </ButtonContainer>
 
