@@ -6,7 +6,8 @@
 
 `4° Semestre`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+Este projeto é um aplicativo móvel desenvolvido em React Native (Expo) para gestão de micro e pequenas empresas. O app usa Firebase Authentication para autenticação e Cloud Firestore como único banco de dados, armazenando empresas, produtos, vendas, itens de venda e movimentações financeiras; também gera relatórios em PDF e organiza o estado da aplicação via Context API.
+
 
 ## Integrantes
 
@@ -23,7 +24,7 @@ Pedro Felipe Alves de Oliveira
 
 ## Instruções de utilização
 
-Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
+Para executar o projeto: entre em src/front-end/, abra o terminal dessa mesma pasta e rode "npm install" para instalar as dependências e depois execute "npx expo start" para iniciar o aplicativo.
 
 # Documentação
 
