@@ -71,17 +71,11 @@ export const ActionItem = styled.TouchableOpacity`
 `
 
 export const IconContainer = styled.View`
-  width: 64px;
-  height: 64px;
-  border-radius: 16px;
-  background-color: ${props => props.theme.colors.card}; 
+  padding: 12px;
+  border-radius: 32px;
+  background-color: ${props => props.theme.colors.background.surface}; 
   align-items: center;
   justify-content: center;
-  shadow-color: #000;
-  shadow-offset: 0px 2px;
-  shadow-opacity: 0.1;
-  shadow-radius: 4px;
-  elevation: 3;
 `
 
 export const ActionLabel = styled.Text`
@@ -93,10 +87,9 @@ export const ActionLabel = styled.Text`
 
 export const DetailCardsContainer = styled.View`
   flex-direction: row;
-  gap: 12px;
 `
 
-export const DetailCard = styled.View`
+export const DetailCard = styled.Pressable`
   flex: 1;
 `
 
@@ -107,6 +100,5 @@ export const DetailLabel = styled.Text`
 `
 
 export const DetailValue = styled.Text`
-  font-size: 18px;
   font-weight: bold;
 `

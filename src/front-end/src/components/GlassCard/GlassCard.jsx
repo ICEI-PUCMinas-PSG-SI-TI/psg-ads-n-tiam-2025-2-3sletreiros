@@ -27,6 +27,7 @@ export function GlassCard ({children, style}){
         borderRadius: 20,
         padding: 24,
         margin: 16,
+        marginBottom: 0,
         borderWidth: 1,
         borderColor: isDark 
           ? 'rgba(255, 255, 255, 0.15)' 

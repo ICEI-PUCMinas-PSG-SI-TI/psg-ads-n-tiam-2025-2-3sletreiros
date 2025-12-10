@@ -69,12 +69,12 @@ export function Dashboard() {
   const quickActions = [
     {
       icon: 'coin',
-      label: 'Nova Venda',
+      label: 'Vendas',
       onPress: () => navigation.navigate('Sales', { screen: 'CreateSale' })
     },
     {
       icon: 'inventory',
-      label: 'Novo Produto',
+      label: 'Produtos',
       onPress: () => navigation.navigate('Products', { screen: 'CreateProduct' })
     },
     {
@@ -89,7 +89,7 @@ export function Dashboard() {
     },
     {
       icon: 'person',
-      label: 'Minha Conta',
+      label: 'Conta',
       onPress: () => navigation.navigate('MyAccount')
     },
   ]
@@ -124,8 +124,7 @@ export function Dashboard() {
         <Button buttonStyle={'error'} onPress={() => logout()} icon={'logout'} />
       </Header>
 
-      <View style={{ gap: 24 }}>
-
+      <View style={{ gap: 12 }}>
         <GlassCard>
           <CardContent>
             <CardTitle theme={theme}>Resumo {new Date().toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' })}</CardTitle>
@@ -146,69 +145,21 @@ export function Dashboard() {
           </CardContent>
         </GlassCard>
 
-        <View>
-          <SectionTitle theme={theme} style={{ marginLeft: 4 }}>Acesso Rápido</SectionTitle>
-          <QuickActionsContainer horizontal showsHorizontalScrollIndicator={false}>
-            {quickActions.map((action, index) => (
-              <ActionItem key={index} onPress={action.onPress}>
-                <IconContainer theme={theme}>
-                  <Icon name={action.icon} size={24} color={theme.colors.text.primary} />
-                </IconContainer>
-                <ActionLabel theme={theme}>{action.label}</ActionLabel>
-              </ActionItem>
-            ))}
-          </QuickActionsContainer>
-        </View>
-
-        <View>
-          <TouchableOpacity
-            onPress={() => setShowCharts(!showCharts)}
-            style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}
-          >
-            <SectionTitle theme={theme} style={{ marginBottom: 0, marginLeft: 4 }}>
-              Gráficos e Análises
-            </SectionTitle>
-            <Icon
-              name={showCharts ? 'arrowUp' : 'arrowDown'}
-              family="Feather"
-              size={24}
-              color={theme.colors.text.secondary}
-            />
-          </TouchableOpacity>
-
-          {showCharts && (
-            <View style={{ gap: 20 }}>
-              <LineChartComponent
-                title={`Comparativo de vendas ${new Date().toLocaleDateString('pt-BR', { year: 'numeric' })}`}
-                chartData={processSalesForChart()}
-                chartLegend={'Total por mês (R$)'}
-              />
-              <LineChartComponent
-                title={`Comparativo de valor média por venda ${new Date().toLocaleDateString('pt-BR', { year: 'numeric' })}`}
-                chartData={processAverageTicketForChart()}
-                chartLegend={'Média por mês (R$)'}
-                strokeColor={theme.colors.primary}
-              />
-            </View>
-          )}
-        </View>
-
-        <View style={{ marginBottom: 30 }}>
-          <SectionTitle theme={theme} style={{ marginLeft: 4 }}>Resumo Detalhado</SectionTitle>
+        <View style={{marginBottom: 10}}>
           <DetailCardsContainer>
-            <DetailCard>
+            <DetailCard onPress={() => navigation.navigate('Sales')}>
               <GlassCard style={{ height: 110, justifyContent: 'center' }}>
                 <CardContent>
-                  <DetailLabel theme={theme}>Total Vendas</DetailLabel>
+                  <DetailLabel theme={theme} numberOfLines={1}>Total Vendas</DetailLabel>
                   <DetailValue style={{ color: '#2ECC71' }}>{formatToBRL(currentMonthSales.total)}</DetailValue>
                 </CardContent>
               </GlassCard>
             </DetailCard>
 
-            <DetailCard>
+            <DetailCard onPress={() => navigation.navigate('Transactions')}>
               <GlassCard style={{ height: 110, justifyContent: 'center' }}>
                 <CardContent>
-                  <DetailLabel theme={theme}>Saldo Transações</DetailLabel>
+                  <DetailLabel theme={theme} numberOfLines={1}>Saldo Transações</DetailLabel>
                   <DetailValue style={{ color: currentMonthTransactions.total >= 0 ? '#2ECC71' : theme.colors.error.text }}>
                     {formatToBRL(currentMonthTransactions.total)}
                   </DetailValue>
@@ -218,6 +169,38 @@ export function Dashboard() {
           </DetailCardsContainer>
         </View>
 
+        <View>
+          <QuickActionsContainer horizontal showsHorizontalScrollIndicator={false}>
+            {quickActions.map((action, index) => (
+              <ActionItem key={index} onPress={action.onPress}>
+                <IconContainer theme={theme}>
+                  <Icon name={action.icon} size={16} color={theme.colors.text.primary} />
+                </IconContainer>
+                <ActionLabel theme={theme}>{action.label}</ActionLabel>
+              </ActionItem>
+            ))}
+          </QuickActionsContainer>
+        </View>
+
+        <View style={{ marginBottom: 30, marginTop: 10 }}>
+          {showCharts && (
+            <View style={{ gap: 20, alignItems: 'center' }}>
+              <LineChartComponent
+                title={`Comparativo de vendas ${new Date().toLocaleDateString('pt-BR', { year: 'numeric' })}`}
+                chartData={processSalesForChart()}
+                chartLegend={'Total por mês (R$)'}
+                showHorizontalLines
+              />
+              <LineChartComponent
+                title={`Comparativo de valor média por venda ${new Date().toLocaleDateString('pt-BR', { year: 'numeric' })}`}
+                chartData={processAverageTicketForChart()}
+                chartLegend={'Média por mês (R$)'}
+                strokeColor={theme.colors.primary}
+                showHorizontalLines
+              />
+            </View>
+          )}
+        </View>
       </View>
     </ScrollContainer>
   )
