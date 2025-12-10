@@ -7,7 +7,7 @@ import { useTheme } from 'styled-components';
 
 const screenWidth = Dimensions.get('window').width;
 
-export function LineChartComponent({ title, chartData, chartLegend, strokeColor }){
+export function LineChartComponent({ title, chartData, chartLegend, strokeColor, showVerticalLines = false, showHorizontalLines = false}) {
     const theme = useTheme()
     const colorScheme = useColorScheme()
 
@@ -49,6 +49,8 @@ export function LineChartComponent({ title, chartData, chartLegend, strokeColor 
         chartConfig={chartConfig}
         bezier
         style={styles.chart}
+        withHorizontalLines={showHorizontalLines} 
+        withVerticalLines={showVerticalLines}
       />
     </View>
   );
@@ -56,17 +58,17 @@ export function LineChartComponent({ title, chartData, chartLegend, strokeColor 
 
 const styles = StyleSheet.create({
     container: {
-        borderRadius: 16,
-        overflow: 'hidden', 
-        alignItems: 'center',
-        width: '100%',
+      borderRadius: 16,
+      overflow: 'hidden', 
+      alignItems: 'center',
+      width: '100%',
     },
     title: {
-        textAlign: 'center',
+      textAlign: 'center',
     },
     chart: {
-        borderRadius: 8,
-        paddingVertical: 8,
-        width: '100%',
+      borderRadius: 8,
+      paddingVertical: 8,
+      width: '100%',
     }
 });
