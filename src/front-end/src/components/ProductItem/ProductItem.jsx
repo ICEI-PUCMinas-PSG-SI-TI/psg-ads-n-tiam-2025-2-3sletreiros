@@ -16,7 +16,7 @@ export function ProductItem({item}){
                 <View style={{ width: '100%', height: 150, borderRadius: 8, overflow: 'hidden'}}> 
                     <Image source={{uri: item.image}} style={{ width: '100%', height: 150, borderRadius: 8, resizeMode: 'cover' }}/>
                 </View>
-                <Text variant="subtitle" style={{ marginTop: 10}}>{item.name}</Text>
+                <Text style={{ marginTop: 10, fontWeight: 'bold'}} numLines={1}>{item.name}</Text>
                 <Text color={'#b6b6b6ff'} numLines={1} style={{fontSize: 12}}>{(item.description)}</Text>
                 <Text color={'#b6b6b6ff'} style={{fontSize: 10}}>{formatToBRL(item.price)}</Text>
                 <Text color={'#b6b6b6ff'} style={{fontSize: 10}}>Estoque: {item.stock}</Text>

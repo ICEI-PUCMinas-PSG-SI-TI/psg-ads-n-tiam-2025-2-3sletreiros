@@ -29,20 +29,20 @@ export default function App() {
     <GestureHandlerRootView style={{flex: 1}}>
       <FlashMessageProvider>
         <AuthProvider>
-          <ProductsProvider>
-            <SalesProvider>
-              <TransactionsProvider>
-                <ThemeProvider theme={theme}>
-                  <Container>
-                    <NavigationContainer theme={navigationTheme}>
-                      <StatusBar style={deviceTheme === 'dark' ? 'light' : 'dark'} backgroundColor={theme.colors.background.default} />
-                      <AppRoutes />
-                    </NavigationContainer>
-                  </Container>
-                </ThemeProvider>
-              </TransactionsProvider>
-            </SalesProvider>
-          </ProductsProvider>
+          <ThemeProvider theme={theme}>
+            <ProductsProvider>
+              <SalesProvider>
+                <TransactionsProvider>
+                    <Container>
+                      <NavigationContainer theme={navigationTheme}>
+                        <StatusBar style={deviceTheme === 'dark' ? 'light' : 'dark'} backgroundColor={theme.colors.background.default} />
+                        <AppRoutes />
+                      </NavigationContainer>
+                    </Container>
+                </TransactionsProvider>
+              </SalesProvider>
+            </ProductsProvider>
+          </ThemeProvider>
         </AuthProvider>
       </FlashMessageProvider>
     </GestureHandlerRootView>

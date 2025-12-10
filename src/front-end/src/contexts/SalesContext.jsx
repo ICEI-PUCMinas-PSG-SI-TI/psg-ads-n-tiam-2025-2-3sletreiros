@@ -16,6 +16,8 @@ import { db } from "@config/firebase";
 import { useFlashMessage } from "@hooks/useFlashMessage";
 import { useAuth } from "@hooks/useAuth";
 import { useProducts } from "@hooks/useProducts";
+import dayjs from 'dayjs';
+import { useTheme } from "styled-components";
 
 export const SalesContext = createContext();
 
@@ -23,10 +25,12 @@ export function SalesProvider({ children }) {
   const [sales, setSales] = useState([]);
   const [loadingSales, setLoadingSales] = useState(false);
   const [currentMonthSales, setCurrentMonthSales] = useState({ docs: [], total: 0 });
+  const [calculatingSales, setCalculatingSales] = useState(false);
   const {products} = useProducts()
 
   const { user } = useAuth();
   const { showFlashMessage } = useFlashMessage();
+  const theme = useTheme();
 
   function getTotalValue(salesList) {
     return salesList.reduce((total, sale) => {
@@ -42,6 +46,7 @@ export function SalesProvider({ children }) {
     const end = new Date(now.getFullYear(), now.getMonth() + 1, 1);
 
     try {
+      setCalculatingSales(true);
       setLoadingSales(true);
       const query = dbQuery(
         collection(db, "company", user.uid, "sales"),
@@ -58,6 +63,7 @@ export function SalesProvider({ children }) {
       showFlashMessage('Erro ao carregar vendas do mês atual.', 'error');
     } finally {
       setLoadingSales(false);
+      setCalculatingSales(false);
     }
   }
 
@@ -138,6 +144,73 @@ export function SalesProvider({ children }) {
     }
   }
 
+  function processSalesForChart(){
+    const monthlyTotals = new Array(12).fill(0);
+    const currentYear = dayjs().year();
+
+    sales.forEach(sale => {
+      const saleDate = dayjs(sale.date.toDate()); 
+      const saleYear = saleDate.year();
+      const saleMonthIndex = saleDate.month();
+      
+      if (saleYear === currentYear) {
+        const amount = Number(sale.amount || 0);
+        monthlyTotals[saleMonthIndex] += amount;
+      }
+    });
+
+    const labels = [
+      "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", 
+      "Jul", "Ago", "Set", "Out", "Nov", "Dez"
+    ];
+    
+    return {
+      labels: labels,
+      datasets: [
+        {
+          data: monthlyTotals,
+          color: (opacity = 1) => `rgba(30, 255, 100, ${opacity})`,
+        },
+      ],
+    };
+  };
+
+  function processAverageTicketForChart() {
+    const monthlyData = new Array(12).fill(0).map(() => ({ totalAmount: 0, count: 0 }));
+    const currentYear = dayjs().year();
+
+    sales.forEach(sale => {
+      const saleDate = dayjs(sale.date.toDate());
+      const saleYear = saleDate.year();
+      const saleMonthIndex = saleDate.month();
+
+      if (saleYear === currentYear) {
+        const amount = Number(sale.amount || 0);
+        monthlyData[saleMonthIndex].totalAmount += amount;
+        monthlyData[saleMonthIndex].count += 1;
+      }
+    });
+
+    const monthlyAverageTicket = monthlyData.map(data => {
+      return data.count > 0 ? (data.totalAmount / data.count) : 0;
+    });
+
+    const labels = [
+      "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+      "Jul", "Ago", "Set", "Out", "Nov", "Dez"
+    ];
+
+    return {
+      labels: labels,
+      datasets: [
+        {
+          data: monthlyAverageTicket,
+          color: (opacity = 1) => `rgba(221, 108, 51, ${opacity})`,
+        },
+      ],
+    };
+  };
+
   useEffect(() => {
     if (!user || !user.uid) return;
 
@@ -178,6 +251,9 @@ export function SalesProvider({ children }) {
         fetchSalesFromCurrentMonth,
         getTotalValue,
         currentMonthSales,
+        processSalesForChart,
+        calculatingSales,
+        processAverageTicketForChart
       }}
     >
       {children}
