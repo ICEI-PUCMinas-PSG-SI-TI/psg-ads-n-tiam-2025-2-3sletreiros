@@ -1,58 +1,29 @@
 message: Please cite this software using these metadata.
-title:
+title: Dashboard Administrativo
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - name-suffix: Professor
-    affiliation: PUC Minas
-    family-names: 
-    given-names: 
-  - name-suffix: Professor
-    affiliation: PUC Minas
-    family-names: 
-    given-names: 
+  - family-names: "Matias"
+    given-names: "Bruna Luiza Siqueira Borges"
+  - family-names: "Botaro"
+    given-names: "Gabriel Baumgratz de Paula"
+  - family-names: "Lessa"
+    given-names: "Reinato Silva"
+    name-suffix: "Junior"
+  - family-names: "Maciel"
+    given-names: "Ricardo Araújo"
+  - family-names: "Oliveira"
+    given-names: "Samuel Maia de"
+  - family-names: "Silva"
+    given-names: "Vitor Fortunato"
+  - family-names: "Oliveira"
+    given-names: "Pedro Felipe Alves de"
+    name-suffix: "Professor"
+    affiliation: "PUC Minas"
 keywords:
-  - 
-  - 
-repository-code: 
+  - dashboard
+  - administrativo
+  - Aplicação móvel
+  - Tecnologia em Análise e Desenvolvimento de Sistemas
+  - PUC Minas
+repository-code: "https://github.com/ICEI-PUCMinas-PSG-SI-TI/psg-ads-n-tiam-2025-2-3sletreiros"
 version: 1.0.0
-date-released: 2023-10-31
-message: Please cite this software using these metadata.
-title:
-authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - name-suffix: Professor
-    affiliation: PUC Minas
-    family-names: 
-    given-names: 
-  - name-suffix: Professor
-    affiliation: PUC Minas
-    family-names: 
-    given-names: 
-keywords:
-  - 
-  - 
-repository-code: 
-version: 1.0.0
-date-released: 2023-10-31
+date-released: 2025-12-10
