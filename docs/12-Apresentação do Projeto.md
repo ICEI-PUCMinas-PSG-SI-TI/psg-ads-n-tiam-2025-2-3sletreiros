@@ -4,6 +4,7 @@
 
 Conjunto de slides em um arquivo PowerPoint ou PDF com a apresentação do projeto contemplando todos os itens trabalhados nos demais artefatos.
 
+[slides](https://www.canva.com/design/DAG7Jjio9qc/OwiKMrC2QVZidTrSt1NKRw/edit?utm_content=DAG7Jjio9qc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 ## Título do Projeto
 
 Nome e marca do projeto
