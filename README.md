@@ -25,6 +25,7 @@ Pedro Felipe Alves de Oliveira
 ## Instruções de utilização
 
 Para executar o projeto: entre em src/front-end/, abra o terminal dessa mesma pasta e rode "npm install" para instalar as dependências e depois execute "npx expo start" para iniciar o aplicativo.
+
 [Link do apk](https://expo.dev/accounts/samuelmaia.dev/projects/front-end/builds/3e8953f8-7996-40f1-9cd6-7d8bd0a70e60)
 
 # Documentação
