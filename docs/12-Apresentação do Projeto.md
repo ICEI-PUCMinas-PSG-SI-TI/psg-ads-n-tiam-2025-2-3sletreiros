@@ -4,7 +4,7 @@
 
 Conjunto de slides em um arquivo PowerPoint ou PDF com a apresentação do projeto contemplando todos os itens trabalhados nos demais artefatos.
 
-[slides](presentation/EntregaFinal_MEIFLOW.pdf)
+[slides](EntregaFinal_MEIFLOW.pdf)
 ## Título do Projeto
 
 Nome e marca do projeto
